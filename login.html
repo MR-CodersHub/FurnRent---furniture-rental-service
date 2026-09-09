@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Login — FurnRent | Premium Furniture Rental</title>
+<meta name="description" content="Log in to your FurnRent account to manage active furniture rentals, payments, swap requests and profile.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.auth-page-wrap{min-height:calc(100vh - var(--header-h) - 300px);display:flex;align-items:center;justify-content:center;padding:60px 20px;background:linear-gradient(180deg,var(--off-white) 0%,var(--blue-pale) 100%)}
+[data-theme="dark"] .auth-page-wrap{background:linear-gradient(180deg,var(--off-white) 0%,#09131f 100%)}
+.auth-card{background:var(--white);border-radius:var(--radius-xl);padding:44px 40px;box-shadow:var(--shadow-xl);border:1px solid rgba(13,27,42,.08);width:100%;max-width:480px;position:relative}
+[data-theme="dark"] .auth-card{background:#142236;border-color:rgba(255,255,255,.12);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.auth-header{text-align:center;margin-bottom:32px}
+.auth-logo-badge{width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 8px 20px rgba(74,144,217,.3);overflow:hidden}
+.auth-logo-badge img{width:100%;height:100%;display:block}
+.auth-header h1{font-size:1.625rem;font-weight:800;color:var(--dark);margin-bottom:8px}
+[data-theme="dark"] .auth-header h1{color:#ffffff}
+.auth-header p{color:var(--gray-500);font-size:.875rem}
+[data-theme="dark"] .auth-header p{color:rgba(255,255,255,.75)}
+
+.auth-role-tabs{display:flex;background:var(--gray-50);border-radius:var(--radius-lg);padding:4px;margin-bottom:24px;border:1px solid var(--gray-200)}
+[data-theme="dark"] .auth-role-tabs{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1)}
+.role-tab-btn{flex:1;padding:8px 12px;border-radius:var(--radius-md);border:none;background:transparent;font-size:.84rem;font-weight:700;cursor:pointer;color:var(--gray-500);transition:var(--transition);display:flex;align-items:center;justify-content:center;gap:8px}
+.role-tab-btn.active{background:var(--white);color:var(--navy);box-shadow:var(--shadow-sm)}
+[data-theme="dark"] .role-tab-btn.active{background:var(--blue);color:#ffffff}
+
+.form-group{margin-bottom:20px}
+.form-label{display:block;font-size:.8125rem;font-weight:700;color:var(--dark);margin-bottom:8px}
+[data-theme="dark"] .form-label{color:rgba(255,255,255,.9)}
+.input-with-icon{position:relative}
+.input-with-icon i.field-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--gray-400);font-size:.9rem}
+.input-with-icon input{width:100%;padding:12px 42px 12px 42px;border:1.5px solid var(--gray-200);border-radius:var(--radius-md);background:var(--white);color:var(--dark);font-size:.9375rem;transition:border-color .2s;outline:none}
+[data-theme="dark"] .input-with-icon input{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.15);color:#ffffff}
+.input-with-icon input:focus{border-color:var(--blue)}
+.toggle-pwd{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--gray-400);cursor:pointer;font-size:.9rem}
+
+.form-row-remember{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;font-size:.8125rem}
+.remember-wrap{display:flex;align-items:center;gap:8px;cursor:pointer;color:var(--gray-600);user-select:none}
+[data-theme="dark"] .remember-wrap{color:rgba(255,255,255,.8)}
+.remember-wrap input{cursor:pointer;accent-color:var(--blue)}
+.forgot-link{color:var(--blue);font-weight:600;text-decoration:none;transition:var(--transition)}
+.forgot-link:hover{text-decoration:underline}
+
+.btn-auth-submit{width:100%;justify-content:center;padding:14px;font-size:.9375rem;font-weight:700;border-radius:var(--radius-md)}
+
+.demo-account-box{margin-top:28px;padding:16px;background:var(--blue-pale);border-radius:var(--radius-lg);border:1px dashed rgba(74,144,217,.35);font-size:.8rem}
+[data-theme="dark"] .demo-account-box{background:rgba(74,144,217,.12);border-color:rgba(74,144,217,.3)}
+.demo-account-title{font-weight:700;color:var(--navy);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+[data-theme="dark"] .demo-account-title{color:var(--blue-light)}
+.demo-account-box p{color:var(--gray-600);margin-bottom:8px;line-height:1.4}
+[data-theme="dark"] .demo-account-box p{color:rgba(255,255,255,.8)}
+.demo-btn-group{display:flex;gap:8px}
+.demo-quick-btn{flex:1;padding:6px 10px;border-radius:var(--radius-sm);border:1px solid rgba(74,144,217,.4);background:var(--white);color:var(--navy);font-weight:700;font-size:.75rem;cursor:pointer;transition:var(--transition)}
+[data-theme="dark"] .demo-quick-btn{background:#142236;color:#93c5fd}
+.demo-quick-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+.auth-footer-prompt{text-align:center;margin-top:24px;font-size:.875rem;color:var(--gray-600)}
+[data-theme="dark"] .auth-footer-prompt{color:rgba(255,255,255,.75)}
+.auth-footer-prompt a{color:var(--blue);font-weight:700;text-decoration:none}
+.auth-footer-prompt a:hover{text-decoration:underline}
+</style>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+</head>
+<body>
+
+<!-- Minimal Header (Logo, RTL & Theme Toggle Only) -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><div class="logo-icon"><img src="images/logo-icon.svg" alt="FurnRent Logo"></div><span class="logo-text">Furn<span>Rent</span></span></a>
+    <div class="header-actions" style="margin-left:auto">
+      <button class="header-icon-btn rtl-toggle-btn" id="rtlToggleBtn" title="Toggle RTL / LTR Direction" aria-label="Toggle RTL Direction"><i class="fas fa-right-left"></i></button>
+      <button class="header-icon-btn theme-toggle-btn" aria-label="Toggle dark/light mode"><i class="fas fa-moon"></i></button>
+    </div>
+  </div>
+</header>
+
+<main class="auth-page-wrap">
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="auth-logo-badge"><img src="images/logo-icon.svg" alt="FurnRent Logo"></div>
+      <h1 id="authTitle">Welcome Back</h1>
+      <p id="authSubtitle">Log in to manage your active rentals, payments and furniture orders</p>
+    </div>
+
+    <!-- Role Switcher -->
+    <div class="auth-role-tabs">
+      <button class="role-tab-btn active" id="tabCustomer" onclick="switchLoginRole('customer')">
+        <i class="fas fa-user"></i> Customer Login
+      </button>
+      <button class="role-tab-btn" id="tabAdmin" onclick="switchLoginRole('admin')">
+        <i class="fas fa-shield-halved"></i> Admin Portal
+      </button>
+    </div>
+
+    <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+      <div class="form-group">
+        <label class="form-label" for="loginEmail">Email Address or Mobile Number</label>
+        <div class="input-with-icon">
+          <i class="fas fa-envelope field-icon"></i>
+          <input type="text" id="loginEmail" placeholder="e.g. aryan@furnrent.in or 9876543210" required value="aryan@furnrent.in">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="loginPassword">Password</label>
+        <div class="input-with-icon">
+          <i class="fas fa-lock field-icon"></i>
+          <input type="password" id="loginPassword" placeholder="Enter your account password" required value="password123">
+          <button type="button" class="toggle-pwd" onclick="togglePasswordVisibility('loginPassword', this)"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+
+      <div class="form-row-remember">
+        <label class="remember-wrap">
+          <input type="checkbox" id="rememberMe" checked> Remember this device
+        </label>
+        <a href="#" class="forgot-link" onclick="handleForgotPassword(event)">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-auth-submit" id="loginSubmitBtn">
+        <i class="fas fa-sign-in-alt"></i> Log In to Customer Portal
+      </button>
+    </form>
+
+    <!-- Quick Demo Credentials for Fast Testing -->
+    <div class="demo-account-box">
+      <div class="demo-account-title"><i class="fas fa-bolt"></i> Quick Demo Logins</div>
+      <p>Click below to pre-fill credentials and instantly access respective dashboards:</p>
+      <div class="demo-btn-group">
+        <button type="button" class="demo-quick-btn" onclick="fillCredentials('customer')"><i class="fas fa-user"></i> Aryan (Customer)</button>
+        <button type="button" class="demo-quick-btn" onclick="fillCredentials('admin')"><i class="fas fa-shield-halved"></i> Admin (Management)</button>
+      </div>
+    </div>
+
+    <div class="auth-footer-prompt">
+      Don't have an account yet? <a href="signup.html">Create an Account</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none;padding:24px 0 0;text-align:center">
+      <p>© 2024 FurnRent. Premium Furniture Rental across India.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="cart-overlay"></div>
+<div class="cart-drawer">
+  <div class="cart-header"><div class="cart-title">Your Cart</div><button class="modal-close cart-drawer-close" aria-label="Close cart"><i class="fas fa-times"></i></button></div>
+  <div class="cart-body"></div>
+  <div class="cart-footer"><div class="cart-total"><span>Total:</span><span class="cart-total-amount">₹0</span></div><a href="packages.html" class="btn btn-primary" style="width:100%;justify-content:center">Checkout</a></div>
+</div>
+<div class="toast-container"></div>
+
+<script src="js/main.js"></script>
+<script>
+let currentRole = 'customer';
+
+function switchLoginRole(role) {
+  currentRole = role;
+  const tabCustomer = document.getElementById('tabCustomer');
+  const tabAdmin = document.getElementById('tabAdmin');
+  const authTitle = document.getElementById('authTitle');
+  const authSubtitle = document.getElementById('authSubtitle');
+  const submitBtn = document.getElementById('loginSubmitBtn');
+  const emailInput = document.getElementById('loginEmail');
+
+  if (role === 'admin') {
+    tabCustomer.classList.remove('active');
+    tabAdmin.classList.add('active');
+    authTitle.textContent = 'Administrator Portal';
+    authSubtitle.textContent = 'Enter administrative credentials to manage rentals, inventory and revenue';
+    submitBtn.innerHTML = '<i class="fas fa-shield-halved"></i> Access Admin Dashboard';
+    submitBtn.className = 'btn btn-secondary btn-auth-submit';
+    emailInput.value = 'admin@furnrent.in';
+  } else {
+    tabAdmin.classList.remove('active');
+    tabCustomer.classList.add('active');
+    authTitle.textContent = 'Welcome Back';
+    authSubtitle.textContent = 'Log in to manage your active rentals, payments and furniture orders';
+    submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Log In to Customer Portal';
+    submitBtn.className = 'btn btn-primary btn-auth-submit';
+    emailInput.value = 'aryan@furnrent.in';
+  }
+}
+
+function togglePasswordVisibility(fieldId, btn) {
+  const field = document.getElementById(fieldId);
+  const icon = btn.querySelector('i');
+  if (field.type === 'password') {
+    field.type = 'text';
+    icon.className = 'fas fa-eye-slash';
+  } else {
+    field.type = 'password';
+    icon.className = 'fas fa-eye';
+  }
+}
+
+function fillCredentials(role) {
+  switchLoginRole(role);
+  if (role === 'admin') {
+    document.getElementById('loginEmail').value = 'admin@furnrent.in';
+    document.getElementById('loginPassword').value = 'admin2024';
+  } else {
+    document.getElementById('loginEmail').value = 'aryan@furnrent.in';
+    document.getElementById('loginPassword').value = 'password123';
+  }
+  if (window.showToast) window.showToast(`Pre-filled ${role} credentials`, 'info');
+}
+
+function handleLoginSubmit(e) {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim();
+  const submitBtn = document.getElementById('loginSubmitBtn');
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+
+  setTimeout(() => {
+    if (currentRole === 'admin' || email.includes('admin')) {
+      const user = { name: 'Admin Administrator', email: email, role: 'admin' };
+      localStorage.setItem('furnrent-user', JSON.stringify(user));
+      if (window.showToast) window.showToast('Login successful! Redirecting to Admin Dashboard...', 'success');
+      setTimeout(() => { window.location.href = 'admin-dashboard.html'; }, 500);
+    } else {
+      const user = { name: 'Aryan Reddy', email: email, role: 'customer' };
+      localStorage.setItem('furnrent-user', JSON.stringify(user));
+      if (window.showToast) window.showToast('Login successful! Redirecting to Customer Portal...', 'success');
+      setTimeout(() => { window.location.href = 'dashboard.html'; }, 500);
+    }
+  }, 600);
+}
+
+function handleForgotPassword(e) {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value || 'your registered email';
+  alert(`Password reset instructions have been sent to ${email}. Check your inbox!`);
+}
+</script>
+</body>
+</html>

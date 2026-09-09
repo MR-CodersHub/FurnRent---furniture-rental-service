@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>About FurnRent — Our Story, Mission & Values</title>
+<meta name="description" content="Learn about FurnRent's mission to make premium furniture accessible through flexible rentals for students and professionals across India.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.about-intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-img-stack{position:relative;padding-bottom:48px;padding-right:48px}
+.about-img-main{border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-lg)}
+.about-img-main img{width:100%;height:420px;object-fit:cover}
+.about-img-badge{position:absolute;bottom:0;right:0;background:var(--navy);border-radius:var(--radius-xl);padding:24px;text-align:center;box-shadow:var(--shadow-xl);min-width:160px}
+.about-img-badge .num{font-size:2rem;font-weight:900;color:var(--blue-light);display:block}
+.about-img-badge .lbl{font-size:.8125rem;color:rgba(255,255,255,.65)}
+.mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.mission-card{background:var(--white);border-radius:var(--radius-xl);padding:32px 24px;box-shadow:var(--shadow-card);text-align:center;transition:var(--transition);border:1px solid rgba(13,27,42,.06)}
+[data-theme="dark"] .mission-card{background:#142236;border-color:rgba(255,255,255,.1)}
+[data-theme="dark"] .mission-card h3{color:#ffffff}
+[data-theme="dark"] .mission-card p{color:rgba(255,255,255,.85)}
+.mission-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.mission-icon{width:72px;height:72px;border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:1.875rem}
+
+/* About Stats */
+.about-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px}
+.about-stat-card{padding:20px 24px;border-radius:var(--radius-lg);transition:var(--transition);border:1px solid rgba(13,27,42,.06)}
+.stat-card-blue{background:var(--blue-pale)}
+.stat-card-blue .about-stat-num{font-size:1.5rem;font-weight:800;color:var(--navy)}
+.stat-card-blue .about-stat-lbl{font-size:.875rem;color:var(--gray-700);margin-top:4px;font-weight:500}
+.stat-card-teal{background:rgba(45,212,191,.12);border-color:rgba(45,212,191,.25)}
+.stat-card-teal .about-stat-num{font-size:1.5rem;font-weight:800;color:#0f766e}
+.stat-card-teal .about-stat-lbl{font-size:.875rem;color:var(--gray-700);margin-top:4px;font-weight:500}
+
+[data-theme="dark"] .stat-card-blue{background:rgba(74,144,217,.18);border:1px solid rgba(74,144,217,.35)}
+[data-theme="dark"] .stat-card-blue .about-stat-num{color:#93c5fd}
+[data-theme="dark"] .stat-card-blue .about-stat-lbl{color:rgba(255,255,255,.85)}
+[data-theme="dark"] .stat-card-teal{background:rgba(45,212,191,.15);border:1px solid rgba(45,212,191,.35)}
+[data-theme="dark"] .stat-card-teal .about-stat-num{color:var(--teal)}
+[data-theme="dark"] .stat-card-teal .about-stat-lbl{color:rgba(255,255,255,.85)}
+
+/* Buying vs Renting Comparison Showcase */
+.compare-split-showcase{display:grid;grid-template-columns:1fr 1.15fr;gap:28px;align-items:stretch;margin-bottom:32px}
+.compare-col{border-radius:var(--radius-xl);padding:36px 32px;display:flex;flex-direction:column}
+.compare-col.buying{background:var(--white);border:1.5px dashed rgba(239,68,68,.3);box-shadow:var(--shadow-card)}
+[data-theme="dark"] .compare-col.buying{background:#142236 !important;border-color:rgba(239,68,68,.4) !important}
+[data-theme="dark"] .compare-col.buying h3{color:#ffffff !important}
+[data-theme="dark"] .compare-col.buying .compare-sub{color:rgba(255,255,255,.82) !important}
+.compare-col.renting{background:linear-gradient(145deg,var(--navy) 0%,var(--navy-mid) 100%);color:#fff;box-shadow:var(--shadow-xl);border:1.5px solid rgba(45,212,191,.35);position:relative;overflow:hidden}
+[data-theme="dark"] .compare-col.renting{background:linear-gradient(145deg,#162a45 0%,#0d1b2a 100%) !important;border-color:rgba(45,212,191,.4) !important}
+.compare-col.renting::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(45,212,191,.15) 0%,transparent 70%);pointer-events:none}
+.compare-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:var(--radius-full);font-size:.75rem;font-weight:700;margin-bottom:14px;width:fit-content}
+.compare-tag.buying-tag{background:rgba(239,68,68,.12);color:#ef4444}
+.compare-tag.renting-tag{background:rgba(45,212,191,.18);color:var(--teal)}
+.compare-col h3{font-size:1.375rem;font-weight:800;margin-bottom:8px;line-height:1.25}
+.compare-col.renting h3{color:#fff}
+.compare-sub{font-size:.875rem;color:var(--gray-500);margin-bottom:24px;line-height:1.55}
+.compare-col.renting .compare-sub{color:rgba(255,255,255,.82)}
+.compare-list{display:flex;flex-direction:column;gap:16px;margin-bottom:28px;flex:1}
+.compare-row{display:flex;align-items:flex-start;gap:14px;padding:12px 14px;border-radius:var(--radius-md);transition:var(--transition)}
+.compare-col.buying .compare-row{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.12)}
+[data-theme="dark"] .compare-col.buying .compare-row{background:rgba(239,68,68,.1) !important;border-color:rgba(239,68,68,.2) !important}
+.compare-col.renting .compare-row{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1)}
+.compare-col.renting .compare-row:hover{background:rgba(255,255,255,.12);transform:translateX(4px)}
+.compare-row-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8125rem;flex-shrink:0;margin-top:2px}
+.compare-col.buying .compare-row-icon{background:rgba(239,68,68,.15);color:#ef4444}
+.compare-col.renting .compare-row-icon{background:rgba(45,212,191,.2);color:var(--teal)}
+.compare-row-title{font-size:.9rem;font-weight:700;margin-bottom:3px}
+.compare-col.buying .compare-row-title{color:var(--dark)}
+[data-theme="dark"] .compare-col.buying .compare-row-title{color:#ffffff !important}
+.compare-col.renting .compare-row-title{color:#fff}
+.compare-row-desc{font-size:.8rem;line-height:1.5}
+.compare-col.buying .compare-row-desc{color:var(--gray-700)}
+[data-theme="dark"] .compare-col.buying .compare-row-desc{color:rgba(255,255,255,.85) !important}
+.compare-col.renting .compare-row-desc{color:rgba(255,255,255,.85)}
+.compare-cost-box{padding:16px 20px;border-radius:var(--radius-lg);margin-top:auto}
+.compare-col.buying .compare-cost-box{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.15)}
+.compare-col.renting .compare-cost-box{background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.25)}
+.compare-cost-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.compare-col.buying .compare-cost-label{color:#ef4444}
+.compare-col.renting .compare-cost-label{color:var(--teal)}
+.compare-cost-val{font-size:1.375rem;font-weight:900}
+.compare-col.buying .compare-cost-val{color:#ef4444}
+.compare-col.renting .compare-cost-val{color:#fff}
+.compare-cost-hint{font-size:.75rem;margin-top:2px}
+.compare-col.buying .compare-cost-hint{color:var(--gray-500)}
+[data-theme="dark"] .compare-col.buying .compare-cost-hint{color:rgba(255,255,255,.7) !important}
+.compare-col.renting .compare-cost-hint{color:rgba(255,255,255,.75)}
+
+/* Highlights Strip */
+.compare-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;background:var(--white);border-radius:var(--radius-xl);padding:24px;box-shadow:var(--shadow-card);border:1px solid rgba(13,27,42,.06)}
+[data-theme="dark"] .compare-strip{background:var(--navy-mid);border-color:rgba(255,255,255,.08)}
+.compare-strip-item{display:flex;align-items:center;gap:12px}
+.compare-strip-icon{width:42px;height:42px;border-radius:var(--radius-md);background:var(--blue-pale);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.compare-strip-item:nth-child(2) .compare-strip-icon{background:rgba(45,212,191,.15);color:var(--teal)}
+.compare-strip-item:nth-child(3) .compare-strip-icon{background:rgba(245,158,11,.15);color:var(--gold)}
+.compare-strip-item:nth-child(4) .compare-strip-icon{background:rgba(16,185,129,.15);color:var(--success)}
+.compare-strip-title{font-size:.875rem;font-weight:700;color:var(--dark);margin-bottom:2px}
+.compare-strip-sub{font-size:.75rem;color:var(--gray-500)}
+
+/* Quality Process Pipeline */
+.process-section-wrap{background:linear-gradient(180deg,var(--off-white) 0%,var(--blue-pale) 100%);position:relative}
+[data-theme="dark"] .process-section-wrap{background:linear-gradient(180deg,var(--off-white) 0%,#0c192c 100%)}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;z-index:2}
+.process-step{background:var(--white);border-radius:var(--radius-xl);padding:32px 22px;text-align:center;box-shadow:var(--shadow-card);border:1px solid rgba(13,27,42,.06);position:relative;transition:var(--transition);display:flex;flex-direction:column;align-items:center}
+[data-theme="dark"] .process-step{background:var(--white);border-color:rgba(255,255,255,.08)}
+.process-step:hover{transform:translateY(-8px);box-shadow:var(--shadow-xl);border-color:var(--blue)}
+.process-step::after{content:'';position:absolute;bottom:0;left:20px;right:20px;height:3px;background:linear-gradient(90deg,var(--blue),var(--teal));border-radius:var(--radius-full);opacity:0;transition:opacity .3s}
+.process-step:hover::after{opacity:1}
+.process-icon-wrap{width:68px;height:68px;border-radius:20px;background:linear-gradient(135deg,var(--blue-pale),rgba(74,144,217,.2));display:flex;align-items:center;justify-content:center;margin-bottom:18px;position:relative;transition:var(--transition)}
+[data-theme="dark"] .process-icon-wrap{background:rgba(74,144,217,.15)}
+.process-step:hover .process-icon-wrap{background:linear-gradient(135deg,var(--navy),var(--blue));transform:scale(1.08)}
+.process-icon-wrap i{font-size:1.625rem;color:var(--navy-light);transition:color .3s}
+.process-step:hover .process-icon-wrap i{color:#fff}
+.process-num{position:absolute;top:-6px;right:-6px;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;font-size:.8125rem;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(13,27,42,.25);border:2px solid var(--white)}
+[data-theme="dark"] .process-num{border-color:var(--navy-mid)}
+.process-step h4{font-size:1.0625rem;font-weight:700;margin-bottom:8px;color:var(--dark)}
+.process-step p{font-size:.84rem;color:var(--gray-500);line-height:1.6;margin-bottom:14px}
+.process-bullets{display:flex;flex-direction:column;gap:6px;width:100%;text-align:left;padding:12px 14px;background:var(--gray-50);border-radius:var(--radius-md);margin-top:auto}
+[data-theme="dark"] .process-bullets{background:rgba(255,255,255,.05)}
+.process-bullet{display:flex;align-items:center;gap:6px;font-size:.75rem;font-weight:600;color:var(--dark)}
+.process-bullet i{color:var(--teal);font-size:.7rem}
+
+/* Team Grid */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.team-card{background:var(--white);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-card);text-align:center;transition:var(--transition)}
+.team-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.team-avatar{width:100%;aspect-ratio:1;background:linear-gradient(135deg,var(--navy),var(--blue));display:flex;align-items:center;justify-content:center;font-size:2.5rem;font-weight:800;color:#fff}
+.team-body{padding:20px}
+.team-body h4{font-size:1rem;font-weight:700;margin-bottom:4px}
+.team-body p{font-size:.8125rem;color:var(--gray-500)}
+
+@media(max-width:1024px){
+  .about-intro-grid{grid-template-columns:1fr;gap:40px}
+  .about-img-stack{padding-bottom:32px;padding-right:32px}
+  .about-img-main img{height:320px}
+  .compare-split-showcase{grid-template-columns:1fr;gap:24px}
+  .compare-strip{grid-template-columns:repeat(2,1fr);gap:16px}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .process-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .mission-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .compare-strip{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .team-grid{grid-template-columns:1fr 1fr}
+  .process-grid{grid-template-columns:1fr}
+  .about-img-stack{padding-bottom:24px;padding-right:24px}
+}
+</style>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><div class="logo-icon"><img src="images/logo-icon.svg" alt="FurnRent Logo"></div><span class="logo-text">Furn<span>Rent</span></span></a>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Home</a><a href="home2.html" class="nav-link">Home 2</a>
+      <a href="about.html" class="nav-link">About</a><a href="packages.html" class="nav-link">Packages</a>
+      <a href="collection.html" class="nav-link">Collection</a><a href="blog.html" class="nav-link">Blog</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+                <div class="header-actions">
+        <button class="header-icon-btn rtl-toggle-btn" id="rtlToggleBtn" title="Toggle RTL / LTR Direction" aria-label="Toggle RTL Direction"><i class="fas fa-right-left"></i></button>
+        <button class="header-icon-btn theme-toggle-btn" title="Toggle theme" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="header-icon-btn cart-btn" title="Cart" aria-label="Cart"><i class="fas fa-shopping-bag"></i><span class="cart-badge" style="display:none">0</span></button>
+        <div class="user-dropdown-wrap">
+          <button class="header-icon-btn user-btn" title="My Account" aria-label="My Account" aria-expanded="false">
+            <i class="fas fa-user"></i>
+          </button>
+          <div class="user-dropdown-menu" role="menu">
+            <div class="user-dropdown-header">
+              <div class="user-dropdown-header-title">My Account</div>
+            </div>
+            <div class="user-dropdown-section">
+              <a href="login.html" class="user-dropdown-item" role="menuitem">
+                <i class="fas fa-sign-in-alt"></i> Login
+              </a>
+              <a href="signup.html" class="user-dropdown-item" role="menuitem">
+                <i class="fas fa-user-plus"></i> Sign Up
+              </a>
+            </div>
+            <div class="user-dropdown-section">
+              <a href="dashboard.html" class="user-dropdown-item" role="menuitem">
+                <i class="fas fa-th-large"></i> User Dashboard
+              </a>
+              <a href="admin-dashboard.html" class="user-dropdown-item admin-link" role="menuitem">
+                <i class="fas fa-shield-halved"></i> Admin Dashboard
+              </a>
+            </div>
+          </div>
+        </div>
+        <button class="hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+  </div>
+</header>
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-panel">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="home2.html" class="mobile-nav-link">Home 2</a>
+      <a href="about.html" class="mobile-nav-link">About</a>
+      <a href="packages.html" class="mobile-nav-link">Packages</a>
+      <a href="collection.html" class="mobile-nav-link">Collection</a>
+      <a href="blog.html" class="mobile-nav-link">Blog</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+    </div>
+    
+    <!-- Cart in Mobile Menu -->
+    <button class="mobile-nav-cart-btn cart-btn" aria-label="Open Cart">
+      <div class="mobile-nav-cart-left">
+        <i class="fas fa-shopping-bag"></i>
+        <span>View Cart</span>
+      </div>
+      <span class="cart-badge" style="display:none">0</span>
+    </button>
+
+    <!-- User Account in Mobile Menu -->
+    <div class="mobile-nav-user-box">
+      <div class="mobile-nav-user-title">User Account</div>
+      <div class="mobile-nav-user-grid">
+        <a href="login.html" class="mobile-nav-user-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="signup.html" class="mobile-nav-user-btn"><i class="fas fa-user-plus"></i> Sign Up</a>
+        <a href="dashboard.html" class="mobile-nav-user-btn primary"><i class="fas fa-th-large"></i> User Dashboard</a>
+        <a href="admin-dashboard.html" class="mobile-nav-user-btn admin"><i class="fas fa-shield-halved"></i> Admin Portal</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="search-overlay"><div class="search-box"><div class="search-input-wrap"><i class="fas fa-search" style="color:var(--gray-300)"></i><input type="text" placeholder="Search furniture..."></div><div class="search-close">Press ESC to close</div></div></div>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="container" style="position:relative;z-index:2">
+    <div class="breadcrumb"><span class="breadcrumb-current">About Us</span></div>
+    <h1>Our Story &amp; Mission</h1>
+    <p>Built by people who've experienced the frustration of expensive furniture in rented homes. We're changing that — one rental at a time.</p>
+  </div>
+</section>
+
+<!-- Company Intro -->
+<section class="section">
+  <div class="container">
+    <div class="about-intro-grid">
+      <div class="about-img-stack">
+        <div class="about-img-main"><img src="images/hero_interior.jpg" alt="FurnRent showroom"></div>
+        <div class="about-img-badge">
+          <span class="num">2019</span>
+          <span class="lbl">Founded in<br>Bengaluru</span>
+        </div>
+      </div>
+      <div>
+        <span class="section-badge">Our Story</span>
+        <h2 style="margin-top:12px;font-size:clamp(1.75rem,3vw,2.25rem)">From a Small Idea to India's Fastest-Growing Furniture Rental Platform</h2>
+        <p style="margin-top:20px;color:var(--gray-500);line-height:1.8">FurnRent was born in 2019 when our founder, after relocating to Bengaluru for work, spent ₹80,000 buying furniture for a flat he'd leave in 18 months. The frustration of that experience sparked an idea: why not rent premium furniture instead?</p>
+        <p style="margin-top:16px;color:var(--gray-500);line-height:1.8">Today, FurnRent serves 12,000+ customers across 25+ Indian cities, offering 500+ premium furniture pieces on flexible monthly rental plans. We've saved our customers an estimated ₹50 crore in unnecessary furniture purchases.</p>
+        <div class="about-stat-grid">
+          <div class="about-stat-card stat-card-blue">
+            <div class="about-stat-num">12,000+</div>
+            <div class="about-stat-lbl">Happy Customers</div>
+          </div>
+          <div class="about-stat-card stat-card-teal">
+            <div class="about-stat-num">25+ Cities</div>
+            <div class="about-stat-lbl">Pan-India Coverage</div>
+          </div>
+        </div>
+        <a href="collection.html" class="btn btn-primary btn-lg" style="margin-top:28px">Browse Collection</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission & Values -->
+<section class="section" style="background:var(--gray-50)">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Mission &amp; Values</span>
+      <h2>What Drives <span style="color:var(--blue)">Everything We Do</span></h2>
+    </div>
+    <div class="mission-grid">
+      <div class="mission-card">
+        <h3 style="font-size:1.125rem;margin-bottom:12px">Our Mission</h3>
+        <p style="color:var(--gray-500);font-size:.9375rem;line-height:1.7">To make premium, quality furniture accessible to every Indian — whether in a hostel room or a luxury apartment — through flexible, affordable rentals.</p>
+      </div>
+      <div class="mission-card">
+        <h3 style="font-size:1.125rem;margin-bottom:12px">Our Vision</h3>
+        <p style="color:var(--gray-500);font-size:.9375rem;line-height:1.7">A future where no one buys furniture for a rented home. Where living well is a choice, not a financial burden. Circular economy in action.</p>
+      </div>
+      <div class="mission-card">
+        <h3 style="font-size:1.125rem;margin-bottom:12px">Our Values</h3>
+        <p style="color:var(--gray-500);font-size:.9375rem;line-height:1.7">Transparency in pricing, quality without compromise, customer obsession, sustainability, and continuous innovation in the rental experience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Renting vs Buying Comparison Showcase -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Side-by-Side Comparison</span>
+      <h2>Why Renting is <span style="color:var(--blue)">Smarter</span> Than Buying</h2>
+      <p>For anyone living in a rented apartment, buying furniture is an unnecessary financial trap. Here's how the numbers &amp; convenience truly stack up.</p>
+    </div>
+
+    <!-- Comparison Showcase -->
+    <div class="compare-split-showcase">
+      <!-- Traditional Buying Column -->
+      <div class="compare-col buying">
+        <span class="compare-tag buying-tag">The Traditional Way</span>
+        <h3>Buying Furniture</h3>
+        <p class="compare-sub">Heavy upfront investment, moving hassles, and rapid depreciation.</p>
+        <div class="compare-list">
+          <div class="compare-row">
+            <div>
+              <div class="compare-row-title">₹70,000–₹90,000 Upfront Cost</div>
+              <div class="compare-row-desc">Locks up your emergency savings in physical assets that rapidly lose value.</div>
+            </div>
+          </div>
+          <div class="compare-row">
+            <div>
+              <div class="compare-row-title">Relocation &amp; Packing Stress</div>
+              <div class="compare-row-desc">Moving cities? Pay ₹15,000+ for packers, risk transit damage and scratches.</div>
+            </div>
+          </div>
+          <div class="compare-row">
+            <div>
+              <div class="compare-row-title">Loss on Resale (Depreciation)</div>
+              <div class="compare-row-desc">Used furniture loses 70%+ of its value. Selling online takes weeks of hassle.</div>
+            </div>
+          </div>
+          <div class="compare-row">
+            <div>
+              <div class="compare-row-title">Out-of-Pocket Repair Bills</div>
+              <div class="compare-row-desc">Any damage, upholstery tear, or structural squeak is 100% your financial burden.</div>
+            </div>
+          </div>
+        </div>
+        <div class="compare-cost-box">
+          <div class="compare-cost-label">Estimated 2-Year Cost</div>
+          <div class="compare-cost-val">₹85,000+</div>
+          <div class="compare-cost-hint">Including upfront purchase, moving fees &amp; depreciation loss</div>
+        </div>
+      </div>
+
+      <!-- Smart Renting Column -->
+      <div class="compare-col renting">
+        <span class="compare-tag renting-tag">The FurnRent Way</span>
+        <h3>Renting with FurnRent</h3>
+        <p class="compare-sub">Maximum flexibility, zero commitment, and free maintenance.</p>
+        <div class="compare-list">
+          <div class="compare-row">
+            <div>
+              <div class="compare-row-title">Starts at Just ₹499–₹1,299/mo</div>
+              <div class="compare-row-desc">Keep your cash flow intact. Enjoy premium luxury without the capital burden.</div>
+            </div>
+          </div>
+          <div class="compare-row">
+            <div>
+              <div class="compare-row-title">Free Doorstep Relocation</div>
+              <div class="compare-row-desc">Shifting homes or cities? We pick up &amp; re-install in 48h across 25+ cities.</div>
+            </div>
+          </div>
+          <div class="compare-row">
+            <div>
+              <div class="compare-row-title">Free Style Swaps Every 6 Months</div>
+              <div class="compare-row-desc">Bored of your sofa or room layout? Swap for fresh styles anytime you want.</div>
+            </div>
+          </div>
+          <div class="compare-row">
+            <div>
+              <div class="compare-row-title">100% Free Maintenance &amp; Insurance</div>
+              <div class="compare-row-desc">Full damage protection. Routine cleaning and repairs handled free of charge.</div>
+            </div>
+          </div>
+        </div>
+        <div class="compare-cost-box">
+          <div class="compare-cost-label">Estimated 2-Year Cost</div>
+          <div class="compare-cost-val">₹28,700 <span style="font-size:.9rem;font-weight:600;color:var(--teal)">(Save ₹56,000+)</span></div>
+          <div class="compare-cost-hint">Includes full furniture suite, delivery, setup &amp; full insurance</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Highlights Strip -->
+    <div class="compare-strip">
+      <div class="compare-strip-item">
+        <div>
+          <div class="compare-strip-title">Save ₹50,000+</div>
+          <div class="compare-strip-sub">In Year 1 alone</div>
+        </div>
+      </div>
+      <div class="compare-strip-item">
+        <div>
+          <div class="compare-strip-title">48-Hour Setup</div>
+          <div class="compare-strip-sub">Doorstep delivery</div>
+        </div>
+      </div>
+      <div class="compare-strip-item">
+        <div>
+          <div class="compare-strip-title">Zero Damage Stress</div>
+          <div class="compare-strip-sub">100% Insured items</div>
+        </div>
+      </div>
+      <div class="compare-strip-item">
+        <div>
+          <div class="compare-strip-title">100% Circular</div>
+          <div class="compare-strip-sub">Eco-friendly reuse</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quality & Maintenance Process -->
+<section class="section process-section-wrap">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Quality Promise</span>
+      <h2>How We Ensure <span style="color:var(--blue)">Premium Quality</span></h2>
+      <p>Every piece of furniture goes through our rigorous 4-step quality process before reaching your home.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="hiw-num">1</div>
+        <h4>Deep Cleaning</h4>
+        <p>Professional industrial steam cleaning using eco-friendly non-toxic solutions before every rental.</p>
+        <div class="process-bullets">
+          <div class="process-bullet">High-temp steam sanitization</div>
+          <div class="process-bullet">100% Eco-friendly formulas</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="hiw-num">2</div>
+        <h4>Quality Inspection</h4>
+        <p>25-point checklist inspection: structure, upholstery, joints, finish, and stability verified.</p>
+        <div class="process-bullets">
+          <div class="process-bullet">25-Point structural check</div>
+          <div class="process-bullet">Fabric &amp; joint testing</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="hiw-num">3</div>
+        <h4>Repair &amp; Refurbish</h4>
+        <p>Any minor scratches or wear are restored by our in-house master craftsmen to pristine condition.</p>
+        <div class="process-bullets">
+          <div class="process-bullet">Master craftsman polish</div>
+          <div class="process-bullet">Like-new restoration</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="hiw-num">4</div>
+        <h4>Safe Delivery</h4>
+        <p>Securely wrapped in protective quilted covers and delivered with complimentary doorstep assembly.</p>
+        <div class="process-bullets">
+          <div class="process-bullet">Quilted scratch-free wrap</div>
+          <div class="process-bullet">White-glove installation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Showcase -->
+<section class="stats-showcase-section">
+  <div class="container">
+    <div class="stats-showcase-box">
+      <div class="stats-grid">
+        <div class="stat-item-card">
+          <span class="stat-num stat-blue" data-target="12000" data-suffix="+">12,000+</span>
+          <div class="stat-label">Happy Customers</div>
+          <div class="stat-sublabel">100% Verified Renters</div>
+        </div>
+        <div class="stat-item-card">
+          <span class="stat-num stat-teal" data-target="500" data-suffix="+">500+</span>
+          <div class="stat-label">Furniture Items</div>
+          <div class="stat-sublabel">Curated Solid Designs</div>
+        </div>
+        <div class="stat-item-card">
+          <span class="stat-num stat-gold" data-target="25" data-suffix="+">25+</span>
+          <div class="stat-label">Cities Served</div>
+          <div class="stat-sublabel">Pan-India Express Setup</div>
+        </div>
+        <div class="stat-item-card">
+          <span class="stat-num stat-blue" data-target="5" data-suffix="+ Yrs">5+ Yrs</span>
+          <div class="stat-label">In Business</div>
+          <div class="stat-sublabel">Trusted Rental Leadership</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials (Infinity Loop Design) -->
+<section class="section testimonials-section-wrap" id="testimonials">
+  <div class="container">
+    <div class="section-header" style="margin-bottom:40px">
+      <span class="section-badge">Customer Stories</span>
+      <h2>Trusted by <span style="color:var(--blue)">Thousands</span> Across India</h2>
+      <p>Hear how FurnRent transformed the way people live and furnish their homes.</p>
+    </div>
+
+    <div class="infinity-testimonial-box">
+      <!-- 3D Chrome Floating Stars -->
+      <div class="floating-star star-top-left">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="abStarGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="50%" stop-color="#cbd5e1" />
+              <stop offset="100%" stop-color="#94a3b8" />
+            </defs>
+          </defs>
+          <polygon points="50,5 64,36 98,39 72,62 80,95 50,77 20,95 28,62 2,39 36,36" fill="url(#abStarGrad1)" />
+          <polygon points="50,5 50,77 64,36" fill="#ffffff" opacity="0.6" />
+          <polygon points="50,5 50,77 36,36" fill="#94a3b8" opacity="0.5" />
+        </svg>
+      </div>
+      <div class="floating-star star-bottom-right">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="abStarGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="50%" stop-color="#cbd5e1" />
+              <stop offset="100%" stop-color="#64748b" />
+            </defs>
+          </defs>
+          <polygon points="50,5 64,36 98,39 72,62 80,95 50,77 20,95 28,62 2,39 36,36" fill="url(#abStarGrad2)" />
+          <polygon points="50,5 50,77 64,36" fill="#ffffff" opacity="0.7" />
+          <polygon points="50,5 50,77 36,36" fill="#475569" opacity="0.6" />
+        </svg>
+      </div>
+
+      <div class="infinity-slider">
+        <div class="infinity-slide active" data-index="0">
+          <div class="infinity-card-wrapper">
+            <div class="mobile-avatar-frame">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80" alt="Anjali Subramaniam">
+            </div>
+            <svg class="infinity-figure8-svg" viewBox="0 0 960 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="abLoopShadow1" x="-10%" y="-10%" width="130%" height="130%">
+                  <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="rgba(30, 50, 80, 0.16)" />
+                </filter>
+                <clipPath id="abAvatarClip1">
+                  <circle cx="160" cy="190" r="95" />
+                </clipPath>
+              </defs>
+              <path class="infinity-fill-area" d="M 640,40 C 820,40 905,105 905,190 C 905,275 820,340 640,340 C 460,340 385,255 330,190 C 385,125 460,40 640,40 Z" fill="rgba(255,255,255,0.45)" />
+              <g clip-path="url(#abAvatarClip1)">
+                <image href="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80" x="50" y="80" width="220" height="220" preserveAspectRatio="xMidYMid slice" />
+              </g>
+              <circle cx="160" cy="190" r="95" stroke="#4a6582" stroke-width="2" fill="none" opacity="0.25" />
+              <path class="infinity-single-ribbon"
+                    d="M 640,40 C 820,40 905,105 905,190 C 905,275 820,340 640,340 C 460,340 385,255 330,190 C 270,125 220,80 160,80 C 95,80 52,130 52,190 C 52,250 95,300 160,300 C 220,300 270,255 330,190 C 385,125 460,40 640,40 Z"
+                    stroke="#5b7490"
+                    stroke-width="22"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    filter="url(#abLoopShadow1)" />
+            </svg>
+            <div class="infinity-text-overlay">
+              <div class="infinity-stars">★★★★★</div>
+              <div class="infinity-quote-text">
+                THE QUALITY AND SERVICE IS INCREDIBLE. <strong>24-HOUR STAIN REPLACEMENT</strong>, <strong>ZERO DEPOSIT ANXIETY</strong>, AND <strong>UNMATCHED CUSTOMER CARE</strong>.
+              </div>
+              <div class="infinity-author-tag">— ANJALI SUBRAMANIAM, FINANCE MANAGER (MUMBAI)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="infinity-slide" data-index="1">
+          <div class="infinity-card-wrapper">
+            <div class="mobile-avatar-frame">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80" alt="Rohan Pillai">
+            </div>
+            <svg class="infinity-figure8-svg" viewBox="0 0 960 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="abLoopShadow2" x="-10%" y="-10%" width="130%" height="130%">
+                  <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="rgba(30, 50, 80, 0.16)" />
+                </filter>
+                <clipPath id="abAvatarClip2">
+                  <circle cx="160" cy="190" r="95" />
+                </clipPath>
+              </defs>
+              <path class="infinity-fill-area" d="M 640,40 C 820,40 905,105 905,190 C 905,275 820,340 640,340 C 460,340 385,255 330,190 C 385,125 460,40 640,40 Z" fill="rgba(255,255,255,0.45)" />
+              <g clip-path="url(#abAvatarClip2)">
+                <image href="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80" x="50" y="80" width="220" height="220" preserveAspectRatio="xMidYMid slice" />
+              </g>
+              <circle cx="160" cy="190" r="95" stroke="#4a6582" stroke-width="2" fill="none" opacity="0.25" />
+              <path class="infinity-single-ribbon"
+                    d="M 640,40 C 820,40 905,105 905,190 C 905,275 820,340 640,340 C 460,340 385,255 330,190 C 270,125 220,80 160,80 C 95,80 52,130 52,190 C 52,250 95,300 160,300 C 220,300 270,255 330,190 C 385,125 460,40 640,40 Z"
+                    stroke="#5b7490"
+                    stroke-width="22"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    filter="url(#abLoopShadow2)" />
+            </svg>
+            <div class="infinity-text-overlay">
+              <div class="infinity-stars">★★★★★</div>
+              <div class="infinity-quote-text">
+                AS SOMEONE WHO MOVES EVERY 18 MONTHS FOR WORK, FURNRENT IS AN ABSOLUTE NECESSITY. <strong>SEAMLESS RELOCATION SUPPORT</strong> AND <strong>STRESS-FREE PICKUP</strong>.
+              </div>
+              <div class="infinity-author-tag">— ROHAN PILLAI, CONSULTANT (DELHI)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="infinity-controls">
+        <button class="infinity-nav-btn prev-btn" id="infinityPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+        <div class="infinity-dots" id="infinityDots">
+          <div class="infinity-dot active" data-slide="0"></div>
+          <div class="infinity-dot" data-slide="1"></div>
+        </div>
+        <button class="infinity-nav-btn next-btn" id="infinityNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="container" style="position:relative;z-index:2">
+    <h2>Join the FurnRent Family</h2>
+    <p>12,000+ customers have already made the smart switch. Ready to live better for less?</p>
+    <div class="cta-actions">
+      <a href="collection.html" class="btn btn-teal btn-lg">Browse Furniture</a>
+      <a href="contact.html" class="btn btn-outline-white btn-lg">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand footer-col"><a href="index.html" class="logo"><div class="logo-icon"><img src="images/logo-icon.svg" alt="FurnRent Logo"></div><span class="logo-text">Furn<span>Rent</span></span></a><p>Premium furniture rental across India.</p><div class="footer-socials"><a href="#" class="footer-social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="#" class="footer-social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="#" class="footer-social-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a><a href="#" class="footer-social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></div></div>
+      <div class="footer-col"><h5>Quick Links</h5><div class="footer-links"><a href="index.html" class="footer-link">Home</a><a href="about.html" class="footer-link">About</a><a href="packages.html" class="footer-link">Packages</a><a href="collection.html" class="footer-link">Collection</a><a href="blog.html" class="footer-link">Blog</a><a href="contact.html" class="footer-link">Contact</a></div></div>
+      <div class="footer-col"><h5>Categories</h5><div class="footer-links"><a href="collection.html" class="footer-link">Sofas</a><a href="collection.html" class="footer-link">Beds</a><a href="collection.html" class="footer-link">Chairs</a><a href="collection.html" class="footer-link">Dining</a><a href="collection.html" class="footer-link">Storage</a></div></div>
+      <div class="footer-col"><h5>Support</h5><div class="footer-links"><a href="dashboard.html" class="footer-link">My Account</a><a href="dashboard.html" class="footer-link">Swap Request</a><a href="contact.html" class="footer-link">FAQ</a></div></div>
+      <div class="footer-col footer-newsletter"><h5>Newsletter</h5><form class="newsletter-form"><input type="email" class="newsletter-input" placeholder="Your email"><button type="submit" class="newsletter-btn">Subscribe</button></form></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 FurnRent. All rights reserved.</p><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </div>
+</footer>
+
+<div class="cart-overlay"></div>
+<div class="cart-drawer">
+  <div class="cart-header"><div class="cart-title">Your Cart</div><button class="modal-close cart-drawer-close" aria-label="Close cart"><i class="fas fa-times"></i></button></div>
+  <div class="cart-body"></div>
+  <div class="cart-footer"><div class="cart-total"><span>Total:</span><span class="cart-total-amount">₹0</span></div><a href="packages.html" class="btn btn-primary" style="width:100%;justify-content:center">Checkout</a></div>
+</div>
+<button class="scroll-top-btn" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+</body>
+</html>

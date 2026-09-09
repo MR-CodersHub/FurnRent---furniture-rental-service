@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Blog — FurnRent | Furniture Rental Tips & Interior Ideas</title>
+<meta name="description" content="Explore FurnRent's blog for furniture rental tips, student apartment setup guides, work-from-home furniture ideas and affordable interior inspiration.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.featured-post{display:grid;grid-template-columns:1.2fr 1fr;gap:0;border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-lg);margin-bottom:56px;min-height:400px;border:1px solid rgba(13,27,42,.08)}
+[data-theme="dark"] .featured-post{border-color:rgba(255,255,255,.1)}
+.featured-post-img{overflow:hidden;position:relative}
+.featured-post-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.featured-post:hover .featured-post-img img{transform:scale(1.05)}
+.featured-post-content{background:var(--white);padding:48px 40px;display:flex;flex-direction:column;justify-content:center}
+[data-theme="dark"] .featured-post-content{background:#142236}
+.featured-tag{font-size:.7rem;font-weight:700;padding:4px 12px;border-radius:var(--radius-full);background:rgba(74,144,217,.12);color:var(--navy-light);text-transform:uppercase;letter-spacing:.08em;display:inline-block;margin-bottom:16px;width:fit-content}
+[data-theme="dark"] .featured-tag{background:rgba(74,144,217,.22);color:#93c5fd;border:1px solid rgba(74,144,217,.4)}
+.featured-post-content h2{font-size:clamp(1.25rem,2vw,1.75rem);margin-bottom:16px;line-height:1.3}
+[data-theme="dark"] .featured-post-content h2{color:#ffffff}
+.featured-post-content p{color:var(--gray-500);line-height:1.75;margin-bottom:24px}
+[data-theme="dark"] .featured-post-content p{color:rgba(255,255,255,.85)}
+.featured-post-meta{display:flex;align-items:center;gap:16px;font-size:.8125rem;color:var(--gray-500);margin-bottom:20px}
+[data-theme="dark"] .featured-post-meta{color:rgba(255,255,255,.75)}
+.blog-search-row{display:flex;align-items:center;gap:12px;margin-bottom:28px;flex-wrap:wrap}
+.blog-search-wrap{display:flex;align-items:center;gap:10px;background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius-full);padding:10px 18px;flex:1;min-width:200px}
+.blog-search-wrap:focus-within{border-color:var(--blue)}
+.blog-search-wrap input{border:none;background:none;outline:none;font-size:.9375rem;color:var(--dark);width:100%}
+[data-theme="dark"] .blog-search-wrap{background:#142236;border-color:rgba(255,255,255,.12)}
+[data-theme="dark"] .blog-search-wrap input{color:#ffffff}
+.blog-card{display:flex;flex-direction:column;height:100%;background:var(--white);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-card);border:1px solid rgba(13,27,42,.06);transition:var(--transition)}
+[data-theme="dark"] .blog-card{background:#142236;border-color:rgba(255,255,255,.1)}
+.blog-card-body{padding:24px;display:flex;flex-direction:column;flex:1}
+.blog-card-body h3{font-size:1.0625rem;font-weight:700;line-height:1.4;margin-bottom:10px;min-height:50px}
+[data-theme="dark"] .blog-card-body h3 a{color:#ffffff}
+.blog-card-body h3 a:hover,[data-theme="dark"] .blog-card-body h3 a:hover{color:var(--blue-light)}
+.blog-card-body p{font-size:.84rem;color:var(--gray-500);line-height:1.6;margin-bottom:16px;min-height:68px;flex:1}
+[data-theme="dark"] .blog-card-body p{color:rgba(255,255,255,.82)}
+.blog-card-meta{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--gray-100);font-size:.78rem;color:var(--gray-500);margin-top:auto}
+[data-theme="dark"] .blog-card-meta{border-top-color:rgba(255,255,255,.1);color:rgba(255,255,255,.75)}
+[data-theme="dark"] .blog-card-meta span{color:rgba(255,255,255,.75) !important;font-weight:500}
+.blog-card-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.blog-tag{transition:all .2s ease}
+[data-theme="dark"] .blog-tag{background:rgba(74,144,217,.18);color:#93c5fd;border:1px solid rgba(74,144,217,.28)}
+.blog-tag:hover{background:var(--blue);color:#ffffff !important}
+[data-theme="dark"] .blog-tag:hover,[data-theme="dark"] .blog-card:hover .blog-tag{background:var(--blue);color:#ffffff !important;border-color:var(--blue)}
+@media(max-width:768px){
+  .featured-post{grid-template-columns:1fr}
+  .featured-post-img{height:240px}
+  .featured-post-content{padding:32px 24px}
+  .blog-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .featured-post-content{padding:24px 20px}
+}
+</style>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><div class="logo-icon"><img src="images/logo-icon.svg" alt="FurnRent Logo"></div><span class="logo-text">Furn<span>Rent</span></span></a>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Home</a><a href="home2.html" class="nav-link">Home 2</a>
+      <a href="about.html" class="nav-link">About</a><a href="packages.html" class="nav-link">Packages</a>
+      <a href="collection.html" class="nav-link">Collection</a><a href="blog.html" class="nav-link">Blog</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+                <div class="header-actions">
+        <button class="header-icon-btn rtl-toggle-btn" id="rtlToggleBtn" title="Toggle RTL / LTR Direction" aria-label="Toggle RTL Direction"><i class="fas fa-right-left"></i></button>
+        <button class="header-icon-btn theme-toggle-btn" title="Toggle theme" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="header-icon-btn cart-btn" title="Cart" aria-label="Cart"><i class="fas fa-shopping-bag"></i><span class="cart-badge" style="display:none">0</span></button>
+        <div class="user-dropdown-wrap">
+          <button class="header-icon-btn user-btn" title="My Account" aria-label="My Account" aria-expanded="false">
+            <i class="fas fa-user"></i>
+          </button>
+          <div class="user-dropdown-menu" role="menu">
+            <div class="user-dropdown-header">
+              <div class="user-dropdown-header-title">My Account</div>
+            </div>
+            <div class="user-dropdown-section">
+              <a href="login.html" class="user-dropdown-item" role="menuitem">
+                <i class="fas fa-sign-in-alt"></i> Login
+              </a>
+              <a href="signup.html" class="user-dropdown-item" role="menuitem">
+                <i class="fas fa-user-plus"></i> Sign Up
+              </a>
+            </div>
+            <div class="user-dropdown-section">
+              <a href="dashboard.html" class="user-dropdown-item" role="menuitem">
+                <i class="fas fa-th-large"></i> User Dashboard
+              </a>
+              <a href="admin-dashboard.html" class="user-dropdown-item admin-link" role="menuitem">
+                <i class="fas fa-shield-halved"></i> Admin Dashboard
+              </a>
+            </div>
+          </div>
+        </div>
+        <button class="hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+  </div>
+</header>
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-panel">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="home2.html" class="mobile-nav-link">Home 2</a>
+      <a href="about.html" class="mobile-nav-link">About</a>
+      <a href="packages.html" class="mobile-nav-link">Packages</a>
+      <a href="collection.html" class="mobile-nav-link">Collection</a>
+      <a href="blog.html" class="mobile-nav-link">Blog</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+    </div>
+    
+    <!-- Cart in Mobile Menu -->
+    <button class="mobile-nav-cart-btn cart-btn" aria-label="Open Cart">
+      <div class="mobile-nav-cart-left">
+        <i class="fas fa-shopping-bag"></i>
+        <span>View Cart</span>
+      </div>
+      <span class="cart-badge" style="display:none">0</span>
+    </button>
+
+    <!-- User Account in Mobile Menu -->
+    <div class="mobile-nav-user-box">
+      <div class="mobile-nav-user-title">User Account</div>
+      <div class="mobile-nav-user-grid">
+        <a href="login.html" class="mobile-nav-user-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="signup.html" class="mobile-nav-user-btn"><i class="fas fa-user-plus"></i> Sign Up</a>
+        <a href="dashboard.html" class="mobile-nav-user-btn primary"><i class="fas fa-th-large"></i> User Dashboard</a>
+        <a href="admin-dashboard.html" class="mobile-nav-user-btn admin"><i class="fas fa-shield-halved"></i> Admin Portal</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="search-overlay"><div class="search-box"><div class="search-input-wrap"><i class="fas fa-search" style="color:var(--gray-300)"></i><input type="text" placeholder="Search blog..."></div><div class="search-close">Press ESC to close</div></div></div>
+
+<section class="page-hero">
+  <div class="container" style="position:relative;z-index:2">
+    <div class="breadcrumb"><span class="breadcrumb-current">Blog</span></div>
+    <h1>Rental Tips & Interior Ideas</h1>
+    <p>Expert advice on furniture rental, apartment setup, and living well on a budget.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:48px">
+  <div class="container">
+    <!-- Featured Post -->
+    <div class="featured-post">
+      <div class="featured-post-img">
+        <img src="images/hero_interior.jpg" alt="Complete Guide to Furniture Rental">
+      </div>
+      <div class="featured-post-content">
+        <span class="featured-tag">Featured Article</span>
+        <h2>The Complete Guide to Furniture Rental in India 2024</h2>
+        <p>Everything you need to know about renting furniture in India — from choosing the right plan to understanding deposits, swap policies and what to look for in a rental service.</p>
+        <div class="featured-post-meta">
+          <span>Rohan Kapoor</span>
+          <span>Dec 15, 2024</span>
+          <span>8 min read</span>
+        </div>
+        <a href="blog-details.html" class="btn btn-primary">Read Full Article <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Filter Row -->
+    <div class="blog-search-row">
+      <div class="blog-search-wrap">
+        <i class="fas fa-search" style="color:var(--gray-300)"></i>
+        <input type="text" id="blogSearch" placeholder="Search articles...">
+      </div>
+    </div>
+    <div class="cat-tabs" id="blogCatTabs" style="margin-bottom:36px">
+      <button class="cat-tab active" data-cat="all">All</button>
+      <button class="cat-tab" data-cat="rental">Rental Tips</button>
+      <button class="cat-tab" data-cat="student">Student Life</button>
+      <button class="cat-tab" data-cat="wfh">Work From Home</button>
+      <button class="cat-tab" data-cat="interior">Interior Ideas</button>
+      <button class="cat-tab" data-cat="guide">Buying vs Renting</button>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="blog-grid" id="blogGrid">
+      <div class="blog-card" data-cat="student">
+        <div class="blog-card-image"><a href="blog-details.html"><img src="images/study_table.jpg" alt="Student Apartment Setup" loading="lazy"></a></div>
+        <div class="blog-card-body">
+          <div class="blog-card-tags"><span class="blog-tag">Student Life</span><span class="blog-tag">Setup Guide</span></div>
+          <h3><a href="blog-details.html">10 Must-Have Furniture Pieces for Your First Student Apartment</a></h3>
+          <p>Moving into your first apartment as a student is exciting — but what furniture do you actually need? We break down the 10 essentials that will make your space functional and comfortable.</p>
+          <div class="blog-card-meta"><span>Priya Nair</span><span>5 min read</span></div>
+        </div>
+      </div>
+      <div class="blog-card" data-cat="guide">
+        <div class="blog-card-image"><a href="blog-details.html"><img src="images/hero_interior.jpg" alt="Renting vs Buying Furniture" loading="lazy"></a></div>
+        <div class="blog-card-body">
+          <div class="blog-card-tags"><span class="blog-tag">Guide</span><span class="blog-tag">Finance</span></div>
+          <h3><a href="blog-details.html">Renting vs Buying Furniture: A Complete Financial Comparison</a></h3>
+          <p>Is it better to rent or buy furniture? We do the math — comparing upfront costs, maintenance, depreciation and flexibility over a 3-year period. The answer might surprise you.</p>
+          <div class="blog-card-meta"><span>Amit Joshi</span><span>7 min read</span></div>
+        </div>
+      </div>
+      <div class="blog-card" data-cat="wfh">
+        <div class="blog-card-image"><a href="blog-details.html"><img src="images/about_office.jpg" alt="Work From Home Setup" loading="lazy"></a></div>
+        <div class="blog-card-body">
+          <div class="blog-card-tags"><span class="blog-tag">Work From Home</span><span class="blog-tag">Productivity</span></div>
+          <h3><a href="blog-details.html">How to Build the Perfect WFH Setup Without Breaking the Bank</a></h3>
+          <p>Your home office setup directly impacts your productivity and health. Discover how to create an ergonomic, stylish work-from-home environment for under ₹1,500/month with furniture rentals.</p>
+          <div class="blog-card-meta"><span>Sneha Pillai</span><span>6 min read</span></div>
+        </div>
+      </div>
+      <div class="blog-card" data-cat="interior">
+        <div class="blog-card-image"><a href="blog-details.html"><img src="images/sofa_navy.jpg" alt="Sofa Selection Guide" loading="lazy"></a></div>
+        <div class="blog-card-body">
+          <div class="blog-card-tags"><span class="blog-tag">Interior Ideas</span><span class="blog-tag">Sofas</span></div>
+          <h3><a href="blog-details.html">How to Choose the Perfect Sofa for Your Apartment: Size, Style & Material</a></h3>
+          <p>Choosing a sofa is one of the most important furniture decisions. We guide you through size considerations, fabric choices, colour matching and style selection for Indian apartments.</p>
+          <div class="blog-card-meta"><span>Kavya Rao</span><span>5 min read</span></div>
+        </div>
+      </div>
+      <div class="blog-card" data-cat="interior">
+        <div class="blog-card-image"><a href="blog-details.html"><img src="images/dining_table.jpg" alt="Apartment Interior Ideas" loading="lazy"></a></div>
+        <div class="blog-card-body">
+          <div class="blog-card-tags"><span class="blog-tag">Interior Ideas</span><span class="blog-tag">Budget</span></div>
+          <h3><a href="blog-details.html">7 Affordable Interior Ideas That Make Rented Apartments Look Luxurious</a></h3>
+          <p>You don't need to own your apartment to have it looking magazine-worthy. Discover 7 simple, affordable styling tricks using rental furniture that transform any space.</p>
+          <div class="blog-card-meta"><span>Divya Sharma</span><span>4 min read</span></div>
+        </div>
+      </div>
+      <div class="blog-card" data-cat="rental">
+        <div class="blog-card-image"><a href="blog-details.html"><img src="images/wardrobe.jpg" alt="Furniture Rental Tips" loading="lazy"></a></div>
+        <div class="blog-card-body">
+          <div class="blog-card-tags"><span class="blog-tag">Rental Tips</span><span class="blog-tag">Guide</span></div>
+          <h3><a href="blog-details.html">10 Questions to Ask Before You Rent Furniture in India</a></h3>
+          <p>Not all furniture rental services are equal. Before signing any rental agreement, make sure you ask these 10 critical questions about damage policy, deposits, swaps and maintenance.</p>
+          <div class="blog-card-meta"><span>Rahul Mehta</span><span>6 min read</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:48px">
+      <button class="btn btn-outline btn-lg" id="loadMoreBtn">Load More Articles <i class="fas fa-arrow-down"></i></button>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="container" style="position:relative;z-index:2">
+    <h2>Ready to Transform Your Space?</h2>
+    <p>Put these ideas into action. Browse our collection and rent the furniture that fits your vision.</p>
+    <div class="cta-actions">
+      <a href="collection.html" class="btn btn-teal btn-lg">Browse Collection</a>
+      <a href="packages.html" class="btn btn-outline-white btn-lg">View Packages</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand footer-col"><a href="index.html" class="logo"><div class="logo-icon"><img src="images/logo-icon.svg" alt="FurnRent Logo"></div><span class="logo-text">Furn<span>Rent</span></span></a><p>Premium furniture rental across India.</p><div class="footer-socials"><a href="#" class="footer-social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="#" class="footer-social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="#" class="footer-social-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a></div></div>
+      <div class="footer-col"><h5>Quick Links</h5><div class="footer-links"><a href="index.html" class="footer-link">Home</a><a href="about.html" class="footer-link">About</a><a href="packages.html" class="footer-link">Packages</a><a href="collection.html" class="footer-link">Collection</a><a href="blog.html" class="footer-link">Blog</a></div></div>
+      <div class="footer-col"><h5>Categories</h5><div class="footer-links"><a href="collection.html" class="footer-link">Sofas</a><a href="collection.html" class="footer-link">Beds</a><a href="collection.html" class="footer-link">Chairs</a><a href="collection.html" class="footer-link">Dining</a></div></div>
+      <div class="footer-col"><h5>Support</h5><div class="footer-links"><a href="dashboard.html" class="footer-link">My Account</a><a href="contact.html" class="footer-link">FAQ</a></div></div>
+      <div class="footer-col footer-newsletter"><h5>Newsletter</h5><form class="newsletter-form"><input type="email" class="newsletter-input" placeholder="Your email"><button type="submit" class="newsletter-btn">Subscribe</button></form></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 FurnRent. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<div class="cart-overlay"></div>
+<div class="cart-drawer">
+  <div class="cart-header"><div class="cart-title">Your Cart</div><button class="modal-close cart-drawer-close"><i class="fas fa-times"></i></button></div>
+  <div class="cart-body"></div>
+  <div class="cart-footer"><div class="cart-total"><span>Total:</span><span class="cart-total-amount">₹0</span></div><a href="packages.html" class="btn btn-primary" style="width:100%;justify-content:center">Checkout</a></div>
+</div>
+<button class="scroll-top-btn"><i class="fas fa-arrow-up"></i></button>
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+// Blog filtering
+const blogCards = document.querySelectorAll('.blog-card');
+const blogSearch = document.getElementById('blogSearch');
+const blogCatTabs = document.querySelectorAll('#blogCatTabs .cat-tab');
+let activeBlogCat = 'all';
+
+function filterBlog() {
+  const query = blogSearch.value.toLowerCase();
+  let visible = 0;
+  blogCards.forEach(card => {
+    const cat = card.dataset.cat;
+    const text = card.textContent.toLowerCase();
+    const catMatch = activeBlogCat === 'all' || cat === activeBlogCat;
+    const searchMatch = !query || text.includes(query);
+    card.style.display = (catMatch && searchMatch) ? '' : 'none';
+    if(catMatch && searchMatch) visible++;
+  });
+}
+
+blogCatTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    blogCatTabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    activeBlogCat = tab.dataset.cat;
+    filterBlog();
+  });
+});
+
+blogSearch.addEventListener('input', filterBlog);
+
+document.getElementById('loadMoreBtn').addEventListener('click', function() {
+  showToast('All articles loaded!', 'info');
+  this.style.display = 'none';
+});
+</script>
+</body>
+</html>

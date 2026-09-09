@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>FurnRent — Premium Furniture Rental for Students & Professionals</title>
+  <meta name="description"
+    content="Rent premium furniture monthly. Flexible rental periods, fast delivery, easy swaps. Perfect for students, bachelors & working professionals.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Home-specific styles */
+    .hero-home {
+      background-image: url('images/hero_interior.jpg');
+      min-height: calc(100vh - 72px)
+    }
+
+    .audience-card-1 {
+      background-image: url('images/study_table.jpg')
+    }
+
+    .audience-card-2 {
+      background-image: url('images/about_office.jpg')
+    }
+
+    .audience-card-3 {
+      background-image: url('images/hero_interior.jpg')
+    }
+
+    .featured-section {
+      background: var(--off-white)
+    }
+
+    .hiw-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-200);
+      font-size: 1.5rem;
+      padding-top: 8px
+    }
+
+    .trust-bar {
+      background: var(--navy);
+      padding: 16px 0
+    }
+
+    .trust-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255, 255, 255, .8);
+      font-size: .875rem;
+      font-weight: 500
+    }
+
+    .trust-icon {
+      color: var(--teal);
+      font-size: 1rem
+    }
+
+    .home-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 440px
+    }
+
+    .home-split-img {
+      overflow: hidden
+    }
+
+    .home-split-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .home-split-content {
+      background: var(--navy);
+      padding: 40px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center
+    }
+
+    .home-split-content .section-badge {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      margin-bottom: 10px;
+      padding: 4px 12px;
+      font-size: .75rem
+    }
+
+    .home-split-content h2 {
+      color: #fff;
+      font-size: clamp(1.35rem, 2vw, 1.65rem);
+      margin-bottom: 10px;
+      line-height: 1.25
+    }
+
+    .home-split-content p {
+      color: rgba(255, 255, 255, .75);
+      line-height: 1.55;
+      font-size: .875rem;
+      margin-bottom: 18px
+    }
+
+    .split-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px
+    }
+
+    .split-feature-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      background: rgba(74, 144, 217, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue-light);
+      font-size: .875rem;
+      flex-shrink: 0
+    }
+
+    .split-feature h4 {
+      font-size: .875rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2px
+    }
+
+    .split-feature p {
+      font-size: .775rem;
+      color: rgba(255, 255, 255, .65);
+      line-height: 1.4;
+      margin-bottom: 0
+    }
+
+    @media(max-width:768px) {
+      .home-split {
+        grid-template-columns: 1fr
+      }
+
+      .home-split-content {
+        padding: 40px 24px
+      }
+
+      .trust-bar-inner {
+        gap: 20px
+      }
+
+      .trust-item {
+        font-size: .8rem
+      }
+    }
+
+    @media(max-width:480px) {
+      .trust-bar-inner {
+        gap: 14px
+      }
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+</head>
+
+<body>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><img src="images/logo-icon.svg" alt="FurnRent Logo"></div>
+        <span class="logo-text">Furn<span>Rent</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="home2.html" class="nav-link">Home 2</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="packages.html" class="nav-link">Packages</a>
+        <a href="collection.html" class="nav-link">Collection</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="header-icon-btn rtl-toggle-btn" id="rtlToggleBtn" title="Toggle RTL / LTR Direction"
+          aria-label="Toggle RTL Direction"><i class="fas fa-right-left"></i></button>
+        <button class="header-icon-btn theme-toggle-btn" title="Toggle theme" aria-label="Toggle theme"><i
+            class="fas fa-moon"></i></button>
+        <button class="header-icon-btn cart-btn" title="Cart" aria-label="Cart"><i class="fas fa-shopping-bag"></i><span
+            class="cart-badge" style="display:none">0</span></button>
+        <div class="user-dropdown-wrap">
+          <button class="header-icon-btn user-btn" title="My Account" aria-label="My Account" aria-expanded="false">
+            <i class="fas fa-user"></i>
+          </button>
+          <div class="user-dropdown-menu" role="menu">
+            <div class="user-dropdown-header">
+              <div class="user-dropdown-header-title">My Account</div>
+            </div>
+            <div class="user-dropdown-section">
+              <a href="login.html" class="user-dropdown-item" role="menuitem">
+                <i class="fas fa-sign-in-alt"></i> Login
+              </a>
+              <a href="signup.html" class="user-dropdown-item" role="menuitem">
+                <i class="fas fa-user-plus"></i> Sign Up
+              </a>
+            </div>
+            <div class="user-dropdown-section">
+              <a href="dashboard.html" class="user-dropdown-item" role="menuitem">
+                <i class="fas fa-th-large"></i> User Dashboard
+              </a>
+              <a href="admin-dashboard.html" class="user-dropdown-item admin-link" role="menuitem">
+                <i class="fas fa-shield-halved"></i> Admin Dashboard
+              </a>
+            </div>
+          </div>
+        </div>
+        <button class="hamburger" aria-label="Menu"
+          aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="home2.html" class="mobile-nav-link">Home 2</a>
+        <a href="about.html" class="mobile-nav-link">About</a>
+        <a href="packages.html" class="mobile-nav-link">Packages</a>
+        <a href="collection.html" class="mobile-nav-link">Collection</a>
+        <a href="blog.html" class="mobile-nav-link">Blog</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+      </div>
+
+      <!-- Cart in Mobile Menu -->
+      <button class="mobile-nav-cart-btn cart-btn" aria-label="Open Cart">
+        <div class="mobile-nav-cart-left">
+          <i class="fas fa-shopping-bag"></i>
+          <span>View Cart</span>
+        </div>
+        <span class="cart-badge" style="display:none">0</span>
+      </button>
+
+      <!-- User Account in Mobile Menu -->
+      <div class="mobile-nav-user-box">
+        <div class="mobile-nav-user-title">User Account</div>
+        <div class="mobile-nav-user-grid">
+          <a href="login.html" class="mobile-nav-user-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <a href="signup.html" class="mobile-nav-user-btn"><i class="fas fa-user-plus"></i> Sign Up</a>
+          <a href="dashboard.html" class="mobile-nav-user-btn primary"><i class="fas fa-th-large"></i> User
+            Dashboard</a>
+          <a href="admin-dashboard.html" class="mobile-nav-user-btn admin"><i class="fas fa-shield-halved"></i> Admin
+            Portal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay">
+    <div class="search-box">
+      <div class="search-input-wrap">
+        <i class="fas fa-search" style="color:var(--gray-300)"></i>
+        <input type="text" placeholder="Search sofas, beds, chairs, tables..." aria-label="Search furniture">
+      </div>
+      <div class="search-close">Press ESC to close</div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 1: HERO (REDESIGNED) ═══ -->
+  <section class="hero">
+    <div class="hero-bg hero-home" style="background-image:url('images/hero_interior.jpg')"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Left Content -->
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            India's #1 Furniture Rental Platform
+          </div>
+          <h1>
+            Furnish Your Space<br>
+            <span class="highlight">Without the Commitment</span>
+          </h1>
+          <p>Designer-grade furniture delivered in 48 hours. Flexible monthly subscriptions, zero ownership lock-ins,
+            and free maintenance for modern living.</p>
+          <div class="hero-ctas">
+            <a href="collection.html" class="btn btn-secondary btn-lg">Browse Collection <i class="fas fa-arrow-right"
+                style="margin-left:6px;font-size:0.875rem"></i></a>
+            <a href="packages.html" class="btn btn-outline-white btn-lg">View Packages</a>
+          </div>
+          <!-- Social Proof -->
+          <div class="hero-social-proof">
+            <div class="hero-avatar-stack">
+              <div class="hero-avatar">D</div>
+              <div class="hero-avatar" style="background:linear-gradient(135deg,#8b5cf6,#3b82f6)">R</div>
+              <div class="hero-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">A</div>
+              <div class="hero-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">+</div>
+            </div>
+            <div class="hero-proof-text">
+              <span>★ ★ ★ ★ ★</span> <strong>4.9/5</strong> from 12,000+ happy renters
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Visual Glass Card -->
+        <div class="hero-visual-wrap">
+          <div class="hero-glass-card">
+            <div class="hero-float-pill pill-top-left">
+              <span style="color:var(--teal)">⚡</span> 48-Hr Free Setup
+            </div>
+            <div class="hero-float-pill pill-bottom-right">
+              <span style="color:var(--gold)">🛡️</span> 100% Refundable Deposit
+            </div>
+            <div class="hero-card-img-box">
+              <img src="images/hero_interior.jpg" alt="Featured Nordic Living Room Suite">
+              <div class="hero-card-img-overlay"></div>
+            </div>
+            <div class="hero-card-details">
+              <div>
+                <div class="hero-card-title">Nordic Living Room Suite</div>
+                <div class="hero-card-price">Starting from ₹1,299 / month</div>
+              </div>
+              <a href="collection.html" class="hero-card-btn">Quick Rent</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modern Frosted Stats Section -->
+      <div class="hero-stats-wrapper">
+        <div class="hero-stat-box">
+          <div class="stat-num stat-blue">12K+</div>
+          <div class="stat-lbl">Happy Active Renters</div>
+        </div>
+        <div class="hero-stat-box">
+          <div class="stat-num stat-teal">500+</div>
+          <div class="stat-lbl">Curated Solid Pieces</div>
+        </div>
+        <div class="hero-stat-box">
+          <div class="stat-num stat-blue">25+</div>
+          <div class="stat-lbl">Major Metro Cities</div>
+        </div>
+        <div class="hero-stat-box">
+          <div class="stat-num stat-gold">4.9★</div>
+          <div class="stat-lbl">Average Customer Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Bar -->
+  <div class="trust-bar">
+    <div class="container">
+      <div class="trust-bar-inner">
+        <div class="trust-item">Free Delivery &amp; Setup</div>
+        <div class="trust-item">Easy Furniture Swaps</div>
+        <div class="trust-item">Zero Damage Stress</div>
+        <div class="trust-item">Starts ₹499/month</div>
+        <div class="trust-item">Hassle-free Returns</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 2: AUDIENCE CARDS ═══ -->
+  <section class="section" id="audience">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Who We Serve</span>
+        <h2>Rental Solutions For <span style="color:var(--blue)">Every Lifestyle</span></h2>
+        <p>Whether you're a student in a hostel, a professional in a new city, or setting up your entire home — we have
+          the perfect furniture plan for you.</p>
+      </div>
+      <div class="audience-grid">
+        <!-- Student Card -->
+        <div class="audience-card">
+          <div class="audience-card-top">
+            <img class="audience-card-img" src="images/study_table.jpg" alt="Student study furniture setup">
+            <div class="audience-card-badge">Student Living</div>
+            <div class="audience-card-price">From ₹499/mo</div>
+          </div>
+          <div class="audience-card-body">
+            <h3>Student Living</h3>
+            <p>Budget-friendly essentials for hostel rooms, PG accommodations and shared flats. Solid study tables,
+              ergonomic chairs, wardrobes and more.</p>
+            <div class="audience-perks">
+              <div class="audience-perk">Study Desk &amp; Ergonomic Chair</div>
+              <div class="audience-perk">Single Wardrobe + Bookshelf</div>
+              <div class="audience-perk">1-Month Flexible Tenure</div>
+            </div>
+            <a href="packages.html" class="btn btn-primary">Explore Student Plans <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Professional Card -->
+        <div class="audience-card">
+          <div class="audience-card-top">
+            <img class="audience-card-img" src="images/about_office.jpg" alt="Working professional apartment furniture">
+            <div class="audience-card-badge">Working Pros</div>
+            <div class="audience-card-price">From ₹1,299/mo</div>
+          </div>
+          <div class="audience-card-body">
+            <h3>Professional Living</h3>
+            <p>Premium comfort for working professionals relocating to new cities. Plush velvet sofas, queen beds,
+              ergonomic WFH setups and wardrobes.</p>
+            <div class="audience-perks">
+              <div class="audience-perk">3-Seater Sofa &amp; Coffee Table</div>
+              <div class="audience-perk">Queen Bed + Premium Mattress</div>
+              <div class="audience-perk">Free Swap Every 6 Months</div>
+            </div>
+            <a href="packages.html" class="btn btn-secondary">Explore Pro Plans <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Complete Home Card -->
+        <div class="audience-card">
+          <div class="audience-card-top">
+            <img class="audience-card-img" src="images/hero_interior.jpg"
+              alt="Complete 2BHK / 3BHK home furniture setup">
+            <div class="audience-card-badge">Complete Home</div>
+            <div class="audience-card-price">From ₹3,999/mo</div>
+          </div>
+          <div class="audience-card-body">
+            <h3>Complete Home Setup</h3>
+            <p>Fully furnished homes with matching designer sets. Living room, master bedroom, dining room, and home
+              office — all delivered in one go.</p>
+            <div class="audience-perks">
+              <div class="audience-perk">Full Living &amp; Bedroom Suites</div>
+              <div class="audience-perk">4/6-Seater Dining + Work Desk</div>
+              <div class="audience-perk">White Glove Priority Delivery</div>
+            </div>
+            <a href="packages.html" class="btn btn-teal">Explore Home Plans <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 3: HOW IT WORKS ═══ -->
+  <section class="section hiw-bg" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Simple Process</span>
+        <h2>How <span style="color:var(--blue)">FurnRent</span> Works</h2>
+        <p>From browsing to delivery, our process is designed to be as smooth as possible. Get furnished in 4 easy
+          steps.</p>
+      </div>
+      <div class="hiw-grid">
+        <div class="hiw-step">
+          <div class="hiw-num">1</div>
+          <h4>Choose Furniture</h4>
+          <p>Browse our premium collection online and select the furniture that fits your space and style.</p>
+          <span class="hiw-step-tag">Browse 500+ Items</span>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-num">2</div>
+          <h4>Select Duration</h4>
+          <p>Choose a rental period that suits you — 1, 3, 6 or 12 months with flexible pricing.</p>
+          <span class="hiw-step-tag">1 to 12 Months</span>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-num">3</div>
+          <h4>Get Delivered</h4>
+          <p>We deliver and professionally set up your furniture at your doorstep within 48 hours.</p>
+          <span class="hiw-step-tag">48h Setup Included</span>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-num">4</div>
+          <h4>Enjoy &amp; Swap</h4>
+          <p>Enjoy your furniture. Swap, upgrade or return it whenever you need — completely stress-free.</p>
+          <span class="hiw-step-tag">Hassle-Free Swaps</span>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:48px">
+        <a href="collection.html" class="btn btn-primary btn-lg">Start Furnishing Today</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 4: FEATURED COLLECTION ═══ -->
+  <section class="section featured-section" id="collection">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Featured</span>
+        <h2>Popular <span style="color:var(--blue)">Furniture</span> Picks</h2>
+        <p>Hand-picked premium pieces most loved by our customers. Quality assured, delivery guaranteed.</p>
+      </div>
+      <div class="products-grid">
+        <!-- Sofa -->
+        <div class="product-card" data-id="sofa-001" data-price="1299">
+          <div class="product-card-image">
+            <img src="images/sofa_navy.jpg" alt="Luxe Navy Sofa">
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" data-id="sofa-001" data-name="Luxe Navy 3-Seater Sofa"
+                title="Wishlist"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="product-badge-tag"><span class="badge badge-navy">Popular</span></div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-cat">Sofas</span>
+              <div class="stars">★★★★★</div>
+            </div>
+            <h3>Luxe Navy 3-Seater Sofa</h3>
+            <p class="product-desc">Premium velvet upholstery with solid oak legs. Perfect centerpiece for any living
+              room.</p>
+            <div class="product-footer">
+              <div>
+                <div class="product-price">₹1,299</div>
+                <div class="product-price-label">per month</div>
+              </div>
+              <button class="product-rent-btn">Rent Now</button>
+            </div>
+          </div>
+        </div>
+        <!-- Chair -->
+        <div class="product-card" data-id="chair-001" data-price="699">
+          <div class="product-card-image">
+            <img src="images/office_chair.jpg" alt="Ergonomic Pro Chair">
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" data-id="chair-001" data-name="Ergonomic Pro Chair"
+                title="Wishlist"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="product-badge-tag"><span class="badge badge-teal">WFH Ready</span></div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-cat">Chairs</span>
+              <div class="stars">★★★★★</div>
+            </div>
+            <h3>Ergonomic Pro Chair</h3>
+            <p class="product-desc">Mesh back with lumbar support, adjustable height and arms. 8-hour comfort
+              guaranteed.</p>
+            <div class="product-footer">
+              <div>
+                <div class="product-price">₹699</div>
+                <div class="product-price-label">per month</div>
+              </div>
+              <button class="product-rent-btn">Rent Now</button>
+            </div>
+          </div>
+        </div>
+        <!-- Bed -->
+        <div class="product-card" data-id="bed-001" data-price="1599">
+          <div class="product-card-image">
+            <img src="images/queen_bed.jpg" alt="Queen Comfort Bed">
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" data-id="bed-001" data-name="Queen Comfort Bed"
+                title="Wishlist"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="product-badge-tag"><span class="badge badge-gold">Best Value</span></div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-cat">Beds</span>
+              <div class="stars">★★★★★</div>
+            </div>
+            <h3>Queen Comfort Bed</h3>
+            <p class="product-desc">Upholstered headboard, solid oak frame, premium linen. Sleep in luxury every night.
+            </p>
+            <div class="product-footer">
+              <div>
+                <div class="product-price">₹1,599</div>
+                <div class="product-price-label">per month</div>
+              </div>
+              <button class="product-rent-btn">Rent Now</button>
+            </div>
+          </div>
+        </div>
+        <!-- Study Table -->
+        <div class="product-card" data-id="desk-001" data-price="549">
+          <div class="product-card-image">
+            <img src="images/study_table.jpg" alt="Oak Study Desk">
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" data-id="desk-001" data-name="Oak Study Desk"
+                title="Wishlist"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="product-badge-tag"><span class="badge badge-blue">Student Pick</span></div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-cat">Tables</span>
+              <div class="stars">★★★★☆</div>
+            </div>
+            <h3>Oak Study Desk</h3>
+            <p class="product-desc">Spacious oak desk with built-in drawer. Cable management port included. Ideal for
+              students.</p>
+            <div class="product-footer">
+              <div>
+                <div class="product-price">₹549</div>
+                <div class="product-price-label">per month</div>
+              </div>
+              <button class="product-rent-btn">Rent Now</button>
+            </div>
+          </div>
+        </div>
+        <!-- Dining Table -->
+        <div class="product-card" data-id="dining-001" data-price="1199">
+          <div class="product-card-image">
+            <img src="images/dining_table.jpg" alt="Walnut Dining Set">
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" data-id="dining-001" data-name="Walnut Dining Set"
+                title="Wishlist"><i class="fas fa-heart"></i></button>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-cat">Dining</span>
+              <div class="stars">★★★★★</div>
+            </div>
+            <h3>Walnut 4-Seater Dining</h3>
+            <p class="product-desc">Solid walnut top with black metal legs. 4 matching upholstered chairs included.</p>
+            <div class="product-footer">
+              <div>
+                <div class="product-price">₹1,199</div>
+                <div class="product-price-label">per month</div>
+              </div>
+              <button class="product-rent-btn">Rent Now</button>
+            </div>
+          </div>
+        </div>
+        <!-- Wardrobe -->
+        <div class="product-card" data-id="ward-001" data-price="799">
+          <div class="product-card-image">
+            <img src="images/wardrobe.jpg" alt="Sliding Mirror Wardrobe">
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" data-id="ward-001" data-name="Sliding Mirror Wardrobe"
+                title="Wishlist"><i class="fas fa-heart"></i></button>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-cat">Storage</span>
+              <div class="stars">★★★★★</div>
+            </div>
+            <h3>Sliding Mirror Wardrobe</h3>
+            <p class="product-desc">3-door sliding wardrobe with full-length mirrors, hanging space and built-in
+              drawers.</p>
+            <div class="product-footer">
+              <div>
+                <div class="product-price">₹799</div>
+                <div class="product-price-label">per month</div>
+              </div>
+              <button class="product-rent-btn">Rent Now</button>
+            </div>
+          </div>
+        </div>
+        <!-- L-Shaped Corner Sofa -->
+        <div class="product-card" data-id="sofa-002" data-price="1899">
+          <div class="product-card-image">
+            <img src="images/hero_interior.jpg" alt="L-Shaped Corner Sofa">
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" data-id="sofa-002" data-name="L-Shaped Corner Sofa"
+                title="Wishlist"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="product-badge-tag"><span class="badge badge-navy">Premium</span></div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-cat">Sofas</span>
+              <div class="stars">★★★★★</div>
+            </div>
+            <h3>L-Shaped Corner Sofa</h3>
+            <p class="product-desc">Spacious 6-seater sofa with chaise lounge and high-density foam cushioning. Perfect
+              for living rooms.</p>
+            <div class="product-footer">
+              <div>
+                <div class="product-price">₹1,899</div>
+                <div class="product-price-label">per month</div>
+              </div>
+              <button class="product-rent-btn">Rent Now</button>
+            </div>
+          </div>
+        </div>
+        <!-- Executive Armchair -->
+        <div class="product-card" data-id="chair-002" data-price="899">
+          <div class="product-card-image">
+            <img src="images/about_office.jpg" alt="Executive Lounge Armchair">
+            <div class="product-card-actions">
+              <button class="product-action-btn wishlist-btn" data-id="chair-002" data-name="Executive Lounge Armchair"
+                title="Wishlist"><i class="fas fa-heart"></i></button>
+            </div>
+            <div class="product-badge-tag"><span class="badge badge-teal">WFH Ready</span></div>
+          </div>
+          <div class="product-card-body">
+            <div class="product-meta">
+              <span class="product-cat">Chairs</span>
+              <div class="stars">★★★★☆</div>
+            </div>
+            <h3>Executive Lounge Chair</h3>
+            <p class="product-desc">Ergonomic breathable mesh chair with multi-directional lumbar support and padded
+              armrests.</p>
+            <div class="product-footer">
+              <div>
+                <div class="product-price">₹899</div>
+                <div class="product-price-label">per month</div>
+              </div>
+              <button class="product-rent-btn">Rent Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:48px">
+        <a href="collection.html" class="btn btn-outline btn-lg">View All Furniture <i
+            class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 5: RENTAL PACKAGES ═══ -->
+  <section class="section" id="packages" style="background:var(--gray-50)">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Packages</span>
+        <h2>Choose Your <span style="color:var(--blue)">Rental Plan</span></h2>
+        <p>Transparent pricing, no hidden fees. Pick a plan that matches your lifestyle and budget.</p>
+      </div>
+      <div class="packages-grid">
+        <div class="package-card">
+          <h3>Student Starter</h3>
+          <p>For hostel rooms &amp; PG</p>
+          <div class="package-price-row">
+            <span class="package-price">₹499</span>
+            <span class="package-price-period">/month</span>
+          </div>
+          <div class="package-features">
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:var(--teal)"></i> Study Table &amp;
+              Chair</div>
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:var(--teal)"></i> Single Wardrobe
+            </div>
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:var(--teal)"></i> Bookshelf</div>
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:var(--teal)"></i> Free Delivery
+            </div>
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:var(--teal)"></i> Min. 1 Month
+              Rental</div>
+          </div>
+          <a href="packages.html" class="btn btn-pkg">Get Started</a>
+        </div>
+        <div class="package-card featured">
+          <span class="package-popular-tag">Most Popular</span>
+          <h3>Professional Comfort</h3>
+          <p>For bachelor apartments</p>
+          <div class="package-price-row">
+            <span class="package-price">₹1,299</span>
+            <span class="package-price-period">/month</span>
+          </div>
+          <div class="package-features">
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:#ffffff"></i> 3-Seater Sofa</div>
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:#ffffff"></i> Queen Bed + Mattress
+            </div>
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:#ffffff"></i> Ergonomic Work Chair
+            </div>
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:#ffffff"></i> Coffee Table</div>
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:#ffffff"></i> Free Swap Every 6
+              Months</div>
+          </div>
+          <a href="packages.html" class="btn btn-pkg btn-teal">Rent This Plan</a>
+        </div>
+        <div class="package-card">
+          <h3>Premium Professional</h3>
+          <p>Luxury comfort for professionals</p>
+          <div class="package-price-row">
+            <span class="package-price">₹2,499</span>
+            <span class="package-price-period">/month</span>
+          </div>
+          <div class="package-features">
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:var(--teal)"></i> Premium 3-Seater
+              Sofa</div>
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:var(--teal)"></i> King Bed +
+              Mattress</div>
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:var(--teal)"></i> Dining Set
+              (4-seater)</div>
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:var(--teal)"></i> Wardrobe +
+              Dresser</div>
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:var(--teal)"></i> Monthly
+              Maintenance</div>
+          </div>
+          <a href="packages.html" class="btn btn-pkg">Get Started</a>
+        </div>
+        <div class="package-card">
+          <h3>Complete Home Setup</h3>
+          <p>Full 2BHK/3BHK furnishing</p>
+          <div class="package-price-row">
+            <span class="package-price">₹3,999</span>
+            <span class="package-price-period">/month</span>
+          </div>
+          <div class="package-features">
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:var(--teal)"></i> Full Living Room
+              Set</div>
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:var(--teal)"></i> Bedrooms (up to
+              2)</div>
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:var(--teal)"></i> Dining Room Set
+            </div>
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:var(--teal)"></i> Home Office Setup
+            </div>
+            <div class="package-feature"><i class="fas fa-check-circle" style="color:var(--teal)"></i> Quarterly Swap
+              &amp; Service</div>
+          </div>
+          <a href="packages.html" class="btn btn-pkg">Get Started</a>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:28px;font-size:.875rem;color:rgba(255,255,255,0.7)">
+        Security deposit: 2 months refundable. <a href="packages.html" style="color:var(--teal);font-weight:600">See
+          full pricing details →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 5B: HOME SPLIT ═══ -->
+  <div class="home-split">
+    <div class="home-split-img">
+      <img src="images/about_office.jpg" alt="Professional home office setup">
+    </div>
+    <div class="home-split-content">
+      <span class="section-badge" style="background:rgba(74,144,217,.2);color:var(--blue-light)">Why Rent?</span>
+      <h2>Smart Living<br>For Modern India</h2>
+      <p>Owning furniture in a rented apartment is expensive and impractical. FurnRent lets you live well without the
+        burden of ownership.</p>
+      <div class="split-feature">
+        <div>
+          <h4>Save ₹50,000+</h4>
+          <p>Compared to buying equivalent quality furniture outright.</p>
+        </div>
+      </div>
+      <div class="split-feature">
+        <div>
+          <h4>Freedom to Move</h4>
+          <p>Relocating? We handle pickup, transport and re-delivery.</p>
+        </div>
+      </div>
+      <div class="split-feature">
+        <div>
+          <h4>Zero Maintenance Worry</h4>
+          <p>We repair or replace any issue at no extra cost to you.</p>
+        </div>
+      </div>
+      <a href="about.html" class="btn btn-secondary" style="margin-top:8px;align-self:flex-start">Learn More About
+        Us</a>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 6: WHY CHOOSE US ═══ -->
+  <section class="section why-section-wrap" id="why-us">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Why FurnRent</span>
+        <h2>6 Reasons to <span style="color:var(--blue)">Choose Us</span></h2>
+        <p>Experience hassle-free furniture rental crafted specifically for modern Indian living.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-item">
+          <span class="why-watermark">01</span>
+          <h4>Affordable Pricing</h4>
+          <p>Furniture starts at just ₹499/month with no hidden costs. Transparent pricing always.</p>
+          <span class="why-pill">Zero Hidden Fees</span>
+        </div>
+        <div class="why-item">
+          <span class="why-watermark">02</span>
+          <h4>Flexible Rental Periods</h4>
+          <p>Choose 1, 3, 6 or 12-month plans. Scale up or down anytime based on your needs.</p>
+          <span class="why-pill">1 to 12 Month Plans</span>
+        </div>
+        <div class="why-item">
+          <span class="why-watermark">03</span>
+          <h4>Premium Quality</h4>
+          <p>Every piece is professionally cleaned, refurbished and quality-checked before delivery.</p>
+          <span class="why-pill">25-Point Inspection</span>
+        </div>
+        <div class="why-item">
+          <span class="why-watermark">04</span>
+          <h4>48-Hour Delivery</h4>
+          <p>Free delivery and professional installation within 48 hours of order confirmation.</p>
+          <span class="why-pill">Fast Setup Included</span>
+        </div>
+        <div class="why-item">
+          <span class="why-watermark">05</span>
+          <h4>Easy Furniture Swaps</h4>
+          <p>Bored of your sofa? Swap it for a new one. Upgrade or change style anytime you like.</p>
+          <span class="why-pill">Flexible Upgrades</span>
+        </div>
+        <div class="why-item">
+          <span class="why-watermark">06</span>
+          <h4>Hassle-free Returns</h4>
+          <p>Moving out? Schedule a pickup online. We handle everything — no questions asked.</p>
+          <span class="why-pill">100% Refundable Deposit</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 7: STATS SHOWCASE ═══ -->
+  <section class="stats-showcase-section">
+    <div class="container">
+      <div class="stats-showcase-box">
+        <div class="stats-grid">
+          <div class="stat-item-card">
+            <span class="stat-num stat-blue" data-target="12000" data-suffix="+">12,000+</span>
+            <div class="stat-label">Happy Customers</div>
+            <div class="stat-sublabel">100% Verified Renters</div>
+          </div>
+          <div class="stat-item-card">
+            <span class="stat-num stat-teal" data-target="500" data-suffix="+">500+</span>
+            <div class="stat-label">Furniture Items</div>
+            <div class="stat-sublabel">Curated Solid Designs</div>
+          </div>
+          <div class="stat-item-card">
+            <span class="stat-num stat-gold" data-target="25" data-suffix="+">25+</span>
+            <div class="stat-label">Cities Covered</div>
+            <div class="stat-sublabel">Pan-India Express Setup</div>
+          </div>
+          <div class="stat-item-card">
+            <span class="stat-num stat-blue" data-target="98" data-suffix="%">98%</span>
+            <div class="stat-label">Satisfaction Rate</div>
+            <div class="stat-sublabel">4.9★ Average Feedback</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 8: TESTIMONIALS (Infinity Loop Design from Reference) ═══ -->
+  <section class="section testimonials-section-wrap" id="testimonials">
+    <div class="container">
+      <div class="section-header" style="margin-bottom:40px">
+        <span class="section-badge">Customer Stories</span>
+        <h2>Loved By <span style="color:var(--blue)">12,000+ Renters</span> Across India</h2>
+        <p>See why students and working professionals choose FurnRent for hassle-free living.</p>
+      </div>
+
+      <!-- Infinity Testimonial Card Frame -->
+      <div class="infinity-testimonial-box">
+        <!-- 3D Chrome Floating Stars from Reference -->
+        <div class="floating-star star-top-left">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="starGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="40%" stop-color="#e2e8f0" />
+                <stop offset="70%" stop-color="#cbd5e1" />
+                <stop offset="100%" stop-color="#94a3b8" />
+              </linearGradient>
+            </defs>
+            <polygon points="50,5 64,36 98,39 72,62 80,95 50,77 20,95 28,62 2,39 36,36" fill="url(#starGrad1)"
+              filter="drop-shadow(0 8px 12px rgba(100,116,139,0.4))" />
+            <!-- Star 3D Bevel Facets -->
+            <polygon points="50,5 50,77 64,36" fill="#ffffff" opacity="0.6" />
+            <polygon points="50,5 50,77 36,36" fill="#94a3b8" opacity="0.5" />
+            <polygon points="98,39 50,77 72,62" fill="#cbd5e1" opacity="0.7" />
+            <polygon points="2,39 50,77 28,62" fill="#64748b" opacity="0.6" />
+          </svg>
+        </div>
+
+        <div class="floating-star star-bottom-left">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="starGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="50%" stop-color="#e2e8f0" />
+                <stop offset="100%" stop-color="#94a3b8" />
+              </linearGradient>
+            </defs>
+            <polygon points="50,5 64,36 98,39 72,62 80,95 50,77 20,95 28,62 2,39 36,36" fill="url(#starGrad2)"
+              filter="drop-shadow(0 6px 10px rgba(100,116,139,0.35))" />
+            <polygon points="50,5 50,77 64,36" fill="#ffffff" opacity="0.5" />
+            <polygon points="50,5 50,77 36,36" fill="#64748b" opacity="0.5" />
+          </svg>
+        </div>
+
+        <div class="floating-star star-bottom-right">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="starGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="35%" stop-color="#f1f5f9" />
+                <stop offset="70%" stop-color="#cbd5e1" />
+                <stop offset="100%" stop-color="#64748b" />
+              </linearGradient>
+            </defs>
+            <polygon points="50,5 64,36 98,39 72,62 80,95 50,77 20,95 28,62 2,39 36,36" fill="url(#starGrad3)"
+              filter="drop-shadow(0 12px 18px rgba(71,85,105,0.45))" />
+            <polygon points="50,5 50,77 64,36" fill="#ffffff" opacity="0.7" />
+            <polygon points="50,5 50,77 36,36" fill="#475569" opacity="0.6" />
+            <polygon points="98,39 50,77 72,62" fill="#e2e8f0" opacity="0.8" />
+            <polygon points="80,95 50,77 72,62" fill="#334155" opacity="0.5" />
+          </svg>
+        </div>
+
+        <!-- Infinity Carousel Slider -->
+        <div class="infinity-slider" id="infinitySlider">
+
+          <!-- Slide 1 (Priya Sharma - Matching reference image) -->
+          <div class="infinity-slide active" data-index="0">
+            <div class="infinity-card-wrapper">
+              <div class="mobile-avatar-frame">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80"
+                  alt="Priya Sharma">
+              </div>
+              <svg class="infinity-figure8-svg" viewBox="0 0 960 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="loopShadow1" x="-10%" y="-10%" width="130%" height="130%">
+                    <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="rgba(30, 50, 80, 0.16)" />
+                  </filter>
+                  <clipPath id="avatarClip1">
+                    <circle cx="160" cy="190" r="95" />
+                  </clipPath>
+                </defs>
+                <!-- Right loop frosted background -->
+                <path class="infinity-fill-area"
+                  d="M 640,40 C 820,40 905,105 905,190 C 905,275 820,340 640,340 C 460,340 385,255 330,190 C 385,125 460,40 640,40 Z"
+                  fill="rgba(255,255,255,0.45)" />
+                <!-- Customer Avatar Image clipped in left loop -->
+                <g clip-path="url(#avatarClip1)">
+                  <image
+                    href="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80"
+                    x="50" y="80" width="220" height="220" preserveAspectRatio="xMidYMid slice" />
+                </g>
+                <circle cx="160" cy="190" r="95" stroke="#4a6582" stroke-width="2" fill="none" opacity="0.25" />
+                <!-- Single Continuous Infinity Ribbon -->
+                <path class="infinity-single-ribbon"
+                  d="M 640,40 C 820,40 905,105 905,190 C 905,275 820,340 640,340 C 460,340 385,255 330,190 C 270,125 220,80 160,80 C 95,80 52,130 52,190 C 52,250 95,300 160,300 C 220,300 270,255 330,190 C 385,125 460,40 640,40 Z"
+                  stroke="#5b7490" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"
+                  filter="url(#loopShadow1)" />
+              </svg>
+              <!-- Content Overlay inside the right loop -->
+              <div class="infinity-text-overlay">
+                <div class="infinity-stars">★★★★★</div>
+                <div class="infinity-quote-text">
+                  FURNRENT COMPLETELY CHANGED HOW I FURNISH MY APARTMENT. <strong>ZERO DEPOSIT STRESS</strong>,
+                  <strong>PREMIUM SOLID FINISH</strong>, AND <strong>DELIVERED WITHIN 24 HOURS</strong>.
+                </div>
+                <div class="infinity-author-tag">— PRIYA SHARMA, PRODUCT DESIGNER (BENGALURU)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 (Aryan Reddy) -->
+          <div class="infinity-slide" data-index="1">
+            <div class="infinity-card-wrapper">
+              <div class="mobile-avatar-frame">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80"
+                  alt="Aryan Reddy">
+              </div>
+              <svg class="infinity-figure8-svg" viewBox="0 0 960 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="loopShadow2" x="-10%" y="-10%" width="130%" height="130%">
+                    <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="rgba(30, 50, 80, 0.16)" />
+                  </filter>
+                  <clipPath id="avatarClip2">
+                    <circle cx="160" cy="190" r="95" />
+                  </clipPath>
+                </defs>
+                <path class="infinity-fill-area"
+                  d="M 640,40 C 820,40 905,105 905,190 C 905,275 820,340 640,340 C 460,340 385,255 330,190 C 385,125 460,40 640,40 Z"
+                  fill="rgba(255,255,255,0.45)" />
+                <g clip-path="url(#avatarClip2)">
+                  <image
+                    href="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80"
+                    x="50" y="80" width="220" height="220" preserveAspectRatio="xMidYMid slice" />
+                </g>
+                <circle cx="160" cy="190" r="95" stroke="#4a6582" stroke-width="2" fill="none" opacity="0.25" />
+                <path class="infinity-single-ribbon"
+                  d="M 640,40 C 820,40 905,105 905,190 C 905,275 820,340 640,340 C 460,340 385,255 330,190 C 270,125 220,80 160,80 C 95,80 52,130 52,190 C 52,250 95,300 160,300 C 220,300 270,255 330,190 C 385,125 460,40 640,40 Z"
+                  stroke="#5b7490" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"
+                  filter="url(#loopShadow2)" />
+              </svg>
+              <div class="infinity-text-overlay">
+                <div class="infinity-stars">★★★★★</div>
+                <div class="infinity-quote-text">
+                  MOVING FOR WORK WAS OVERWHELMING UNTIL I FOUND FURNRENT. <strong>FLEXIBLE 6-MONTH PLANS</strong>,
+                  <strong>EFFORTLESS SWAPS</strong>, AND <strong>IMPECCABLE CUSTOMER SUPPORT</strong>.
+                </div>
+                <div class="infinity-author-tag">— ARYAN REDDY, SOFTWARE ENGINEER (HYDERABAD)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 (Siddharth Mehta) -->
+          <div class="infinity-slide" data-index="2">
+            <div class="infinity-card-wrapper">
+              <div class="mobile-avatar-frame">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80"
+                  alt="Siddharth Mehta">
+              </div>
+              <svg class="infinity-figure8-svg" viewBox="0 0 960 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="loopShadow3" x="-10%" y="-10%" width="130%" height="130%">
+                    <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="rgba(30, 50, 80, 0.16)" />
+                  </filter>
+                  <clipPath id="avatarClip3">
+                    <circle cx="160" cy="190" r="95" />
+                  </clipPath>
+                </defs>
+                <path class="infinity-fill-area"
+                  d="M 640,40 C 820,40 905,105 905,190 C 905,275 820,340 640,340 C 460,340 385,255 330,190 C 385,125 460,40 640,40 Z"
+                  fill="rgba(255,255,255,0.45)" />
+                <g clip-path="url(#avatarClip3)">
+                  <image
+                    href="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80"
+                    x="50" y="80" width="220" height="220" preserveAspectRatio="xMidYMid slice" />
+                </g>
+                <circle cx="160" cy="190" r="95" stroke="#4a6582" stroke-width="2" fill="none" opacity="0.25" />
+                <path class="infinity-single-ribbon"
+                  d="M 640,40 C 820,40 905,105 905,190 C 905,275 820,340 640,340 C 460,340 385,255 330,190 C 270,125 220,80 160,80 C 95,80 52,130 52,190 C 52,250 95,300 160,300 C 220,300 270,255 330,190 C 385,125 460,40 640,40 Z"
+                  stroke="#5b7490" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"
+                  filter="url(#loopShadow3)" />
+              </svg>
+              <div class="infinity-text-overlay">
+                <div class="infinity-stars">★★★★★</div>
+                <div class="infinity-quote-text">
+                  SAVED OVER ₹60,000 ON MY LIVING ROOM AND WORKSPACE SETUP. <strong>FREE RELOCATION PICKUP</strong> AND
+                  <strong>ZERO HIDDEN CHARGES</strong> MAKE IT UNBEATABLE.
+                </div>
+                <div class="infinity-author-tag">— SIDDHARTH MEHTA, MANAGEMENT CONSULTANT (MUMBAI)</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Slider Controls -->
+        <div class="infinity-controls">
+          <button class="infinity-nav-btn prev-btn" id="infinityPrev" aria-label="Previous testimonial">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="infinity-dots" id="infinityDots">
+            <div class="infinity-dot active" data-slide="0"></div>
+            <div class="infinity-dot" data-slide="1"></div>
+            <div class="infinity-dot" data-slide="2"></div>
+          </div>
+          <button class="infinity-nav-btn next-btn" id="infinityNext" aria-label="Next testimonial">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FINAL CTA ═══ -->
+  <section class="cta-banner">
+    <div class="container" style="position:relative;z-index:2">
+      <h2>Ready to Furnish Your Perfect Space?</h2>
+      <p>Join 12,000+ happy customers who chose smart, flexible furniture rentals over expensive ownership.</p>
+      <div class="cta-actions">
+        <a href="collection.html" class="btn btn-teal btn-lg">Browse Collection</a>
+        <a href="contact.html" class="btn btn-outline-white btn-lg">Talk to Expert</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand footer-col">
+          <a href="index.html" class="logo" style="margin-bottom:4px">
+            <div class="logo-icon"><img src="images/logo-icon.svg" alt="FurnRent Logo"></div>
+            <span class="logo-text">Furn<span>Rent</span></span>
+          </a>
+          <p>Premium furniture rental for students and working professionals across India. Live well, rent smart.</p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="footer-social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="footer-social-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="footer-social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="footer-social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="packages.html" class="footer-link">Rental Packages</a>
+            <a href="collection.html" class="footer-link">Furniture Collection</a>
+            <a href="blog.html" class="footer-link">Blog</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Categories</h5>
+          <div class="footer-links">
+            <a href="collection.html" class="footer-link">Sofas &amp; Couches</a>
+            <a href="collection.html" class="footer-link">Beds &amp; Mattresses</a>
+            <a href="collection.html" class="footer-link">Study Furniture</a>
+            <a href="collection.html" class="footer-link">Dining Sets</a>
+            <a href="collection.html" class="footer-link">Office Chairs</a>
+            <a href="collection.html" class="footer-link">Wardrobes</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Support</h5>
+          <div class="footer-links">
+            <a href="dashboard.html" class="footer-link">My Account</a>
+            <a href="dashboard.html" class="footer-link">Track Order</a>
+            <a href="dashboard.html" class="footer-link">Swap Request</a>
+            <a href="dashboard.html" class="footer-link">Early Return</a>
+            <a href="contact.html" class="footer-link">FAQ</a>
+            <a href="contact.html" class="footer-link">Help Center</a>
+          </div>
+        </div>
+        <div class="footer-col footer-newsletter">
+          <h5>Contact Us</h5>
+          <div class="footer-contact-item"><span>+91 98765 43210</span></div>
+          <div class="footer-contact-item"><span>hello@furnrent.in</span></div>
+          <div class="footer-contact-item"><span>Bengaluru, Mumbai, Delhi, Hyderabad, Chennai, Pune</span></div>
+          <h5 style="margin-top:24px">Newsletter</h5>
+          <p style="font-size:.85rem;color:rgba(255,255,255,.55);margin-top:8px">Get rental tips &amp; exclusive offers.
+          </p>
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Your email address" aria-label="Email">
+            <button type="submit" class="newsletter-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 FurnRent. All rights reserved. Made in India.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Refund Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <div class="cart-overlay"></div>
+  <div class="cart-drawer">
+    <div class="cart-header">
+      <div class="cart-title">Your Cart (<span class="cart-count">0</span>)</div>
+      <button class="modal-close cart-drawer-close" aria-label="Close cart"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-body">
+      <div class="cart-empty">
+        <p>Your cart is empty</p>
+      </div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Monthly Total:</span>
+        <span class="cart-total-amount">₹0</span>
+      </div>
+      <a href="packages.html" class="btn btn-primary" style="width:100%;justify-content:center">Proceed to Checkout</a>
+    </div>
+  </div>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top-btn" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

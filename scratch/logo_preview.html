@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Logo Concepts Preview</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      padding: 40px;
+      background: #f1f5f9;
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .card.dark {
+      background: #0D1B2A;
+      color: #fff;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      background: #e0f2fe;
+      color: #0284c7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="preview-grid">
+
+    <!-- Concept 1: Modern Designer Armchair & Rental Accent -->
+    <div class="card">
+      <span class="tag">Concept 1: Modern Designer Armchair & Rental Spark</span>
+      <h3>Light Background (Header View)</h3>
+      <div class="logo-row">
+        <!-- 40px -->
+        <a href="#" class="logo" style="text-decoration:none">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40" fill="none">
+            <defs>
+              <linearGradient id="c1_bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#3B82F6" />
+                <stop offset="60%" stop-color="#1D4ED8" />
+                <stop offset="100%" stop-color="#0D1B2A" />
+              </linearGradient>
+              <linearGradient id="c1_teal" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#2DD4BF" />
+                <stop offset="100%" stop-color="#0D9488" />
+              </linearGradient>
+            </defs>
+            <rect width="40" height="40" rx="11" fill="url(#c1_bg)" />
+            <rect x="0.75" y="0.75" width="38.5" height="38.5" rx="10.25" stroke="#FFFFFF" stroke-width="1.5"
+              stroke-opacity="0.2" />
+            <path d="M2.5 11C2.5 6.3 6.3 2.5 11 2.5H29C33.7 2.5 37.5 6.3 37.5 11V13C28 10.5 12 11.5 2.5 15V11Z"
+              fill="#FFFFFF" fill-opacity="0.15" />
+            <!-- Armchair Silhouette -->
+            <!-- Backrest -->
+            <path d="M14 11C14 9.5 15.2 8.5 17 8.5H23C24.8 8.5 26 9.5 26 11V18H14V11Z" fill="#FFFFFF" />
+            <!-- Seat Cushion -->
+            <rect x="9.5" y="18" width="21" height="6.5" rx="3.2" fill="#FFFFFF" />
+            <!-- Left/Right legs -->
+            <path d="M12.5 24.5L10 31" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" />
+            <path d="M27.5 24.5L30 31" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" />
+            <path d="M16 24.5L17 28.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"
+              stroke-opacity="0.6" />
+            <path d="M24 24.5L23 28.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"
+              stroke-opacity="0.6" />
+            <!-- Teal Rental Orbit Accent -->
+            <circle cx="28.5" cy="11.5" r="3.5" fill="url(#c1_teal)" stroke="#FFFFFF" stroke-width="1.2" />
+          </svg>
+          <span class="logo-text">Furn<span>Rent</span></span>
+        </a>
+
+        <!-- 34px (Mobile) -->
+        <a href="#" class="logo" style="text-decoration:none">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="34" height="34" fill="none">
+            <use href="#c1_bg" />
+            <rect width="40" height="40" rx="11" fill="url(#c1_bg)" />
+            <rect x="0.75" y="0.75" width="38.5" height="38.5" rx="10.25" stroke="#FFFFFF" stroke-width="1.5"
+              stroke-opacity="0.2" />
+            <path d="M14 11C14 9.5 15.2 8.5 17 8.5H23C24.8 8.5 26 9.5 26 11V18H14V11Z" fill="#FFFFFF" />
+            <rect x="9.5" y="18" width="21" height="6.5" rx="3.2" fill="#FFFFFF" />
+            <path d="M12.5 24.5L10 31" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" />
+            <path d="M27.5 24.5L30 31" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" />
+            <circle cx="28.5" cy="11.5" r="3.5" fill="url(#c1_teal)" stroke="#FFFFFF" stroke-width="1.2" />
+          </svg>
+          <span class="logo-text" style="font-size:1.15rem">Furn<span>Rent</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="card dark">
+      <span class="tag" style="background:#1e3a8a;color:#93c5fd">Concept 1 in Dark Theme</span>
+      <h3>Dark Background (Footer & Sidebar View)</h3>
+      <div class="logo-row">
+        <a href="#" class="logo" style="text-decoration:none">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40" fill="none">
+            <rect width="40" height="40" rx="11" fill="url(#c1_bg)" />
+            <rect x="0.75" y="0.75" width="38.5" height="38.5" rx="10.25" stroke="#FFFFFF" stroke-width="1.5"
+              stroke-opacity="0.3" />
+            <path d="M14 11C14 9.5 15.2 8.5 17 8.5H23C24.8 8.5 26 9.5 26 11V18H14V11Z" fill="#FFFFFF" />
+            <rect x="9.5" y="18" width="21" height="6.5" rx="3.2" fill="#FFFFFF" />
+            <path d="M12.5 24.5L10 31" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" />
+            <path d="M27.5 24.5L30 31" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" />
+            <circle cx="28.5" cy="11.5" r="3.5" fill="url(#c1_teal)" stroke="#FFFFFF" stroke-width="1.2" />
+          </svg>
+          <span class="logo-text" style="color:#fff">Furn<span>Rent</span></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Concept 2: Modern Architectural Monogram + Lounge Crest -->
+    <div class="card">
+      <span class="tag">Concept 2: Architectural FR Monogram with Furniture Bevel</span>
+      <h3>Light Background (Header View)</h3>
+      <div class="logo-row">
+        <a href="#" class="logo" style="text-decoration:none">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40" fill="none">
+            <defs>
+              <linearGradient id="c2_bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#4A90D9" />
+                <stop offset="50%" stop-color="#2563EB" />
+                <stop offset="100%" stop-color="#0F172A" />
+              </linearGradient>
+              <linearGradient id="c2_teal" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#2DD4BF" />
+                <stop offset="100%" stop-color="#0D9488" />
+              </linearGradient>
+            </defs>
+            <rect width="40" height="40" rx="11" fill="url(#c2_bg)" />
+            <rect x="0.75" y="0.75" width="38.5" height="38.5" rx="10.25" stroke="#FFFFFF" stroke-width="1.5"
+              stroke-opacity="0.25" />
+            <path d="M2.5 11C2.5 6.3 6.3 2.5 11 2.5H29C33.7 2.5 37.5 6.3 37.5 11V13C28 10.5 12 11.5 2.5 15V11Z"
+              fill="#FFFFFF" fill-opacity="0.18" />
+            <!-- Stylized Modern Geometric FR Monogram -->
+            <!-- F stem and bars -->
+            <path
+              d="M10 10.5H19.5C20.3 10.5 21 11.2 21 12C21 12.8 20.3 13.5 19.5 13.5H13V18H18.5C19.3 18 20 18.7 20 19.5C20 20.3 19.3 21 18.5 21H13V29C13 29.8 12.3 30.5 11.5 30.5C10.7 30.5 10 29.8 10 29V10.5Z"
+              fill="#FFFFFF" />
+            <!-- R shape -->
+            <path
+              d="M22 10.5H27C29.8 10.5 31.5 12.2 31.5 14.8C31.5 16.9 30.3 18.4 28.5 19L31.8 28.8C32 29.5 31.6 30.3 30.9 30.5C30.2 30.7 29.5 30.3 29.2 29.6L26.3 21H24.5V29C24.5 29.8 23.8 30.5 23 30.5C22.2 30.5 21.5 29.8 21.5 29V10.5H22ZM24.5 18H26.8C27.9 18 28.8 17.1 28.8 15.8C28.8 14.5 27.9 13.5 26.8 13.5H24.5V18Z"
+              fill="#FFFFFF" />
+            <!-- Teal dot on R -->
+            <circle cx="31" cy="9.5" r="3.2" fill="url(#c2_teal)" stroke="#FFFFFF" stroke-width="1.2" />
+          </svg>
+          <span class="logo-text">Furn<span>Rent</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="card dark">
+      <span class="tag" style="background:#1e3a8a;color:#93c5fd">Concept 2 in Dark Theme</span>
+      <h3>Dark Background (Footer & Sidebar View)</h3>
+      <div class="logo-row">
+        <a href="#" class="logo" style="text-decoration:none">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40" fill="none">
+            <use href="#c2_bg" />
+            <rect width="40" height="40" rx="11" fill="url(#c2_bg)" />
+            <rect x="0.75" y="0.75" width="38.5" height="38.5" rx="10.25" stroke="#FFFFFF" stroke-width="1.5"
+              stroke-opacity="0.3" />
+            <path
+              d="M10 10.5H19.5C20.3 10.5 21 11.2 21 12C21 12.8 20.3 13.5 19.5 13.5H13V18H18.5C19.3 18 20 18.7 20 19.5C20 20.3 19.3 21 18.5 21H13V29C13 29.8 12.3 30.5 11.5 30.5C10.7 30.5 10 29.8 10 29V10.5Z"
+              fill="#FFFFFF" />
+            <path
+              d="M22 10.5H27C29.8 10.5 31.5 12.2 31.5 14.8C31.5 16.9 30.3 18.4 28.5 19L31.8 28.8C32 29.5 31.6 30.3 30.9 30.5C30.2 30.7 29.5 30.3 29.2 29.6L26.3 21H24.5V29C24.5 29.8 23.8 30.5 23 30.5C22.2 30.5 21.5 29.8 21.5 29V10.5H22ZM24.5 18H26.8C27.9 18 28.8 17.1 28.8 15.8C28.8 14.5 27.9 13.5 26.8 13.5H24.5V18Z"
+              fill="#FFFFFF" />
+            <circle cx="31" cy="9.5" r="3.2" fill="url(#c2_teal)" stroke="#FFFFFF" stroke-width="1.2" />
+          </svg>
+          <span class="logo-text" style="color:#fff">Furn<span>Rent</span></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Concept 3: Hybrid Modern Nordic Lounge Chair & Circular Rental Loop -->
+    <div class="card" style="grid-column: span 2">
+      <span class="tag">Concept 3: Nordic Lounge Chair with Continuous Circular Rental Ring</span>
+      <h3>Signature Hybrid Emblem</h3>
+      <div class="logo-row">
+        <a href="#" class="logo" style="text-decoration:none">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42" width="42" height="42" fill="none">
+            <defs>
+              <linearGradient id="c3_bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#4A90D9" />
+                <stop offset="55%" stop-color="#2563EB" />
+                <stop offset="100%" stop-color="#0D1B2A" />
+              </linearGradient>
+              <linearGradient id="c3_teal" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#2DD4BF" />
+                <stop offset="100%" stop-color="#0D9488" />
+              </linearGradient>
+              <linearGradient id="c3_chair" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFFFFF" />
+                <stop offset="100%" stop-color="#F1F5F9" />
+              </linearGradient>
+            </defs>
+            <!-- Squircle -->
+            <rect width="42" height="42" rx="11" fill="url(#c3_bg)" />
+            <rect x="0.75" y="0.75" width="40.5" height="40.5" rx="10.25" stroke="#FFFFFF" stroke-width="1.5"
+              stroke-opacity="0.22" />
+            <!-- Gloss highlight -->
+            <path d="M2.5 12C2.5 6.8 6.8 2.5 12 2.5H30C35.2 2.5 39.5 6.8 39.5 12V14C30 11.5 13 12.5 2.5 16V12Z"
+              fill="#FFFFFF" fill-opacity="0.16" />
+
+            <!-- Modern Minimalist Armchair Silhouette -->
+            <!-- Sleek back cushion -->
+            <path d="M14.5 11C14.5 9.5 15.8 8.5 17.5 8.5H24.5C26.2 8.5 27.5 9.5 27.5 11V18H14.5V11Z"
+              fill="url(#c3_chair)" />
+            <!-- Deep comfortable seat -->
+            <path
+              d="M10 18.5C10 17 11.2 16.5 13 16.5H29C30.8 16.5 32 17 32 18.5V21.5C32 23 30.8 24 29 24H13C11.2 24 10 23 10 21.5V18.5Z"
+              fill="url(#c3_chair)" />
+            <!-- Front tapered legs -->
+            <path d="M13 24.5L10.5 32" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" />
+            <path d="M29 24.5L31.5 32" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" />
+            <!-- Inner leg shadows -->
+            <path d="M17 24.5L18 29" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-opacity="0.5" />
+            <path d="M25 24.5L24 29" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-opacity="0.5" />
+
+            <!-- Circular Rental Loop Arc around Top Right -->
+            <path d="M24 6.5C28.5 6.5 32.5 8.5 34.5 12" stroke="url(#c3_teal)" stroke-width="2.2"
+              stroke-linecap="round" />
+            <!-- Teal Gem / Dot -->
+            <circle cx="34.5" cy="12" r="3.2" fill="url(#c3_teal)" stroke="#FFFFFF" stroke-width="1.2" />
+          </svg>
+          <span class="logo-text" style="font-size:1.45rem;letter-spacing:-0.035em;font-weight:850">Furn<span
+              style="color:#3B82F6">Rent</span></span>
+        </a>
+        <span style="color:#64748B;font-size:0.9rem;margin-left:20px">← Distinctive furniture identity with iconic
+          Nordic chair + circular rental orbit</span>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Notifications — FurnRent Customer Portal</title>
+<meta name="description" content="View all your payment alerts, swap delivery timelines, KYC notices and special offers.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+</head>
+<body>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ═══ CUSTOMER SIDEBAR ═══ -->
+<aside class="dash-sidebar" id="dashSidebar">
+  <div class="sidebar-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><img src="images/logo-icon.svg" alt="FurnRent Logo"></div>
+      <span class="logo-text" style="color:#fff">Furn<span>Rent</span></span>
+    </a>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">AR</div>
+      <div>
+        <div class="sidebar-user-name">Aryan Reddy</div>
+        <div class="sidebar-user-plan"><i class="fas fa-circle" style="color:var(--teal);font-size:.5rem"></i> Professional Plan</div>
+      </div>
+    </div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section-label">Main</div>
+    <a href="dashboard.html" class="sidebar-link"><i class="fas fa-th-large"></i> Dashboard</a>
+    <a href="user-rentals.html" class="sidebar-link"><i class="fas fa-boxes-stacked"></i> My Rentals</a>
+    <a href="user-payments.html" class="sidebar-link"><i class="fas fa-credit-card"></i> Payments</a>
+    
+    <div class="sidebar-section-label">Requests & Services</div>
+    <a href="user-swaps.html" class="sidebar-link"><i class="fas fa-sync-alt"></i> Swap Requests</a>
+    <a href="user-returns.html" class="sidebar-link"><i class="fas fa-undo-alt"></i> Early Returns</a>
+    
+    <div class="sidebar-section-label">Account</div>
+    <a href="user-profile.html" class="sidebar-link"><i class="fas fa-user"></i> My Profile</a>
+    <a href="user-notifications.html" class="sidebar-link active"><i class="fas fa-bell"></i> Notifications <span style="background:var(--danger);color:#fff;font-size:.65rem;padding:2px 6px;border-radius:var(--radius-full);margin-left:auto">3</span></a>
+    
+    <div class="sidebar-section-label">Navigation</div>
+    <a href="index.html" class="sidebar-link"><i class="fas fa-arrow-left"></i> Back to Site</a>
+    <a href="admin-dashboard.html" class="sidebar-link" style="color:var(--gold)"><i class="fas fa-shield-halved"></i> Switch to Admin</a>
+    <button class="sidebar-link danger" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+  </nav>
+  <div class="sidebar-footer">
+    <div style="font-size:.75rem;color:rgba(255,255,255,.4)">Rental Period: Sep 1 – Feb 28, 2025</div>
+    <div style="margin-top:8px;background:rgba(255,255,255,.08);border-radius:var(--radius-full);height:4px">
+      <div style="width:33%;height:100%;background:var(--teal);border-radius:var(--radius-full)"></div>
+    </div>
+    <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-top:4px">2 of 6 months completed</div>
+  </div>
+</aside>
+
+<!-- ═══ MAIN CONTENT ═══ -->
+<main class="dash-main">
+  <div class="dash-topbar">
+    <div style="display:flex;align-items:center;gap:12px">
+      <button class="hamburger-dash header-icon-btn" id="sidebarToggle" aria-label="Toggle Sidebar Menu"><i class="fas fa-bars"></i></button>
+      <div class="topbar-title">Notification Center</div>
+    </div>
+        <div class="topbar-actions">
+      <button class="topbar-icon-btn rtl-toggle-btn" id="rtlToggleBtn" title="Toggle RTL / LTR Direction" aria-label="Toggle RTL Direction"><i class="fas fa-right-left"></i></button>
+      <button class="topbar-icon-btn theme-toggle-btn" title="Toggle theme"><i class="fas fa-moon"></i></button>
+      <div class="user-dropdown-wrap">
+        <button class="topbar-icon-btn user-btn" title="My Account" aria-label="My Account" aria-expanded="false">
+          <i class="fas fa-user"></i>
+        </button>
+        <div class="user-dropdown-menu" role="menu">
+          <div class="user-dropdown-header">
+            <div class="user-dropdown-header-title">My Account</div>
+          </div>
+          <div class="user-dropdown-section">
+            <a href="login.html" class="user-dropdown-item" role="menuitem">
+              <i class="fas fa-sign-in-alt"></i> Login / Switch Account
+            </a>
+            <a href="signup.html" class="user-dropdown-item" role="menuitem">
+              <i class="fas fa-user-plus"></i> Create Account
+            </a>
+          </div>
+          <div class="user-dropdown-section">
+            <a href="dashboard.html" class="user-dropdown-item" role="menuitem">
+              <i class="fas fa-th-large"></i> User Dashboard
+            </a>
+            <a href="admin-dashboard.html" class="user-dropdown-item admin-link" role="menuitem">
+              <i class="fas fa-shield-halved"></i> Admin Dashboard
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dash-content">
+    <div class="dash-toolbar">
+      <div>
+        <h2 style="font-size:1.375rem;margin-bottom:4px">Activity & Alerts</h2>
+        <p style="color:var(--gray-500);font-size:.875rem">You have 3 unread messages and delivery updates</p>
+      </div>
+      <button class="btn btn-outline btn-sm" onclick="markAllAsRead()"><i class="fas fa-check-double"></i> Mark All as Read</button>
+    </div>
+
+    <div class="dash-card">
+      <div class="dash-card-body" style="padding:12px 24px">
+        
+        <div class="notif-item">
+          <div class="notif-dot unread"></div>
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <div class="notif-title"><i class="fas fa-truck" style="color:var(--blue);margin-right:6px"></i> Furniture Swap Scheduled</div>
+              <span style="font-size:.75rem;color:var(--gray-400)">2 hours ago</span>
+            </div>
+            <div class="notif-text">Your swap request for <strong>Executive Leather Desk Chair</strong> (Request #SWP-9021) has been approved. Our delivery technician will arrive on Nov 20 between 2:00 PM – 5:00 PM.</div>
+          </div>
+        </div>
+
+        <div class="notif-item">
+          <div class="notif-dot unread"></div>
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <div class="notif-title"><i class="fas fa-credit-card" style="color:var(--teal);margin-right:6px"></i> Upcoming Rent Due Reminder</div>
+              <span style="font-size:.75rem;color:var(--gray-400)">1 day ago</span>
+            </div>
+            <div class="notif-text">Your monthly rental subscription of <strong>₹2,498</strong> for December 2024 is due on Dec 1, 2024. Auto-debit is scheduled on your primary HDFC card.</div>
+          </div>
+        </div>
+
+        <div class="notif-item">
+          <div class="notif-dot unread"></div>
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <div class="notif-title"><i class="fas fa-shield-halved" style="color:var(--gold);margin-right:6px"></i> Annual Damage Waiver Active</div>
+              <span style="font-size:.75rem;color:var(--gray-400)">3 days ago</span>
+            </div>
+            <div class="notif-text">Complimentary damage protection up to ₹10,000 is active on all your 5 rental pieces. Regular wear-and-tear is 100% covered.</div>
+          </div>
+        </div>
+
+        <div class="notif-item">
+          <div class="notif-dot read"></div>
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <div class="notif-title"><i class="fas fa-check-circle" style="color:var(--success);margin-right:6px"></i> KYC Verification Approved</div>
+              <span style="font-size:.75rem;color:var(--gray-400)">Aug 28, 2024</span>
+            </div>
+            <div class="notif-text">Your Aadhaar verification was successfully validated by FurnRent Compliance Team. Premium flexible rental tier unlocked.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+const sidebarToggle = document.getElementById('sidebarToggle');
+const dashSidebar = document.getElementById('dashSidebar');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+if (sidebarToggle && dashSidebar && sidebarOverlay) {
+  sidebarToggle.addEventListener('click', () => {
+    dashSidebar.classList.toggle('open');
+    sidebarOverlay.classList.toggle('open');
+  });
+  sidebarOverlay.addEventListener('click', () => {
+    dashSidebar.classList.remove('open');
+    sidebarOverlay.classList.remove('open');
+  });
+}
+
+function markAllAsRead() {
+  document.querySelectorAll('.notif-dot.unread').forEach(d => {
+    d.classList.remove('unread');
+    d.classList.add('read');
+  });
+  if (window.showToast) window.showToast('All notifications marked as read', 'info');
+}
+</script>
+</body>
+</html>

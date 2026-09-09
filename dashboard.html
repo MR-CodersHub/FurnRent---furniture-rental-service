@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>User Dashboard — FurnRent Customer Portal</title>
+<meta name="description" content="Manage your active furniture rentals, payments, swap requests, early returns and profile.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+</head>
+<body>
+
+<!-- Sidebar Overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ═══ CUSTOMER SIDEBAR ═══ -->
+<aside class="dash-sidebar" id="dashSidebar">
+  <div class="sidebar-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><img src="images/logo-icon.svg" alt="FurnRent Logo"></div>
+      <span class="logo-text" style="color:#fff">Furn<span>Rent</span></span>
+    </a>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">AR</div>
+      <div>
+        <div class="sidebar-user-name">Aryan Reddy</div>
+        <div class="sidebar-user-plan"><i class="fas fa-circle" style="color:var(--teal);font-size:.5rem"></i> Professional Plan</div>
+      </div>
+    </div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section-label">Main</div>
+    <a href="dashboard.html" class="sidebar-link active"><i class="fas fa-th-large"></i> Dashboard</a>
+    <a href="user-rentals.html" class="sidebar-link"><i class="fas fa-boxes-stacked"></i> My Rentals</a>
+    <a href="user-payments.html" class="sidebar-link"><i class="fas fa-credit-card"></i> Payments</a>
+    
+    <div class="sidebar-section-label">Requests & Services</div>
+    <a href="user-swaps.html" class="sidebar-link"><i class="fas fa-sync-alt"></i> Swap Requests</a>
+    <a href="user-returns.html" class="sidebar-link"><i class="fas fa-undo-alt"></i> Early Returns</a>
+    
+    <div class="sidebar-section-label">Account</div>
+    <a href="user-profile.html" class="sidebar-link"><i class="fas fa-user"></i> My Profile</a>
+    <a href="user-notifications.html" class="sidebar-link"><i class="fas fa-bell"></i> Notifications <span style="background:var(--danger);color:#fff;font-size:.65rem;padding:2px 6px;border-radius:var(--radius-full);margin-left:auto">3</span></a>
+    
+    <div class="sidebar-section-label">Navigation</div>
+    <a href="index.html" class="sidebar-link"><i class="fas fa-arrow-left"></i> Back to Site</a>
+    <a href="admin-dashboard.html" class="sidebar-link" style="color:var(--gold)"><i class="fas fa-shield-halved"></i> Switch to Admin</a>
+    <button class="sidebar-link danger" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+  </nav>
+  <div class="sidebar-footer">
+    <div style="font-size:.75rem;color:rgba(255,255,255,.4)">Rental Period: Sep 1 – Feb 28, 2025</div>
+    <div style="margin-top:8px;background:rgba(255,255,255,.08);border-radius:var(--radius-full);height:4px">
+      <div style="width:33%;height:100%;background:var(--teal);border-radius:var(--radius-full)"></div>
+    </div>
+    <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-top:4px">2 of 6 months completed</div>
+  </div>
+</aside>
+
+<!-- ═══ MAIN ═══ -->
+<main class="dash-main">
+  <!-- Topbar -->
+  <div class="dash-topbar">
+    <div style="display:flex;align-items:center;gap:12px">
+      <button class="hamburger-dash header-icon-btn" id="sidebarToggle" aria-label="Toggle Sidebar Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="topbar-title">Customer Overview</div>
+    </div>
+        <div class="topbar-actions">
+      <button class="topbar-icon-btn rtl-toggle-btn" id="rtlToggleBtn" title="Toggle RTL / LTR Direction" aria-label="Toggle RTL Direction"><i class="fas fa-right-left"></i></button>
+      <button class="topbar-icon-btn theme-toggle-btn" title="Toggle theme"><i class="fas fa-moon"></i></button>
+      <div class="user-dropdown-wrap">
+        <button class="topbar-icon-btn user-btn" title="My Account" aria-label="My Account" aria-expanded="false">
+          <i class="fas fa-user"></i>
+        </button>
+        <div class="user-dropdown-menu" role="menu">
+          <div class="user-dropdown-header">
+            <div class="user-dropdown-header-title">My Account</div>
+          </div>
+          <div class="user-dropdown-section">
+            <a href="login.html" class="user-dropdown-item" role="menuitem">
+              <i class="fas fa-sign-in-alt"></i> Login / Switch Account
+            </a>
+            <a href="signup.html" class="user-dropdown-item" role="menuitem">
+              <i class="fas fa-user-plus"></i> Create Account
+            </a>
+          </div>
+          <div class="user-dropdown-section">
+            <a href="dashboard.html" class="user-dropdown-item" role="menuitem">
+              <i class="fas fa-th-large"></i> User Dashboard
+            </a>
+            <a href="admin-dashboard.html" class="user-dropdown-item admin-link" role="menuitem">
+              <i class="fas fa-shield-halved"></i> Admin Dashboard
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="dash-content">
+    <div class="dash-toolbar">
+      <div>
+        <h2 style="margin-bottom:4px">Good afternoon, Aryan!</h2>
+        <p style="color:var(--gray-500);font-size:.875rem">Welcome to your FurnRent portal. Here's a live summary of your account.</p>
+      </div>
+      <div>
+        <a href="collection.html" class="btn btn-outline btn-sm"><i class="fas fa-plus"></i> Browse Furniture</a>
+        <a href="user-rentals.html" class="btn btn-primary btn-sm"><i class="fas fa-boxes-stacked"></i> View All Rentals</a>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="dash-stats-grid">
+      <div class="dash-stat-card">
+        <div class="dash-stat-icon" style="background:rgba(74,144,217,.15);color:var(--blue)"><i class="fas fa-couch"></i></div>
+        <div>
+          <div class="dash-stat-num">5</div>
+          <div class="dash-stat-label">Active Rentals</div>
+          <div class="dash-stat-change change-up">Professional Combo</div>
+        </div>
+      </div>
+      <div class="dash-stat-card">
+        <div class="dash-stat-icon" style="background:rgba(45,212,191,.15);color:var(--teal)"><i class="fas fa-calendar-check"></i></div>
+        <div>
+          <div class="dash-stat-num">Dec 1</div>
+          <div class="dash-stat-label">Next Payment Due</div>
+          <div class="dash-stat-change" style="color:var(--gray-400)">Auto-pay Active</div>
+        </div>
+      </div>
+      <div class="dash-stat-card">
+        <div class="dash-stat-icon" style="background:rgba(245,158,11,.15);color:var(--gold)"><i class="fas fa-indian-rupee-sign"></i></div>
+        <div>
+          <div class="dash-stat-num">₹2,498</div>
+          <div class="dash-stat-label">Monthly Rent</div>
+          <div class="dash-stat-change change-up">Zero Maintenance</div>
+        </div>
+      </div>
+      <div class="dash-stat-card">
+        <div class="dash-stat-icon" style="background:rgba(16,185,129,.15);color:var(--success)"><i class="fas fa-rotate"></i></div>
+        <div>
+          <div class="dash-stat-num">1</div>
+          <div class="dash-stat-label">Pending Requests</div>
+          <div class="dash-stat-change" style="color:var(--blue)">Swap in Review</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upcoming Payment Card -->
+    <div class="dash-card">
+      <div class="dash-card-header">
+        <div class="dash-card-title"><i class="fas fa-credit-card" style="color:var(--blue);margin-right:8px"></i> Upcoming Payment</div>
+        <a href="user-payments.html" class="btn btn-sm btn-primary">Manage Billing & Pay</a>
+      </div>
+      <div class="dash-card-body">
+        <div class="upcoming-payment">
+          <div class="upcoming-payment-info">
+            <div class="upcoming-payment-item">Monthly Subscription — December 2024</div>
+            <div class="upcoming-payment-date"><i class="fas fa-clock"></i> Due: December 1, 2024 · HDFC Auto-Debit Scheduled</div>
+            <div style="margin-top:6px;font-size:.8125rem;color:rgba(255,255,255,.7)">Items: Luxe 3-Seater Velvet Sofa, Queen Storage Bed, Ergonomic Chair, Study Desk, Wardrobe</div>
+          </div>
+          <div>
+            <div class="upcoming-payment-amount">₹2,498<span style="font-size:.8rem;font-weight:400;color:rgba(255,255,255,.7)">/mo</span></div>
+            <div style="font-size:.75rem;color:rgba(255,255,255,.6);text-align:right">Inclusive of 18% GST</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Navigation Hub -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:28px">
+      <a href="user-rentals.html" class="dash-stat-card" style="text-decoration:none;transition:var(--transition)">
+        <div class="dash-stat-icon" style="background:var(--blue-pale);color:var(--navy)"><i class="fas fa-boxes-stacked"></i></div>
+        <div>
+          <div style="font-weight:700;color:var(--dark);font-size:.95rem">My Rentals</div>
+          <div style="font-size:.78rem;color:var(--gray-500)">5 items currently rented</div>
+        </div>
+      </a>
+      <a href="user-swaps.html" class="dash-stat-card" style="text-decoration:none;transition:var(--transition)">
+        <div class="dash-stat-icon" style="background:rgba(45,212,191,.15);color:var(--teal)"><i class="fas fa-sync-alt"></i></div>
+        <div>
+          <div style="font-weight:700;color:var(--dark);font-size:.95rem">Swap Request</div>
+          <div style="font-size:.78rem;color:var(--gray-500)">Exchange furniture piece</div>
+        </div>
+      </a>
+      <a href="user-returns.html" class="dash-stat-card" style="text-decoration:none;transition:var(--transition)">
+        <div class="dash-stat-icon" style="background:rgba(239,68,68,.1);color:var(--danger)"><i class="fas fa-undo-alt"></i></div>
+        <div>
+          <div style="font-weight:700;color:var(--dark);font-size:.95rem">Early Return</div>
+          <div style="font-size:.78rem;color:var(--gray-500)">Schedule hassle-free pickup</div>
+        </div>
+      </a>
+      <a href="user-profile.html" class="dash-stat-card" style="text-decoration:none;transition:var(--transition)">
+        <div class="dash-stat-icon" style="background:rgba(245,158,11,.15);color:var(--gold)"><i class="fas fa-user-gear"></i></div>
+        <div>
+          <div style="font-weight:700;color:var(--dark);font-size:.95rem">Profile Settings</div>
+          <div style="font-size:.78rem;color:var(--gray-500)">Address & KYC Verified</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Active Rentals Summary Table -->
+    <div class="dash-card">
+      <div class="dash-card-header">
+        <div class="dash-card-title"><i class="fas fa-couch" style="color:var(--blue);margin-right:8px"></i> Active Rental Subscriptions</div>
+        <a href="user-rentals.html" class="btn btn-sm btn-outline">View Full Details</a>
+      </div>
+      <div class="dash-card-body" style="padding:0">
+        <div style="overflow-x:auto">
+          <table class="dash-table">
+            <thead>
+              <tr>
+                <th>Furniture Piece</th>
+                <th>Category</th>
+                <th>Monthly Rent</th>
+                <th>Tenure</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <img src="images/sofa_navy.jpg" alt="Luxe Sofa" class="rental-img">
+                    <div>
+                      <div style="font-weight:700">Luxe 3-Seater Velvet Sofa</div>
+                      <div style="font-size:.75rem;color:var(--gray-500)">ID: FR-2024-8841 · Midnight Navy</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Living Room</td>
+                <td style="font-weight:700">₹899/mo</td>
+                <td>Sep 2024 – Feb 2025</td>
+                <td><span class="status-badge status-active"><i class="fas fa-circle" style="font-size:.4rem"></i> Active</span></td>
+                <td>
+                  <a href="user-swaps.html" class="table-action-btn swap">Swap</a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <img src="images/queen_bed.jpg" alt="Queen Bed" class="rental-img">
+                    <div>
+                      <div style="font-weight:700">Solid Sheesham Queen Bed</div>
+                      <div style="font-size:.75rem;color:var(--gray-500)">ID: FR-2024-8842 · With Ortho Mattress</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Bedroom</td>
+                <td style="font-weight:700">₹799/mo</td>
+                <td>Sep 2024 – Feb 2025</td>
+                <td><span class="status-badge status-active"><i class="fas fa-circle" style="font-size:.4rem"></i> Active</span></td>
+                <td>
+                  <a href="user-swaps.html" class="table-action-btn swap">Swap</a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <img src="images/study_table.jpg" alt="Ergonomic Chair" class="rental-img">
+                    <div>
+                      <div style="font-weight:700">High-Back Ergonomic Office Chair</div>
+                      <div style="font-size:.75rem;color:var(--gray-500)">ID: FR-2024-8843 · Lumbar Support</div>
+                    </div>
+                  </div>
+                </td>
+                <td>Work From Home</td>
+                <td style="font-weight:700">₹399/mo</td>
+                <td>Sep 2024 – Feb 2025</td>
+                <td><span class="status-badge status-pending"><i class="fas fa-rotate" style="font-size:.7rem"></i> Swap In Review</span></td>
+                <td>
+                  <a href="user-swaps.html" class="table-action-btn swap" style="background:var(--blue);color:#fff">Track Swap</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+// Sidebar Toggle on Mobile
+const sidebarToggle = document.getElementById('sidebarToggle');
+const dashSidebar = document.getElementById('dashSidebar');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+if (sidebarToggle && dashSidebar && sidebarOverlay) {
+  sidebarToggle.addEventListener('click', () => {
+    dashSidebar.classList.toggle('open');
+    sidebarOverlay.classList.toggle('open');
+  });
+  sidebarOverlay.addEventListener('click', () => {
+    dashSidebar.classList.remove('open');
+    sidebarOverlay.classList.remove('open');
+  });
+}
+</script>
+</body>
+</html>

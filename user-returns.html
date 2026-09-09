@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Returns & End Lease — FurnRent Customer Portal</title>
+<meta name="description" content="Manage end of lease, early termination, doorstep pickup scheduling and instant deposit refund estimation.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+</head>
+<body>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ═══ CUSTOMER SIDEBAR ═══ -->
+<aside class="dash-sidebar" id="dashSidebar">
+  <div class="sidebar-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><img src="images/logo-icon.svg" alt="FurnRent Logo"></div>
+      <span class="logo-text">Furn<span>Rent</span></span>
+    </a>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">AR</div>
+      <div>
+        <div class="sidebar-user-name">Aryan Reddy</div>
+        <div class="sidebar-user-plan">Professional Plan · 12 Mo</div>
+      </div>
+    </div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section-label">Dashboard</div>
+    <a href="dashboard.html" class="sidebar-link"><i class="fas fa-th-large"></i> Overview</a>
+    <a href="user-rentals.html" class="sidebar-link"><i class="fas fa-boxes-stacked"></i> Active Rentals (5)</a>
+    <a href="user-payments.html" class="sidebar-link"><i class="fas fa-credit-card"></i> Invoices & Payments</a>
+    
+    <div class="sidebar-section-label">Services</div>
+    <a href="user-swaps.html" class="sidebar-link"><i class="fas fa-arrows-rotate"></i> Swap Furniture <span style="background:var(--teal);color:#fff;font-size:.65rem;padding:2px 6px;border-radius:var(--radius-full);margin-left:auto">Free 1/yr</span></a>
+    <a href="user-returns.html" class="sidebar-link active"><i class="fas fa-box-archive"></i> Returns & End Lease</a>
+    <a href="user-notifications.html" class="sidebar-link"><i class="fas fa-bell"></i> Notifications <span style="background:var(--danger);color:#fff;font-size:.65rem;padding:2px 6px;border-radius:var(--radius-full);margin-left:auto">3</span></a>
+    
+    <div class="sidebar-section-label">Account</div>
+    <a href="user-profile.html" class="sidebar-link"><i class="fas fa-user-gear"></i> Profile & Address</a>
+    <a href="collection.html" class="sidebar-link"><i class="fas fa-plus-circle"></i> Rent More Items</a>
+    <a href="contact.html" class="sidebar-link"><i class="fas fa-headset"></i> Support & FAQ</a>
+    <button class="sidebar-link danger" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+  </nav>
+  <div class="sidebar-footer">
+    <div style="font-size:.75rem;color:var(--gray-400)">Next Rent Due: <strong style="color:var(--navy)">Dec 1, 2024</strong></div>
+    <div style="font-size:.75rem;color:var(--teal);margin-top:2px">● Auto-Pay Active</div>
+  </div>
+</aside>
+
+<!-- ═══ MAIN CONTENT ═══ -->
+<main class="dash-main">
+  <div class="dash-topbar">
+    <div style="display:flex;align-items:center;gap:12px">
+      <button class="hamburger-dash header-icon-btn" id="sidebarToggle" aria-label="Toggle Sidebar Menu"><i class="fas fa-bars"></i></button>
+      <div class="topbar-title">Returns & End of Lease</div>
+    </div>
+    <div class="topbar-actions">
+      <button class="topbar-icon-btn rtl-toggle-btn" id="rtlToggleBtn" title="Toggle RTL / LTR Direction" aria-label="Toggle RTL Direction"><i class="fas fa-right-left"></i></button>
+      <button class="topbar-icon-btn theme-toggle-btn" title="Toggle theme"><i class="fas fa-moon"></i></button>
+      <div class="user-dropdown-wrap">
+        <button class="topbar-icon-btn user-btn" title="My Account" aria-label="My Account" aria-expanded="false">
+          <i class="fas fa-user"></i>
+        </button>
+        <div class="user-dropdown-menu" role="menu">
+          <div class="user-dropdown-header">
+            <div class="user-dropdown-header-title">My Account</div>
+          </div>
+          <div class="user-dropdown-section">
+            <a href="login.html" class="user-dropdown-item" role="menuitem">
+              <i class="fas fa-sign-in-alt"></i> Login / Switch Account
+            </a>
+            <a href="signup.html" class="user-dropdown-item" role="menuitem">
+              <i class="fas fa-user-plus"></i> Create Account
+            </a>
+          </div>
+          <div class="user-dropdown-section">
+            <a href="dashboard.html" class="user-dropdown-item" role="menuitem">
+              <i class="fas fa-th-large"></i> User Dashboard
+            </a>
+            <a href="admin-dashboard.html" class="user-dropdown-item admin-link" role="menuitem">
+              <i class="fas fa-shield-halved"></i> Admin Dashboard
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dash-content">
+    <div class="dash-toolbar">
+      <div>
+        <h2 style="font-size:1.375rem;margin-bottom:4px">Early Termination & Pickup</h2>
+        <p style="color:var(--gray-500);font-size:.875rem">Moving or changing cities? Schedule hassle-free doorstep pickup with automated deposit refund calculation.</p>
+      </div>
+      <a href="contact.html" class="btn btn-outline btn-sm"><i class="fas fa-headset"></i> Talk to Support</a>
+    </div>
+
+    <!-- Return Policy Banner -->
+    <div style="background:rgba(74,144,217,0.12);border-left:4px solid var(--blue);border-radius:var(--radius-lg);padding:18px 24px;margin-bottom:28px">
+      <h4 style="font-size:1rem;font-weight:700;color:var(--blue);margin-bottom:4px"><i class="fas fa-info-circle"></i> FurnRent Transparent Return Policy</h4>
+      <p style="font-size:.85rem;color:var(--gray-400);margin-bottom:0">Early returns require a simple <strong style="color:var(--blue)">7-day advance notice</strong>. Your security deposit is automatically refunded to your original payment method within 48 hours of quality inspection.</p>
+    </div>
+
+    <div class="dash-analytics-grid">
+      
+      <!-- Early Return Form -->
+      <div class="dash-card">
+        <div class="dash-card-header">
+          <div class="dash-card-title"><i class="fas fa-box-archive" style="color:var(--blue);margin-right:8px"></i> Submit Return Notice</div>
+        </div>
+        <div class="dash-card-body">
+          <form onsubmit="handleReturnNotice(event)">
+            <div class="form-group">
+              <label class="form-label">Select Furniture Piece to Return *</label>
+              <select class="comment-input" id="returnItemSelect" onchange="updateRefundEstimator()" required>
+                <option value="FR-2024-8841" data-deposit="1798" data-rent="899">Luxe 3-Seater Velvet Sofa (Deposit: ₹1,798)</option>
+                <option value="FR-2024-8842" data-deposit="1598" data-rent="799">Solid Sheesham Queen Bed (Deposit: ₹1,598)</option>
+                <option value="FR-2024-8844" data-deposit="498" data-rent="249">Minimalist Study Table (Deposit: ₹498)</option>
+                <option value="FR-2024-8845" data-deposit="998" data-rent="499">2-Door Wardrobe (Deposit: ₹998)</option>
+                <option value="all" data-deposit="4996" data-rent="2498">Entire Package (All 5 items - Deposit: ₹4,996)</option>
+              </select>
+            </div>
+
+            <div class="form-grid-2" style="margin-bottom:16px">
+              <div>
+                <label class="form-label">Preferred Pickup Date *</label>
+                <input type="date" class="comment-input" required min="2024-11-25" value="2024-11-28">
+              </div>
+              <div>
+                <label class="form-label">Preferred Time Slot *</label>
+                <select class="comment-input" required>
+                  <option value="morning">Morning (9:00 AM – 1:00 PM)</option>
+                  <option value="afternoon" selected>Afternoon (2:00 PM – 6:00 PM)</option>
+                  <option value="evening">Evening (6:00 PM – 9:00 PM)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Primary Reason for Return *</label>
+              <select class="comment-input" required>
+                <option value="relocating">Relocating to another city / country</option>
+                <option value="moving_flat">Moving to a fully-furnished apartment</option>
+                <option value="buying">Purchasing permanent furniture</option>
+                <option value="other">Other reason</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Pickup Address Confirmation</label>
+              <input type="text" class="comment-input" value="Flat 402, Green Glen Layout, Bellandur, Bengaluru 560103" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" id="returnNoticeBtn">
+              <i class="fas fa-calendar-check"></i> Confirm & Schedule Pickup
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Live Deposit Refund Calculator -->
+      <div class="dash-card">
+        <div class="dash-card-header">
+          <div class="dash-card-title"><i class="fas fa-calculator" style="color:var(--teal);margin-right:8px"></i> Deposit Refund Preview</div>
+        </div>
+        <div class="dash-card-body">
+          <div style="padding:16px;background:var(--gray-50);border-radius:var(--radius-lg);margin-bottom:16px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:.875rem">
+              <span style="color:var(--gray-600)">Security Deposit Held:</span>
+              <span style="font-weight:700" id="depositHeld">₹1,798</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:.875rem">
+              <span style="color:var(--gray-600)">Early Notice Fee:</span>
+              <span style="font-weight:700;color:var(--success)">₹0 (7+ days notice)</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:10px;font-size:.875rem">
+              <span style="color:var(--gray-600)">Doorstep Pickup & De-assembly:</span>
+              <span style="font-weight:700;color:var(--success)">FREE</span>
+            </div>
+            <div style="border-top:1px dashed var(--gray-300);margin:12px 0"></div>
+            <div style="display:flex;justify-content:space-between;font-size:1.1rem;font-weight:800">
+              <span>Estimated Refund Amount:</span>
+              <span style="color:var(--teal)" id="refundTotal">₹1,798</span>
+            </div>
+          </div>
+
+          <div style="font-size:.78rem;color:var(--gray-500);line-height:1.5">
+            <i class="fas fa-shield-alt" style="color:var(--teal)"></i> Refunds are credited back to your original payment account (HDFC •••• 4092) within <strong>48 hours</strong> following post-pickup verification.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Active Return Request Status -->
+    <div class="dash-card">
+      <div class="dash-card-header">
+        <div class="dash-card-title"><i class="fas fa-clock-rotate-left" style="color:var(--blue);margin-right:8px"></i> Scheduled Pickup Tracking</div>
+        <span class="status-badge status-pending">Inspection Assigned</span>
+      </div>
+      <div class="dash-card-body">
+        
+        <div class="request-stepper">
+          <div class="stepper-line"></div>
+          <div class="stepper-step completed">
+            <div class="step-circle"><i class="fas fa-check"></i></div>
+            <div class="step-title">Notice Submitted</div>
+            <div class="step-sub">Nov 18, 2024</div>
+          </div>
+          <div class="stepper-step active">
+            <div class="step-circle"><i class="fas fa-user-gear"></i></div>
+            <div class="step-title">Pickup Scheduled</div>
+            <div class="step-sub">Nov 28 (Afternoon)</div>
+          </div>
+          <div class="stepper-step">
+            <div class="step-circle"><i class="fas fa-truck-ramp-box"></i></div>
+            <div class="step-title">QC Inspection</div>
+            <div class="step-sub">Doorstep Check</div>
+          </div>
+          <div class="stepper-step">
+            <div class="step-circle"><i class="fas fa-money-bill-transfer"></i></div>
+            <div class="step-title">Deposit Refunded</div>
+            <div class="step-sub">Within 48 hrs</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+const sidebarToggle = document.getElementById('sidebarToggle');
+const dashSidebar = document.getElementById('dashSidebar');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+if (sidebarToggle && dashSidebar && sidebarOverlay) {
+  sidebarToggle.addEventListener('click', () => {
+    dashSidebar.classList.toggle('open');
+    sidebarOverlay.classList.toggle('open');
+  });
+  sidebarOverlay.addEventListener('click', () => {
+    dashSidebar.classList.remove('open');
+    sidebarOverlay.classList.remove('open');
+  });
+}
+
+function updateRefundEstimator() {
+  const sel = document.getElementById('returnItemSelect');
+  const opt = sel.options[sel.selectedIndex];
+  const dep = parseInt(opt.dataset.deposit);
+  document.getElementById('depositHeld').textContent = '₹' + dep.toLocaleString('en-IN');
+  document.getElementById('refundTotal').textContent = '₹' + dep.toLocaleString('en-IN');
+}
+
+function handleReturnNotice(e) {
+  e.preventDefault();
+  const btn = document.getElementById('returnNoticeBtn');
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Scheduling Pickup...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.innerHTML = '<i class="fas fa-check"></i> Pickup Confirmed!';
+    btn.classList.replace('btn-primary', 'btn-success');
+    if (window.showToast) window.showToast('Return notice confirmed! Team assigned for Nov 28 afternoon pickup.', 'success');
+  }, 1200);
+}
+</script>
+</body>
+</html>

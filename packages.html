@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Rental Packages — FurnRent | Flexible Monthly Furniture Plans</title>
+<meta name="description" content="Choose from Student Starter, Professional Comfort, Premium Professional and Complete Home furniture rental packages. Transparent monthly pricing.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* Duration Configurator */
+.duration-config-box{background:var(--white);border-radius:var(--radius-xl);padding:32px;box-shadow:var(--shadow-card);border:1px solid rgba(13,27,42,.06);max-width:980px;margin:0 auto 36px}
+[data-theme="dark"] .duration-config-box{background:#142236;border-color:rgba(255,255,255,.1)}
+.duration-toggle-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+.duration-toggle-btn{background:var(--gray-50);border:2px solid rgba(13,27,42,.08);border-radius:var(--radius-lg);padding:16px 14px;cursor:pointer;transition:all .25s ease;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative}
+[data-theme="dark"] .duration-toggle-btn{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)}
+.duration-toggle-btn:hover{border-color:var(--blue);transform:translateY(-2px);background:rgba(74,144,217,.1)}
+.duration-toggle-btn.active{background:linear-gradient(145deg,var(--navy) 0%,var(--navy-mid) 100%) !important;border-color:var(--navy) !important;color:#fff !important;box-shadow:0 8px 24px rgba(13,27,42,.25)}
+.duration-toggle-btn.active .duration-lbl{color:#ffffff !important}
+.duration-toggle-btn.active .duration-sub{color:rgba(255,255,255,.85) !important}
+[data-theme="dark"] .duration-toggle-btn.active{background:linear-gradient(145deg,#1e40af,var(--navy)) !important;border-color:var(--blue-light) !important;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+[data-theme="dark"] .duration-toggle-btn.active .duration-lbl{color:#ffffff !important}
+[data-theme="dark"] .duration-toggle-btn.active .duration-sub{color:rgba(255,255,255,.9) !important}
+.duration-lbl{font-size:1.0625rem;font-weight:800;color:var(--dark);margin-bottom:4px;display:flex;align-items:center;gap:6px}
+[data-theme="dark"] .duration-lbl{color:#ffffff}
+.duration-sub{font-size:.75rem;color:var(--gray-500);font-weight:500}
+[data-theme="dark"] .duration-sub{color:rgba(255,255,255,.7)}
+.duration-discount-pill{position:absolute;top:-10px;right:-6px;background:linear-gradient(135deg,var(--gold),#d97706);color:var(--navy);font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:var(--radius-full);box-shadow:0 2px 8px rgba(0,0,0,.2);line-height:1.3}
+.duration-msg-pill{background:var(--blue-pale);border-radius:var(--radius-lg);padding:12px 20px;text-align:center;font-size:.875rem;color:var(--navy-light);line-height:1.55;border:1px solid rgba(74,144,217,.2);display:block}
+[data-theme="dark"] .duration-msg-pill{background:rgba(74,144,217,.15);color:rgba(255,255,255,.9);border-color:rgba(74,144,217,.35)}
+
+/* Package Cards */
+.packages-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.pkg-detail-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  border: 2px solid transparent;
+  transition: var(--transition);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.pkg-detail-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.pkg-detail-card.best {
+  border-color: var(--blue);
+  box-shadow: 0 12px 32px rgba(74, 144, 217, 0.18);
+}
+
+.pkg-popular-tag {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 5px 16px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+  z-index: 10;
+}
+
+.pkg-detail-header {
+  padding: 30px 24px;
+  background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+  border-top-left-radius: calc(var(--radius-xl) - 2px);
+  border-top-right-radius: calc(var(--radius-xl) - 2px);
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pkg-detail-header.blue {
+  background: linear-gradient(135deg, var(--navy-light), var(--blue));
+}
+
+.pkg-detail-header.teal {
+  background: linear-gradient(135deg, #0e7a6e, var(--teal));
+}
+
+.pkg-detail-header.gold {
+  background: linear-gradient(135deg, #b45309, var(--gold));
+}
+
+.pkg-detail-name {
+  color: rgba(255, 255, 255, .85);
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 6px;
+}
+
+.pkg-detail-title {
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.pkg-detail-subtitle {
+  color: rgba(255, 255, 255, .7);
+  font-size: .8125rem;
+}
+
+.pkg-price-display {
+  margin-top: 18px;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.pkg-price-display .price {
+  font-size: 2.35rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+}
+
+.pkg-price-display .per {
+  font-size: .9rem;
+  color: rgba(255, 255, 255, .65);
+}
+
+.pkg-original {
+  font-size: .875rem;
+  color: rgba(255, 255, 255, .5);
+  text-decoration: line-through;
+  margin-left: 8px;
+}
+
+.pkg-savings {
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-left: 6px;
+}
+
+.pkg-detail-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.pkg-info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: .875rem;
+}
+
+.pkg-info-row:last-of-type {
+  border-bottom: none;
+}
+
+.pkg-info-key {
+  color: var(--gray-500);
+}
+
+.pkg-info-val {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.pkg-includes {
+  margin: 16px 0;
+  padding: 16px;
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+  min-height: 275px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pkg-includes h5 {
+  font-size: .8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 12px;
+  color: var(--dark);
+}
+
+.pkg-include-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .84rem;
+  color: var(--gray-700);
+  padding: 4px 0;
+}
+
+.pkg-check {
+  color: var(--success);
+  font-size: .85rem;
+}
+
+.pkg-cross {
+  color: var(--gray-200);
+  font-size: .85rem;
+}
+
+.pkg-note {
+  font-size: .75rem;
+  color: var(--gray-500);
+  padding: 12px 14px;
+  background: var(--blue-pale);
+  border-radius: var(--radius-md);
+  margin: 14px 0 20px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  line-height: 1.4;
+}
+
+.pkg-detail-body .btn,
+.pkg-detail-body .btn-pkg {
+  margin-top: auto !important;
+  width: 100%;
+  justify-content: center;
+  padding: 13px 20px;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .pkg-detail-card {
+  background: #142236;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .pkg-includes {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .pkg-includes h5 {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .pkg-include-item {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .pkg-info-key {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .pkg-info-val {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .pkg-note {
+  background: rgba(74, 144, 217, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(74, 144, 217, 0.25);
+}
+
+/* Plan Comparison Matrix */
+.matrix-wrap{background:var(--white);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-card);border:1px solid rgba(13,27,42,.06);overflow-x:auto}
+[data-theme="dark"] .matrix-wrap{background:var(--navy-mid);border-color:rgba(255,255,255,.08)}
+.matrix-table{width:100%;border-collapse:collapse;text-align:left;min-width:760px}
+.matrix-table th,.matrix-table td{padding:16px 20px;border-bottom:1px solid var(--gray-100);font-size:.875rem}
+[data-theme="dark"] .matrix-table th,[data-theme="dark"] .matrix-table td{border-color:rgba(255,255,255,.08)}
+.matrix-table thead th{background:var(--navy);color:#fff;font-weight:700;font-size:.9rem}
+.matrix-table thead th:first-child{border-top-left-radius:var(--radius-xl)}
+.matrix-table thead th:last-child{border-top-right-radius:var(--radius-xl)}
+.matrix-table thead th.highlight-col{background:linear-gradient(135deg,var(--navy-light),var(--blue))}
+.matrix-table tbody tr:hover td{background:rgba(74,144,217,.04)}
+.matrix-feature-name{font-weight:700;color:var(--dark);display:flex;align-items:center;gap:8px}
+.matrix-feature-name i{color:var(--blue);font-size:.85rem}
+
+/* Add-on Extras Grid */
+.addon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.addon-card{background:var(--white);border-radius:var(--radius-xl);padding:24px;box-shadow:var(--shadow-card);border:1px solid rgba(13,27,42,.06);transition:var(--transition);display:flex;flex-direction:column}
+[data-theme="dark"] .addon-card{background:var(--navy-mid);border-color:rgba(255,255,255,.08)}
+.addon-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-xl);border-color:var(--blue)}
+.addon-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.addon-icon{width:48px;height:48px;border-radius:14px;background:var(--blue-pale);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:1.25rem}
+.addon-badge{font-size:.75rem;font-weight:700;color:var(--teal);background:rgba(45,212,191,.12);padding:4px 10px;border-radius:var(--radius-full)}
+.addon-card h4{font-size:1rem;font-weight:700;margin-bottom:6px;color:var(--dark)}
+.addon-card p{font-size:.8125rem;color:var(--gray-500);line-height:1.55;margin-bottom:16px;flex:1}
+.addon-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:14px;border-top:1px solid var(--gray-100)}
+[data-theme="dark"] .addon-footer{border-color:rgba(255,255,255,.08)}
+.addon-price{font-size:1.125rem;font-weight:800;color:var(--navy)}
+[data-theme="dark"] .addon-price{color:var(--blue-light)}
+.addon-btn{padding:7px 16px;border-radius:var(--radius-full);background:var(--navy);color:#fff;font-size:.8rem;font-weight:600;border:none;cursor:pointer;transition:var(--transition);display:inline-flex;align-items:center;gap:6px}
+.addon-btn:hover{background:var(--blue);transform:translateY(-1px)}
+.addon-btn.added{background:var(--success);color:#fff}
+
+@media(max-width:1200px){
+  .packages-detail-grid{grid-template-columns:repeat(2,1fr)}
+  .addon-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .duration-toggle-grid{grid-template-columns:repeat(2,1fr)}
+  .addon-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .packages-detail-grid{grid-template-columns:1fr}
+  .duration-toggle-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .duration-config-box{padding:20px 14px;margin-bottom:24px}
+  .duration-toggle-grid{gap:8px}
+  .duration-toggle-btn{padding:12px 8px}
+  .duration-lbl{font-size:.95rem}
+  .duration-sub{font-size:.68rem}
+  .duration-discount-pill{font-size:.62rem;padding:2px 6px;top:-8px;right:-4px}
+  .duration-msg-pill{font-size:.8rem;padding:10px 12px;border-radius:var(--radius-md);line-height:1.45}
+}
+</style>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><div class="logo-icon"><img src="images/logo-icon.svg" alt="FurnRent Logo"></div><span class="logo-text">Furn<span>Rent</span></span></a>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Home</a><a href="home2.html" class="nav-link">Home 2</a>
+      <a href="about.html" class="nav-link">About</a><a href="packages.html" class="nav-link">Packages</a>
+      <a href="collection.html" class="nav-link">Collection</a><a href="blog.html" class="nav-link">Blog</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+                <div class="header-actions">
+        <button class="header-icon-btn rtl-toggle-btn" id="rtlToggleBtn" title="Toggle RTL / LTR Direction" aria-label="Toggle RTL Direction"><i class="fas fa-right-left"></i></button>
+        <button class="header-icon-btn theme-toggle-btn" title="Toggle theme" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="header-icon-btn cart-btn" title="Cart" aria-label="Cart"><i class="fas fa-shopping-bag"></i><span class="cart-badge" style="display:none">0</span></button>
+        <div class="user-dropdown-wrap">
+          <button class="header-icon-btn user-btn" title="My Account" aria-label="My Account" aria-expanded="false">
+            <i class="fas fa-user"></i>
+          </button>
+          <div class="user-dropdown-menu" role="menu">
+            <div class="user-dropdown-header">
+              <div class="user-dropdown-header-title">My Account</div>
+            </div>
+            <div class="user-dropdown-section">
+              <a href="login.html" class="user-dropdown-item" role="menuitem">
+                <i class="fas fa-sign-in-alt"></i> Login
+              </a>
+              <a href="signup.html" class="user-dropdown-item" role="menuitem">
+                <i class="fas fa-user-plus"></i> Sign Up
+              </a>
+            </div>
+            <div class="user-dropdown-section">
+              <a href="dashboard.html" class="user-dropdown-item" role="menuitem">
+                <i class="fas fa-th-large"></i> User Dashboard
+              </a>
+              <a href="admin-dashboard.html" class="user-dropdown-item admin-link" role="menuitem">
+                <i class="fas fa-shield-halved"></i> Admin Dashboard
+              </a>
+            </div>
+          </div>
+        </div>
+        <button class="hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+  </div>
+</header>
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-panel">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="home2.html" class="mobile-nav-link">Home 2</a>
+      <a href="about.html" class="mobile-nav-link">About</a>
+      <a href="packages.html" class="mobile-nav-link">Packages</a>
+      <a href="collection.html" class="mobile-nav-link">Collection</a>
+      <a href="blog.html" class="mobile-nav-link">Blog</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+    </div>
+    
+    <!-- Cart in Mobile Menu -->
+    <button class="mobile-nav-cart-btn cart-btn" aria-label="Open Cart">
+      <div class="mobile-nav-cart-left">
+        <i class="fas fa-shopping-bag"></i>
+        <span>View Cart</span>
+      </div>
+      <span class="cart-badge" style="display:none">0</span>
+    </button>
+
+    <!-- User Account in Mobile Menu -->
+    <div class="mobile-nav-user-box">
+      <div class="mobile-nav-user-title">User Account</div>
+      <div class="mobile-nav-user-grid">
+        <a href="login.html" class="mobile-nav-user-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="signup.html" class="mobile-nav-user-btn"><i class="fas fa-user-plus"></i> Sign Up</a>
+        <a href="dashboard.html" class="mobile-nav-user-btn primary"><i class="fas fa-th-large"></i> User Dashboard</a>
+        <a href="admin-dashboard.html" class="mobile-nav-user-btn admin"><i class="fas fa-shield-halved"></i> Admin Portal</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="search-overlay"><div class="search-box"><div class="search-input-wrap"><i class="fas fa-search" style="color:var(--gray-300)"></i><input type="text" placeholder="Search furniture..."></div><div class="search-close">Press ESC to close</div></div></div>
+
+<section class="page-hero">
+  <div class="container" style="position:relative;z-index:2">
+    <div class="breadcrumb"><span class="breadcrumb-current">Rental Packages</span></div>
+    <h1>Transparent Rental Packages</h1>
+    <p>No hidden charges. No surprise fees. Choose a plan that fits your lifestyle and budget.</p>
+  </div>
+</section>
+
+<!-- Duration Selector -->
+<section class="section-sm" style="background:var(--off-white);padding:48px 0 32px">
+  <div class="container">
+    <div class="section-header" style="margin-bottom:28px">
+      <span class="section-badge">Flexible Plans</span>
+      <h2>Select Rental <span style="color:var(--blue)">Duration</span></h2>
+      <p style="margin-top:12px">Lock in bigger discounts with longer tenures. Instant automatic price updates.</p>
+    </div>
+    
+    <div class="duration-config-box">
+      <div class="duration-toggle-grid">
+        <button class="duration-toggle-btn active" data-months="1">
+          <div class="duration-lbl">1 Month</div>
+          <div class="duration-sub">Standard Flexible Rate</div>
+        </button>
+        <button class="duration-toggle-btn" data-months="3">
+          <span class="duration-discount-pill">Save 12%</span>
+          <div class="duration-lbl">3 Months</div>
+          <div class="duration-sub">Short Stays &amp; Internships</div>
+        </button>
+        <button class="duration-toggle-btn" data-months="6">
+          <span class="duration-discount-pill" style="background:linear-gradient(135deg,var(--teal),#0d9488);color:#fff">Save 23%</span>
+          <div class="duration-lbl">6 Months</div>
+          <div class="duration-sub">Semester &amp; Project Move</div>
+        </button>
+        <button class="duration-toggle-btn" data-months="12">
+          <span class="duration-discount-pill" style="background:linear-gradient(135deg,var(--gold),#b45309);color:#fff">Save 35%</span>
+          <div class="duration-lbl">12 Months</div>
+          <div class="duration-sub">Annual Stay &amp; Maximum Savings</div>
+        </button>
+      </div>
+      <div class="duration-msg-pill" id="durationMsg">
+        Showing standard rates for <strong>1 Month</strong> rental. Security deposit: 2 months refundable.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Package Cards -->
+<section class="section" style="padding: 24px 0 80px;">
+  <div class="container">
+    <div class="packages-detail-grid">
+      <!-- Student Starter -->
+      <div class="pkg-detail-card">
+        <div class="pkg-detail-header">
+          <div class="pkg-detail-name">Student Plan</div>
+          <div class="pkg-detail-title">Student Starter</div>
+          <div class="pkg-detail-subtitle">For hostel rooms &amp; shared flats</div>
+          <div class="pkg-price-display">
+            <span class="price" data-base="499" data-discount-3="12" data-discount-6="23" data-discount-12="35">₹499</span>
+            <span class="per">/month</span>
+          </div>
+        </div>
+        <div class="pkg-detail-body">
+          <div class="pkg-info-row"><span class="pkg-info-key">Security Deposit</span><span class="pkg-info-val">₹998 (refundable)</span></div>
+          <div class="pkg-info-row"><span class="pkg-info-key">Min. Duration</span><span class="pkg-info-val">1 Month</span></div>
+          <div class="pkg-info-row"><span class="pkg-info-key">Delivery</span><span class="pkg-info-val">Free (48 hrs)</span></div>
+          <div class="pkg-info-row"><span class="pkg-info-key">Maintenance</span><span class="pkg-info-val">Free</span></div>
+          <div class="pkg-includes">
+            <h5>What's Included</h5>
+            <div class="pkg-include-item">Study Table (Oak)</div>
+            <div class="pkg-include-item">Ergonomic Study Chair</div>
+            <div class="pkg-include-item">2-Tier Bookshelf</div>
+            <div class="pkg-include-item">Bedside Table</div>
+            <div class="pkg-include-item">Wardrobe (Single)</div>
+            <div class="pkg-include-item" style="color:var(--gray-400)">Furniture Swap</div>
+            <div class="pkg-include-item" style="color:var(--gray-400)">Early Return (Free)</div>
+          </div>
+          <div class="pkg-note">Early return: 1-month notice required or forfeit deposit.</div>
+          <a href="contact.html" class="btn btn-pkg">Get This Plan</a>
+        </div>
+      </div>
+      <!-- Professional Comfort -->
+      <div class="pkg-detail-card best">
+        <span class="pkg-popular-tag">Most Popular</span>
+        <div class="pkg-detail-header blue">
+          <div class="pkg-detail-name">Professional Plan</div>
+          <div class="pkg-detail-title">Professional Comfort</div>
+          <div class="pkg-detail-subtitle">For bachelor apartments</div>
+          <div class="pkg-price-display">
+            <span class="price" data-base="1299" data-discount-3="12" data-discount-6="23" data-discount-12="35">₹1,299</span>
+            <span class="per">/month</span>
+          </div>
+        </div>
+        <div class="pkg-detail-body">
+          <div class="pkg-info-row"><span class="pkg-info-key">Security Deposit</span><span class="pkg-info-val">₹2,598 (refundable)</span></div>
+          <div class="pkg-info-row"><span class="pkg-info-key">Min. Duration</span><span class="pkg-info-val">3 Months</span></div>
+          <div class="pkg-info-row"><span class="pkg-info-key">Delivery</span><span class="pkg-info-val">Free (48 hrs)</span></div>
+          <div class="pkg-info-row"><span class="pkg-info-key">Maintenance</span><span class="pkg-info-val">Free</span></div>
+          <div class="pkg-includes">
+            <h5>What's Included</h5>
+            <div class="pkg-include-item">3-Seater Sofa</div>
+            <div class="pkg-include-item">Queen Bed + Mattress</div>
+            <div class="pkg-include-item">Ergonomic Work Chair</div>
+            <div class="pkg-include-item">Coffee Table</div>
+            <div class="pkg-include-item">Wardrobe (3-door)</div>
+            <div class="pkg-include-item">Swap (1× per 6 months)</div>
+            <div class="pkg-include-item" style="color:var(--gray-400)">Early Return (Free)</div>
+          </div>
+          <div class="pkg-note">Early return: 30-day notice required. 1-month charge applies.</div>
+          <a href="contact.html" class="btn btn-pkg btn-teal">Rent This Plan</a>
+        </div>
+      </div>
+      <!-- Premium Professional -->
+      <div class="pkg-detail-card">
+        <div class="pkg-detail-header teal">
+          <div class="pkg-detail-name">Premium Plan</div>
+          <div class="pkg-detail-title">Premium Professional</div>
+          <div class="pkg-detail-subtitle">Luxury comfort for professionals</div>
+          <div class="pkg-price-display">
+            <span class="price" data-base="2499" data-discount-3="12" data-discount-6="23" data-discount-12="35">₹2,499</span>
+            <span class="per">/month</span>
+          </div>
+        </div>
+        <div class="pkg-detail-body">
+          <div class="pkg-info-row"><span class="pkg-info-key">Security Deposit</span><span class="pkg-info-val">₹4,998 (refundable)</span></div>
+          <div class="pkg-info-row"><span class="pkg-info-key">Min. Duration</span><span class="pkg-info-val">3 Months</span></div>
+          <div class="pkg-info-row"><span class="pkg-info-key">Delivery</span><span class="pkg-info-val">Free + Priority</span></div>
+          <div class="pkg-info-row"><span class="pkg-info-key">Maintenance</span><span class="pkg-info-val">Monthly Service</span></div>
+          <div class="pkg-includes">
+            <h5>What's Included</h5>
+            <div class="pkg-include-item">Premium 3-Seater Sofa</div>
+            <div class="pkg-include-item">King Bed + Mattress</div>
+            <div class="pkg-include-item">4-Seater Dining Set</div>
+            <div class="pkg-include-item">Wardrobe + Dresser</div>
+            <div class="pkg-include-item">Study/Work Desk</div>
+            <div class="pkg-include-item">Swap (2× per year)</div>
+            <div class="pkg-include-item">Early Return Option</div>
+          </div>
+          <div class="pkg-note">Early return allowed with 15-day notice. No extra charges after 6 months.</div>
+          <a href="contact.html" class="btn btn-pkg">Get This Plan</a>
+        </div>
+      </div>
+      <!-- Complete Home -->
+      <div class="pkg-detail-card">
+        <div class="pkg-detail-header gold">
+          <div class="pkg-detail-name">Home Plan</div>
+          <div class="pkg-detail-title">Complete Home Setup</div>
+          <div class="pkg-detail-subtitle">Full 2BHK/3BHK furnishing</div>
+          <div class="pkg-price-display">
+            <span class="price" data-base="3999" data-discount-3="12" data-discount-6="23" data-discount-12="35">₹3,999</span>
+            <span class="per">/month</span>
+          </div>
+        </div>
+        <div class="pkg-detail-body">
+          <div class="pkg-info-row"><span class="pkg-info-key">Security Deposit</span><span class="pkg-info-val">₹7,998 (refundable)</span></div>
+          <div class="pkg-info-row"><span class="pkg-info-key">Min. Duration</span><span class="pkg-info-val">6 Months</span></div>
+          <div class="pkg-info-row"><span class="pkg-info-key">Delivery</span><span class="pkg-info-val">Free + White Glove</span></div>
+          <div class="pkg-info-row"><span class="pkg-info-key">Maintenance</span><span class="pkg-info-val">Quarterly Service</span></div>
+          <div class="pkg-includes">
+            <h5>What's Included</h5>
+            <div class="pkg-include-item">Full Living Room Set</div>
+            <div class="pkg-include-item">2× Bedrooms Setup</div>
+            <div class="pkg-include-item">6-Seater Dining Set</div>
+            <div class="pkg-include-item">Home Office Setup</div>
+            <div class="pkg-include-item">2× Wardrobes + Dresser</div>
+            <div class="pkg-include-item">Quarterly Swap</div>
+            <div class="pkg-include-item">Free Early Return</div>
+          </div>
+          <div class="pkg-note">Full flexibility after 6 months. Dedicated account manager included.</div>
+          <a href="contact.html" class="btn btn-pkg">Get This Plan</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DETAILED PLAN COMPARISON MATRIX ═══ -->
+<section class="section" style="background:var(--gray-50); padding: 80px 0;">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Side-by-Side</span>
+      <h2>Detailed Feature <span style="color:var(--blue)">Comparison</span></h2>
+      <p>Compare every policy, swap frequency, delivery tier and protection level across our rental packages.</p>
+    </div>
+
+    <div class="matrix-wrap">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th style="width:28%">Features &amp; Perks</th>
+            <th style="width:18%">Student Starter</th>
+            <th class="highlight-col" style="width:18%">Pro Comfort</th>
+            <th style="width:18%">Premium Pro</th>
+            <th style="width:18%">Complete Home</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="matrix-feature-name">Included Items</td>
+            <td><strong>5 Items</strong> (Study Focus)</td>
+            <td><strong>7 Items</strong> (1BHK Suite)</td>
+            <td><strong>10 Items</strong> (Luxury Set)</td>
+            <td><strong>20+ Items</strong> (Full 2/3BHK)</td>
+          </tr>
+          <tr>
+            <td class="matrix-feature-name">Minimum Tenure</td>
+            <td>1 Month</td>
+            <td>3 Months</td>
+            <td>3 Months</td>
+            <td>6 Months</td>
+          </tr>
+          <tr>
+            <td class="matrix-feature-name">Delivery &amp; Setup</td>
+            <td><span style="color:var(--success);font-weight:700">Free 48-Hour</span></td>
+            <td><span style="color:var(--success);font-weight:700">Free 48-Hour</span></td>
+            <td><span style="color:var(--success);font-weight:700">Free Priority (24h)</span></td>
+            <td><span style="color:var(--teal);font-weight:700">Free White-Glove</span></td>
+          </tr>
+          <tr>
+            <td class="matrix-feature-name">Free Style Swaps</td>
+            <td><span style="color:var(--gray-300)">—</span></td>
+            <td>1× every 6 months</td>
+            <td>2× per year</td>
+            <td><span style="color:var(--teal);font-weight:700">Unlimited Quarterly</span></td>
+          </tr>
+          <tr>
+            <td class="matrix-feature-name">Accidental Damage Cover</td>
+            <td><span style="color:var(--success);font-weight:700">100% Covered</span></td>
+            <td><span style="color:var(--success);font-weight:700">100% Covered</span></td>
+            <td><span style="color:var(--success);font-weight:700">100% Covered</span></td>
+            <td><span style="color:var(--success);font-weight:700">100% Covered</span></td>
+          </tr>
+          <tr>
+            <td class="matrix-feature-name">Support Level</td>
+            <td>Standard Helpdesk</td>
+            <td>Priority Chat Support</td>
+            <td>Priority + Call Support</td>
+            <td><span style="color:var(--gold);font-weight:700">Dedicated Account Mgr</span></td>
+          </tr>
+          <tr>
+            <td class="matrix-feature-name">Deposit Refund SLA</td>
+            <td>7 Business Days</td>
+            <td>7 Business Days</td>
+            <td>5 Business Days</td>
+            <td><span style="color:var(--teal);font-weight:700">48-Hour Express</span></td>
+          </tr>
+          <tr>
+            <td class="matrix-feature-name">Early Return Notice</td>
+            <td>30 Days</td>
+            <td>30 Days</td>
+            <td>15 Days</td>
+            <td>Free after 6 Months</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ POPULAR ADD-ON EXTRAS & CUSTOM UPGRADES ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Custom Bundles</span>
+      <h2>Popular Add-On <span style="color:var(--blue)">Extras</span></h2>
+      <p>Upgrade any furniture package with premium lifestyle essentials for a low monthly fee.</p>
+    </div>
+
+    <div class="addon-grid">
+      <!-- Addon 1 -->
+      <div class="addon-card">
+        <div class="addon-header">
+          <span class="addon-badge">WFH Boost</span>
+        </div>
+        <h4>LED Desk Lamp &amp; Monitor Riser</h4>
+        <p>3-color temperature eye-care LED lamp with wireless charger base and heavy-duty dual monitor riser.</p>
+        <div class="addon-footer">
+          <span class="addon-price">+ ₹149<small style="font-size:.75rem;font-weight:400;color:var(--gray-500)">/mo</small></span>
+          <button class="addon-btn" onclick="addAddon(this, 'LED Desk Lamp & Monitor Riser')">Add to Plan</button>
+        </div>
+      </div>
+
+      <!-- Addon 2 -->
+      <div class="addon-card">
+        <div class="addon-header">
+          <span class="addon-badge" style="background:rgba(74,144,217,.12);color:var(--blue)">Comfort</span>
+        </div>
+        <h4>Memory Foam Mattress Topper</h4>
+        <p>3-inch cool-gel orthopaedic memory foam topper with removable organic bamboo washable cover.</p>
+        <div class="addon-footer">
+          <span class="addon-price">+ ₹299<small style="font-size:.75rem;font-weight:400;color:var(--gray-500)">/mo</small></span>
+          <button class="addon-btn" onclick="addAddon(this, 'Memory Foam Mattress Topper')">Add to Plan</button>
+        </div>
+      </div>
+
+      <!-- Addon 3 -->
+      <div class="addon-card">
+        <div class="addon-header">
+          <span class="addon-badge" style="background:rgba(245,158,11,.12);color:var(--gold)">Aesthetics</span>
+        </div>
+        <h4>Velvet Cushions &amp; Floor Rug Set</h4>
+        <p>Set of 4 plush velvet cushions with a matching 5x7 ft geometric non-slip living room area rug.</p>
+        <div class="addon-footer">
+          <span class="addon-price">+ ₹199<small style="font-size:.75rem;font-weight:400;color:var(--gray-500)">/mo</small></span>
+          <button class="addon-btn" onclick="addAddon(this, 'Velvet Cushions & Rug Set')">Add to Plan</button>
+        </div>
+      </div>
+
+      <!-- Addon 4 -->
+      <div class="addon-card">
+        <div class="addon-header">
+          <span class="addon-badge">Kitchen</span>
+        </div>
+        <h4>16-Piece Dining &amp; Glassware Set</h4>
+        <p>Microwave-safe ceramic dinner plates, quarter plates, soup bowls, and 4 tempered water tumblers.</p>
+        <div class="addon-footer">
+          <span class="addon-price">+ ₹249<small style="font-size:.75rem;font-weight:400;color:var(--gray-500)">/mo</small></span>
+          <button class="addon-btn" onclick="addAddon(this, '16-Piece Dining Set')">Add to Plan</button>
+        </div>
+      </div>
+
+      <!-- Addon 5 -->
+      <div class="addon-card">
+        <div class="addon-header">
+          <span class="addon-badge" style="background:rgba(16,185,129,.12);color:var(--success)">Green Living</span>
+        </div>
+        <h4>Indoor Air-Purifying Plants Trio</h4>
+        <p>Set of 3 living air-purifying plants (Snake Plant, Money Plant &amp; ZZ Plant) in modern ceramic pots.</p>
+        <div class="addon-footer">
+          <span class="addon-price">+ ₹129<small style="font-size:.75rem;font-weight:400;color:var(--gray-500)">/mo</small></span>
+          <button class="addon-btn" onclick="addAddon(this, 'Air-Purifying Plants Trio')">Add to Plan</button>
+        </div>
+      </div>
+
+      <!-- Addon 6 -->
+      <div class="addon-card">
+        <div class="addon-header">
+          <span class="addon-badge" style="background:rgba(139,92,246,.12);color:#8b5cf6">Tech Ready</span>
+        </div>
+        <h4>Surge Protector &amp; Cable Manager</h4>
+        <p>6-socket surge protection board with 4x USB-C fast charging ports and under-desk cable organizer tray.</p>
+        <div class="addon-footer">
+          <span class="addon-price">+ ₹99<small style="font-size:.75rem;font-weight:400;color:var(--gray-500)">/mo</small></span>
+          <button class="addon-btn" onclick="addAddon(this, 'Surge Protector Hub')">Add to Plan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background:var(--gray-50)">
+  <div class="container container-md">
+    <div class="section-header">
+      <span class="section-badge">FAQ</span>
+      <h2>Frequently Asked <span style="color:var(--blue)">Questions</span></h2>
+    </div>
+    <div>
+      <div class="faq-item"><div class="faq-question">What is the security deposit and is it refundable?<span class="faq-chevron"><i class="fas fa-chevron-down"></i></span></div><div class="faq-answer"><div class="faq-answer-inner">The security deposit is 2 months' rent and is 100% refundable when you return the furniture in its original condition. It's returned within 7 business days of pickup.</div></div></div>
+      <div class="faq-item"><div class="faq-question">Can I add or remove furniture from my plan?<span class="faq-chevron"><i class="fas fa-chevron-down"></i></span></div><div class="faq-answer"><div class="faq-answer-inner">Yes! You can add furniture to your plan at any time. Removing furniture requires 15-day notice and may adjust your monthly rental amount accordingly.</div></div></div>
+      <div class="faq-item"><div class="faq-question">What happens if furniture gets damaged during my rental?<span class="faq-chevron"><i class="fas fa-chevron-down"></i></span></div><div class="faq-answer"><div class="faq-answer-inner">Normal wear and tear is covered at no extra cost. For accidental damage, we assess the situation and either repair or replace the item. A nominal damage charge may apply for severe damage.</div></div></div>
+      <div class="faq-item"><div class="faq-question">How does the furniture swap feature work?<span class="faq-chevron"><i class="fas fa-chevron-down"></i></span></div><div class="faq-answer"><div class="faq-answer-inner">Eligible plan holders can request a swap through their dashboard. We'll pick up the old furniture and deliver the new piece — usually within 48-72 hours. The swap must be for an item of equal or lesser value.</div></div></div>
+      <div class="faq-item"><div class="faq-question">What areas do you deliver to?<span class="faq-chevron"><i class="fas fa-chevron-down"></i></span></div><div class="faq-answer"><div class="faq-answer-inner">We currently serve Bengaluru, Mumbai, Delhi NCR, Hyderabad, Chennai, Pune, Ahmedabad, Kolkata and 17 more cities. Enter your pincode on the product page to check availability.</div></div></div>
+      <div class="faq-item"><div class="faq-question">Can I rent for just 1 month?<span class="faq-chevron"><i class="fas fa-chevron-down"></i></span></div><div class="faq-answer"><div class="faq-answer-inner">Yes! The Student Starter plan allows a 1-month minimum. Other plans require 3-6 months minimum. 1-month rates are available at a slight premium.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="container" style="position:relative;z-index:2">
+    <h2>Not Sure Which Plan to Choose?</h2>
+    <p>Our furniture experts will help you pick the right plan for your space and budget. Free consultation.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn btn-teal btn-lg">Talk to an Expert</a>
+      <a href="collection.html" class="btn btn-outline-white btn-lg">Browse Furniture</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand footer-col"><a href="index.html" class="logo"><div class="logo-icon"><img src="images/logo-icon.svg" alt="FurnRent Logo"></div><span class="logo-text">Furn<span>Rent</span></span></a><p>Premium furniture rental across India.</p><div class="footer-socials"><a href="#" class="footer-social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="#" class="footer-social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="#" class="footer-social-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a><a href="#" class="footer-social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></div></div>
+      <div class="footer-col"><h5>Quick Links</h5><div class="footer-links"><a href="index.html" class="footer-link">Home</a><a href="about.html" class="footer-link">About</a><a href="packages.html" class="footer-link">Packages</a><a href="collection.html" class="footer-link">Collection</a><a href="blog.html" class="footer-link">Blog</a><a href="contact.html" class="footer-link">Contact</a></div></div>
+      <div class="footer-col"><h5>Categories</h5><div class="footer-links"><a href="collection.html" class="footer-link">Sofas</a><a href="collection.html" class="footer-link">Beds</a><a href="collection.html" class="footer-link">Chairs</a><a href="collection.html" class="footer-link">Dining</a><a href="collection.html" class="footer-link">Storage</a></div></div>
+      <div class="footer-col"><h5>Support</h5><div class="footer-links"><a href="dashboard.html" class="footer-link">My Account</a><a href="dashboard.html" class="footer-link">Swap Request</a><a href="contact.html" class="footer-link">FAQ</a></div></div>
+      <div class="footer-col footer-newsletter"><h5>Newsletter</h5><form class="newsletter-form"><input type="email" class="newsletter-input" placeholder="Your email"><button type="submit" class="newsletter-btn">Subscribe</button></form></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 FurnRent. All rights reserved.</p><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </div>
+</footer>
+
+<div class="cart-overlay"></div>
+<div class="cart-drawer">
+  <div class="cart-header"><div class="cart-title">Your Cart</div><button class="modal-close cart-drawer-close" aria-label="Close cart"><i class="fas fa-times"></i></button></div>
+  <div class="cart-body"></div>
+  <div class="cart-footer"><div class="cart-total"><span>Total:</span><span class="cart-total-amount">₹0</span></div><a href="packages.html" class="btn btn-primary" style="width:100%;justify-content:center">Checkout</a></div>
+</div>
+<button class="scroll-top-btn" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+// Duration Selector & Pricing
+const durationBtns = document.querySelectorAll('.duration-toggle-btn');
+const priceEls = document.querySelectorAll('.price[data-base]');
+const durationMsg = document.getElementById('durationMsg');
+const discounts = { 1:0, 3:12, 6:23, 12:35 };
+const labels = { 1:'1 Month', 3:'3 Months', 6:'6 Months', 12:'12 Months' };
+
+function formatINR(n){ return '₹'+Math.round(n).toLocaleString('en-IN'); }
+
+durationBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    durationBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const months = parseInt(btn.dataset.months);
+    const disc = discounts[months] / 100;
+    priceEls.forEach(el => {
+      const base = parseInt(el.dataset.base);
+      const final = Math.round(base * (1 - disc));
+      el.textContent = formatINR(final);
+    });
+    if(durationMsg) {
+      durationMsg.innerHTML = `Showing prices for <strong>${labels[months]}</strong> rental. ${disc>0?`<span style="color:var(--teal);font-weight:700">Save ${discounts[months]}% vs standard rate!</span> `:''}<span>Security deposit: 2 months refundable.</span>`;
+    }
+  });
+});
+
+function addAddon(btn, name) {
+  if (btn.classList.contains('added')) {
+    btn.classList.remove('added');
+    btn.textContent = 'Add to Plan';
+    if(window.showToast) window.showToast(`Removed "${name}" from your plan`);
+  } else {
+    btn.classList.add('added');
+    btn.textContent = 'Added';
+    if(window.showToast) window.showToast(`Added "${name}" to your plan!`);
+  }
+}
+</script>
+</body>
+</html>

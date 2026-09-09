@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Furniture Collection — FurnRent | Browse & Rent Premium Furniture</title>
+<meta name="description" content="Browse 500+ premium furniture items. Filter by category, price, duration. Sofas, beds, chairs, tables, dining, storage and more.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.collection-toolbar{display:flex;align-items:center;gap:12px;margin-bottom:28px;flex-wrap:wrap}
+.collection-search{display:flex;align-items:center;gap:10px;background:var(--white);border:1.5px solid var(--gray-200);border-radius:var(--radius-full);padding:10px 18px;flex:1;min-width:200px;transition:border-color .2s}
+.collection-search:focus-within{border-color:var(--blue)}
+.collection-search input{border:none;background:none;outline:none;font-size:.9375rem;color:var(--dark);width:100%}
+[data-theme="dark"] .collection-search{background:var(--gray-50);border-color:var(--gray-200)}
+[data-theme="dark"] .collection-search input{color:#ffffff}
+.sort-select{padding:10px 16px;border:1.5px solid var(--gray-200);border-radius:var(--radius-full);font-size:.875rem;color:var(--dark);background:var(--white);cursor:pointer;outline:none}
+[data-theme="dark"] .sort-select{background:var(--gray-50);border-color:var(--gray-200);color:#ffffff}
+[data-theme="dark"] .sort-select option{background:#142236;color:#ffffff}
+.results-count{font-size:.875rem;color:var(--gray-500);white-space:nowrap}
+[data-theme="dark"] .results-count{color:rgba(255,255,255,0.75)}
+.range-slider{width:100%;accent-color:var(--navy);margin-top:8px}
+[data-theme="dark"] .range-slider{accent-color:var(--blue)}
+.price-labels{display:flex;justify-content:space-between;font-size:.8rem;color:var(--gray-500);margin-top:4px}
+[data-theme="dark"] .price-labels{color:rgba(255,255,255,0.75)}
+.filter-close-btn{display:none;width:100%;text-align:right;margin-bottom:20px}
+.filter-apply-btn{width:100%;margin-top:16px}
+.no-results{text-align:center;padding:60px 24px;color:var(--gray-300)}
+.no-results i{font-size:3rem;margin-bottom:16px;display:block}
+
+/* ── Section 1: Curated Looks Styles ── */
+.curated-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+  align-items: stretch;
+}
+
+.curated-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(13, 27, 42, .06);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+[data-theme="dark"] .curated-card {
+  background: var(--navy-mid);
+  border-color: rgba(255, 255, 255, .08);
+}
+
+.curated-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--blue);
+}
+
+.curated-img-wrap {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.curated-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+
+.curated-card:hover .curated-img-wrap img {
+  transform: scale(1.08);
+}
+
+.curated-badge-pill {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(13, 27, 42, .85);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid rgba(255, 255, 255, .15);
+}
+
+.curated-savings-pill {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: linear-gradient(135deg, var(--gold), #d97706);
+  color: var(--navy);
+  font-size: .72rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+}
+
+.curated-content {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.curated-tags {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  height: 26px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.curated-tag {
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--navy-light);
+  background: var(--blue-pale);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  line-height: 1.2;
+}
+
+[data-theme="dark"] .curated-tag {
+  background: rgba(74, 144, 217, .15);
+  color: var(--blue-light);
+}
+
+.curated-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+  line-height: 1.35;
+  min-height: 48px;
+  display: flex;
+  align-items: flex-start;
+}
+
+[data-theme="dark"] .curated-card {
+  background: #142236;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .curated-title {
+  color: #ffffff !important;
+}
+
+.curated-desc {
+  font-size: .8125rem;
+  color: var(--gray-500);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  min-height: 60px;
+}
+
+[data-theme="dark"] .curated-desc {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.curated-items-list {
+  background: var(--gray-50);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  min-height: 94px;
+}
+
+[data-theme="dark"] .curated-items-list {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.curated-item-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .775rem;
+  color: var(--gray-700);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[data-theme="dark"] .curated-item-row {
+  color: #f8fafc !important;
+}
+
+.curated-item-row i {
+  color: var(--teal);
+  font-size: .7rem;
+  flex-shrink: 0;
+}
+
+.curated-pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding-top: 14px;
+  margin-bottom: 14px;
+  margin-top: auto;
+  border-top: 1px solid var(--gray-100);
+}
+
+[data-theme="dark"] .curated-pricing {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.curated-current-price {
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1;
+}
+
+[data-theme="dark"] .curated-current-price {
+  color: #ffffff !important;
+}
+
+.curated-old-price {
+  font-size: .85rem;
+  color: var(--gray-400);
+  text-decoration: line-through;
+}
+
+.curated-unit {
+  font-size: .78rem;
+  color: var(--gray-500);
+}
+
+.curated-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.curated-actions .btn {
+  padding: 9px 16px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  justify-content: center;
+}
+
+/* ── Section 2: Advantages & Trust Stats (Redesigned) ── */
+.adv-features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+  align-items: stretch;
+}
+
+.adv-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 30px 24px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(13, 27, 42, .08);
+  transition: all .35s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .adv-card {
+  background: #142236;
+  border-color: rgba(255, 255, 255, .08);
+}
+
+.adv-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--blue), var(--teal));
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all .35s ease;
+}
+
+.adv-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(13, 27, 42, .1), 0 0 0 1.5px rgba(74, 144, 217, 0.3);
+}
+
+[data-theme="dark"] .adv-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .45), 0 0 0 1.5px rgba(74, 144, 217, 0.5);
+}
+
+.adv-card:hover::before {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.adv-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.adv-num-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(74, 144, 217, .12), rgba(45, 212, 191, .12));
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .875rem;
+  font-weight: 800;
+  transition: all .3s ease;
+}
+
+[data-theme="dark"] .adv-num-badge {
+  background: rgba(74, 144, 217, .18);
+  color: var(--blue-light);
+}
+
+.adv-card:hover .adv-num-badge {
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.adv-category-pill {
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--teal);
+  background: rgba(45, 212, 191, .12);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.adv-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 10px;
+  line-height: 1.35;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  transition: color .25s ease;
+}
+
+[data-theme="dark"] .adv-title {
+  color: #fff;
+}
+
+.adv-card:hover .adv-title {
+  color: var(--blue);
+}
+
+[data-theme="dark"] .adv-card:hover .adv-title {
+  color: var(--blue-light);
+}
+
+.adv-desc {
+  font-size: .85rem;
+  color: var(--gray-500);
+  line-height: 1.6;
+  margin-bottom: 18px;
+  min-height: 72px;
+}
+
+[data-theme="dark"] .adv-desc {
+  color: var(--gray-300);
+}
+
+.adv-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+[data-theme="dark"] .adv-footer {
+  border-color: rgba(255, 255, 255, .08);
+}
+
+.adv-tag-pill {
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--navy);
+  background: var(--blue-pale);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  letter-spacing: .02em;
+}
+
+[data-theme="dark"] .adv-tag-pill {
+  background: rgba(74, 144, 217, .15);
+  color: var(--blue-light);
+}
+
+.adv-action-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--blue-pale);
+  color: var(--navy);
+  font-size: .8125rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .25s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+  border: 1px solid rgba(74, 144, 217, 0.15);
+}
+
+.adv-action-indicator i {
+  transition: transform .25s ease;
+}
+
+.adv-action-indicator:hover,
+.adv-card:hover .adv-action-indicator {
+  background: var(--blue);
+  color: #ffffff !important;
+  border-color: var(--blue);
+  box-shadow: 0 4px 12px rgba(74, 144, 217, 0.35);
+}
+
+.adv-action-indicator:hover i,
+.adv-card:hover .adv-action-indicator i {
+  transform: translateX(2px);
+}
+
+[data-theme="dark"] .adv-action-indicator {
+  background: rgba(74, 144, 217, 0.18);
+  color: #93c5fd;
+  border: 1px solid rgba(74, 144, 217, 0.3);
+}
+
+[data-theme="dark"] .adv-action-indicator:hover,
+[data-theme="dark"] .adv-card:hover .adv-action-indicator {
+  background: var(--blue);
+  color: #ffffff !important;
+  border-color: var(--blue);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="dark"] .adv-card:hover .adv-tag-pill {
+  background: rgba(74, 144, 217, .3);
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .curated-card:hover .curated-tag,
+[data-theme="dark"] .curated-tag:hover {
+  background: rgba(74, 144, 217, .28);
+  color: #ffffff !important;
+}
+
+/* Trust Stats Ribbon */
+.stats-ribbon {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  border-radius: var(--radius-xl);
+  padding: 32px 40px;
+  color: #fff;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, .1);
+}
+.stat-item{text-align:center;padding:8px 16px;border-right:1px solid rgba(255,255,255,.1)}
+.stat-item:last-child{border-right:none}
+.stat-number{font-size:2.2rem;font-weight:900;color:var(--teal);line-height:1;margin-bottom:6px;display:flex;align-items:center;justify-content:center;gap:4px}
+.stat-label{font-size:.8125rem;color:rgba(255,255,255,.75);font-weight:500}
+
+/* ── Section 3: FAQ & Support ── */
+.faq-grid-layout{display:grid;grid-template-columns:1.5fr 1fr;gap:36px;align-items:start}
+.faq-list{display:flex;flex-direction:column;gap:16px}
+.faq-item{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-card);border:1px solid rgba(13,27,42,.06);overflow:hidden;transition:var(--transition)}
+[data-theme="dark"] .faq-item{background:#142236;border-color:rgba(255,255,255,.1)}
+.faq-question{padding:20px 24px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-weight:700;font-size:1rem;color:var(--dark);gap:16px;user-select:none;transition:color .2s;unicode-bidi:plaintext}
+[data-theme="dark"] .faq-question{color:#ffffff}
+.faq-question:hover{color:var(--blue)}
+.faq-icon{width:28px;height:28px;border-radius:50%;background:var(--gray-50);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--navy);flex-shrink:0;transition:transform .3s,background .3s}
+[data-theme="dark"] .faq-icon{background:rgba(255,255,255,.1);color:#ffffff}
+.faq-item.active .faq-icon{transform:rotate(180deg);background:var(--navy);color:#fff}
+.faq-answer{padding:0 24px 20px;font-size:.9rem;color:var(--gray-700);line-height:1.65;display:none;unicode-bidi:plaintext}
+[data-theme="dark"] .faq-answer{color:rgba(255,255,255,.85) !important}
+.faq-item.active .faq-answer{display:block}
+
+/* Support Help Card */
+.support-help-card{background:linear-gradient(145deg,var(--white),var(--gray-50));border-radius:var(--radius-xl);padding:32px;box-shadow:var(--shadow-card);border:1.5px solid var(--blue-pale);position:sticky;top:90px}
+[data-theme="dark"] .support-help-card{background:#142236;border:1.5px solid rgba(74,144,217,.3);box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.support-avatar-group{display:flex;align-items:center;margin-bottom:20px}
+.support-avatar{width:44px;height:44px;border-radius:50%;border:2.5px solid var(--white);object-fit:cover;margin-left:-10px}
+[data-theme="dark"] .support-avatar{border-color:#142236}
+.support-avatar:first-child{margin-left:0}
+.support-avatar-badge{margin-left:14px;background:rgba(16,185,129,.15);color:var(--success);padding:4px 12px;border-radius:var(--radius-full);font-size:.75rem;font-weight:700;display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(16,185,129,.3)}
+.support-avatar-badge::before{content:'';width:6px;height:6px;background:var(--success);border-radius:50%;display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.support-help-card h3{font-size:1.25rem;font-weight:800;margin-bottom:8px;color:var(--dark)}
+[data-theme="dark"] .support-help-card h3{color:#ffffff}
+.support-help-card p{font-size:.875rem;color:var(--gray-500);line-height:1.6;margin-bottom:22px}
+[data-theme="dark"] .support-help-card p{color:rgba(255,255,255,.82)}
+.support-perks{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.support-perk{display:flex;align-items:center;gap:10px;font-size:.8125rem;color:var(--gray-700);font-weight:600}
+[data-theme="dark"] .support-perk{color:#f8fafc !important}
+.support-perk i{color:var(--teal)}
+[data-theme="dark"] .support-help-card .btn-outline{border:1.5px solid rgba(74,144,217,.4);color:#ffffff !important;background:rgba(74,144,217,.12)}
+
+@media(max-width:1200px){
+  .curated-grid{grid-template-columns:repeat(2,1fr)}
+  .adv-features-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-ribbon{grid-template-columns:repeat(2,1fr);gap:20px}
+  .stat-item:nth-child(2){border-right:none}
+}
+@media(max-width:768px){
+  .collection-toolbar{gap:8px}
+  .filter-close-btn{display:block}
+  .collection-search{min-width:0}
+  .curated-grid{grid-template-columns:1fr}
+  .adv-features-grid{grid-template-columns:1fr}
+  .stats-ribbon{grid-template-columns:1fr 1fr;padding:24px}
+  .faq-grid-layout{grid-template-columns:1fr}
+  .support-help-card{position:static}
+}
+@media(max-width:480px){
+  .stats-ribbon{grid-template-columns:1fr}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:16px}
+  .stat-item:last-child{border-bottom:none}
+}
+</style>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo"><div class="logo-icon"><img src="images/logo-icon.svg" alt="FurnRent Logo"></div><span class="logo-text">Furn<span>Rent</span></span></a>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Home</a><a href="home2.html" class="nav-link">Home 2</a>
+      <a href="about.html" class="nav-link">About</a><a href="packages.html" class="nav-link">Packages</a>
+      <a href="collection.html" class="nav-link">Collection</a><a href="blog.html" class="nav-link">Blog</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+                <div class="header-actions">
+        <button class="header-icon-btn rtl-toggle-btn" id="rtlToggleBtn" title="Toggle RTL / LTR Direction" aria-label="Toggle RTL Direction"><i class="fas fa-right-left"></i></button>
+        <button class="header-icon-btn theme-toggle-btn" title="Toggle theme" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="header-icon-btn cart-btn" title="Cart" aria-label="Cart"><i class="fas fa-shopping-bag"></i><span class="cart-badge" style="display:none">0</span></button>
+        <div class="user-dropdown-wrap">
+          <button class="header-icon-btn user-btn" title="My Account" aria-label="My Account" aria-expanded="false">
+            <i class="fas fa-user"></i>
+          </button>
+          <div class="user-dropdown-menu" role="menu">
+            <div class="user-dropdown-header">
+              <div class="user-dropdown-header-title">My Account</div>
+            </div>
+            <div class="user-dropdown-section">
+              <a href="login.html" class="user-dropdown-item" role="menuitem">
+                <i class="fas fa-sign-in-alt"></i> Login
+              </a>
+              <a href="signup.html" class="user-dropdown-item" role="menuitem">
+                <i class="fas fa-user-plus"></i> Sign Up
+              </a>
+            </div>
+            <div class="user-dropdown-section">
+              <a href="dashboard.html" class="user-dropdown-item" role="menuitem">
+                <i class="fas fa-th-large"></i> User Dashboard
+              </a>
+              <a href="admin-dashboard.html" class="user-dropdown-item admin-link" role="menuitem">
+                <i class="fas fa-shield-halved"></i> Admin Dashboard
+              </a>
+            </div>
+          </div>
+        </div>
+        <button class="hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+  </div>
+</header>
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-panel">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="home2.html" class="mobile-nav-link">Home 2</a>
+      <a href="about.html" class="mobile-nav-link">About</a>
+      <a href="packages.html" class="mobile-nav-link">Packages</a>
+      <a href="collection.html" class="mobile-nav-link">Collection</a>
+      <a href="blog.html" class="mobile-nav-link">Blog</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+    </div>
+    
+    <!-- Cart in Mobile Menu -->
+    <button class="mobile-nav-cart-btn cart-btn" aria-label="Open Cart">
+      <div class="mobile-nav-cart-left">
+        <i class="fas fa-shopping-bag"></i>
+        <span>View Cart</span>
+      </div>
+      <span class="cart-badge" style="display:none">0</span>
+    </button>
+
+    <!-- User Account in Mobile Menu -->
+    <div class="mobile-nav-user-box">
+      <div class="mobile-nav-user-title">User Account</div>
+      <div class="mobile-nav-user-grid">
+        <a href="login.html" class="mobile-nav-user-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="signup.html" class="mobile-nav-user-btn"><i class="fas fa-user-plus"></i> Sign Up</a>
+        <a href="dashboard.html" class="mobile-nav-user-btn primary"><i class="fas fa-th-large"></i> User Dashboard</a>
+        <a href="admin-dashboard.html" class="mobile-nav-user-btn admin"><i class="fas fa-shield-halved"></i> Admin Portal</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="search-overlay"><div class="search-box"><div class="search-input-wrap"><i class="fas fa-search" style="color:var(--gray-300)"></i><input type="text" placeholder="Search furniture..."></div><div class="search-close">Press ESC to close</div></div></div>
+
+<section class="page-hero">
+  <div class="container" style="position:relative;z-index:2">
+    <div class="breadcrumb"><span class="breadcrumb-current">Collection</span></div>
+    <h1>Furniture Collection</h1>
+    <p>500+ premium pieces. Filter by category, price and duration to find your perfect match.</p>
+  </div>
+</section>
+
+<!-- Main Products Catalog Section -->
+<section class="section" id="catalog" style="padding-top:40px;padding-bottom:60px">
+  <div class="container">
+    <!-- Category Tabs -->
+    <div class="cat-tabs" id="catTabs" style="margin-bottom:28px">
+      <button class="cat-tab active" data-cat="all">All Items</button>
+      <button class="cat-tab" data-cat="sofas">Sofas</button>
+      <button class="cat-tab" data-cat="beds">Beds</button>
+      <button class="cat-tab" data-cat="chairs">Chairs</button>
+      <button class="cat-tab" data-cat="tables">Tables</button>
+      <button class="cat-tab" data-cat="dining">Dining</button>
+      <button class="cat-tab" data-cat="storage">Storage</button>
+      <button class="cat-tab" data-cat="study">Study</button>
+    </div>
+
+    <div class="collection-layout">
+      <!-- Sidebar -->
+      <aside class="filter-sidebar" id="filterSidebar">
+        <div class="filter-close-btn">
+          <button onclick="document.getElementById('filterSidebar').classList.remove('open')" class="btn btn-sm btn-outline"><i class="fas fa-times"></i> Close Filters</button>
+        </div>
+        <div class="filter-section">
+          <div class="filter-title">Price Range (₹/month)</div>
+          <input type="range" class="range-slider" id="priceRange" min="0" max="5000" value="5000" step="100">
+          <div class="price-labels"><span>₹0</span><span id="priceVal">₹5,000</span></div>
+        </div>
+        <div class="filter-section">
+          <div class="filter-title">Rental Duration</div>
+          <label class="filter-option"><input type="checkbox" value="1" class="duration-filter"> 1 Month</label>
+          <label class="filter-option"><input type="checkbox" value="3" class="duration-filter"> 3 Months</label>
+          <label class="filter-option"><input type="checkbox" value="6" class="duration-filter"> 6 Months</label>
+          <label class="filter-option"><input type="checkbox" value="12" class="duration-filter"> 12 Months</label>
+        </div>
+        <div class="filter-section">
+          <div class="filter-title">Category</div>
+          <label class="filter-option"><input type="checkbox" value="sofas" class="cat-filter"> Sofas</label>
+          <label class="filter-option"><input type="checkbox" value="beds" class="cat-filter"> Beds</label>
+          <label class="filter-option"><input type="checkbox" value="chairs" class="cat-filter"> Chairs</label>
+          <label class="filter-option"><input type="checkbox" value="tables" class="cat-filter"> Tables</label>
+          <label class="filter-option"><input type="checkbox" value="dining" class="cat-filter"> Dining</label>
+          <label class="filter-option"><input type="checkbox" value="storage" class="cat-filter"> Storage</label>
+        </div>
+        <div class="filter-section">
+          <div class="filter-title">Rating</div>
+          <label class="filter-option"><input type="radio" name="rating" value="5" class="rating-filter"> ★★★★★ (5 star)</label>
+          <label class="filter-option"><input type="radio" name="rating" value="4" class="rating-filter"> ★★★★☆ (4+ star)</label>
+          <label class="filter-option"><input type="radio" name="rating" value="0"> All Ratings</label>
+        </div>
+        <button class="btn btn-primary filter-apply-btn" id="applyFilters">Apply Filters</button>
+        <button class="btn btn-outline filter-apply-btn" id="clearFilters" style="margin-top:8px">Clear All</button>
+      </aside>
+
+      <!-- Products area -->
+      <div>
+        <div class="collection-toolbar">
+          <button class="filter-mobile-btn" onclick="document.getElementById('filterSidebar').classList.add('open')"><i class="fas fa-filter"></i> Filters</button>
+          <div class="collection-search">
+            <i class="fas fa-search" style="color:var(--gray-300)"></i>
+            <input type="text" id="productSearch" placeholder="Search furniture...">
+          </div>
+          <select class="sort-select" id="sortSelect">
+            <option value="default">Default</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Top Rated</option>
+          </select>
+          <span class="results-count" id="resultsCount">12 items</span>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+          <!-- Products rendered by JS -->
+        </div>
+        <div class="no-results" id="noResults" style="display:none">
+          <i class="fas fa-search"></i>
+          <h3>No furniture found</h3>
+          <p>Try adjusting your filters or search term</p>
+          <button class="btn btn-primary" onclick="resetFilters()" style="margin-top:16px">Clear Filters</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEW SECTION 1: Curated Room Sets & Styled Looks
+     ============================================================ -->
+<section class="section" style="background:var(--off-white);border-top:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100);padding:70px 0">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Styled Bundles</span>
+      <h2>Curated Room Sets & Aesthetic Looks</h2>
+      <p>Designer-matched bundles crafted for cohesive spaces. Save up to 25% compared to individual rentals.</p>
+    </div>
+
+    <div class="curated-grid">
+      <!-- Look 1 -->
+      <div class="curated-card">
+        <div class="curated-img-wrap">
+          <img src="images/hero_interior.jpg" alt="Nordic Minimalist Living Room" loading="lazy">
+          <div class="curated-badge-pill">Living Room</div>
+          <div class="curated-savings-pill">Save 20%</div>
+        </div>
+        <div class="curated-content">
+          <div class="curated-tags">
+            <span class="curated-tag">3 Pieces</span>
+            <span class="curated-tag">Scandinavian</span>
+            <span class="curated-tag">Bestseller</span>
+          </div>
+          <h3 class="curated-title">Nordic Minimalist Living Set</h3>
+          <p class="curated-desc">Warm modern comfort combining rich velvet seating with natural stone textures.</p>
+          <div class="curated-items-list">
+            <div class="curated-item-row">Luxe Navy 3-Seater Sofa</div>
+            <div class="curated-item-row">Marble Coffee Table</div>
+            <div class="curated-item-row">Accent Armchair</div>
+          </div>
+          <div class="curated-pricing">
+            <span class="curated-current-price">₹1,899</span>
+            <span class="curated-old-price">₹2,297</span>
+            <span class="curated-unit">/ month</span>
+          </div>
+          <div class="curated-actions">
+            <button class="btn btn-primary btn-sm" onclick="rentRoomSet('bundle-nordic-living', 'Nordic Minimalist Living Set', 1899, 'images/hero_interior.jpg')">Rent Entire Set</button>
+            <button class="btn btn-outline btn-sm" onclick="filterByCuratedCat('sofas')">Explore Items</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Look 2 -->
+      <div class="curated-card">
+        <div class="curated-img-wrap">
+          <img src="images/study_table.jpg" alt="Executive Ergonomic WFH Studio" loading="lazy">
+          <div class="curated-badge-pill">Home Office</div>
+          <div class="curated-savings-pill">Save 18%</div>
+        </div>
+        <div class="curated-content">
+          <div class="curated-tags">
+            <span class="curated-tag">2 Pieces</span>
+            <span class="curated-tag">Ergonomic Pro</span>
+            <span class="curated-tag">WFH</span>
+          </div>
+          <h3 class="curated-title">Executive WFH Studio Bundle</h3>
+          <p class="curated-desc">Built for peak productivity with adjustable posture support and smart wire routing.</p>
+          <div class="curated-items-list">
+            <div class="curated-item-row">Standing Desk (Height-Adjustable)</div>
+            <div class="curated-item-row">Ergonomic Pro Mesh Chair</div>
+            <div class="curated-item-row">Free Cable Management Kit</div>
+          </div>
+          <div class="curated-pricing">
+            <span class="curated-current-price">₹1,299</span>
+            <span class="curated-old-price">₹1,598</span>
+            <span class="curated-unit">/ month</span>
+          </div>
+          <div class="curated-actions">
+            <button class="btn btn-primary btn-sm" onclick="rentRoomSet('bundle-wfh-studio', 'Executive WFH Studio Bundle', 1299, 'images/study_table.jpg')">Rent Entire Set</button>
+            <button class="btn btn-outline btn-sm" onclick="filterByCuratedCat('study')">Explore Items</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Look 3 -->
+      <div class="curated-card">
+        <div class="curated-img-wrap">
+          <img src="images/queen_bed.jpg" alt="Serene Master Bedroom Sanctuary" loading="lazy">
+          <div class="curated-badge-pill">Bedroom Suite</div>
+          <div class="curated-savings-pill">Save 25%</div>
+        </div>
+        <div class="curated-content">
+          <div class="curated-tags">
+            <span class="curated-tag">3 Pieces</span>
+            <span class="curated-tag">Luxury Linen</span>
+            <span class="curated-tag">Spacious</span>
+          </div>
+          <h3 class="curated-title">Serene Master Bedroom Suite</h3>
+          <p class="curated-desc">Hotel-grade slumber sanctuary featuring plush headboard upholstery & sliding wardrobe.</p>
+          <div class="curated-items-list">
+            <div class="curated-item-row">Queen Comfort Bed & Mattress</div>
+            <div class="curated-item-row">Sliding Mirror Wardrobe</div>
+            <div class="curated-item-row">Nested Bedside Tables (Set of 2)</div>
+          </div>
+          <div class="curated-pricing">
+            <span class="curated-current-price">₹2,099</span>
+            <span class="curated-old-price">₹2,747</span>
+            <span class="curated-unit">/ month</span>
+          </div>
+          <div class="curated-actions">
+            <button class="btn btn-primary btn-sm" onclick="rentRoomSet('bundle-master-bedroom', 'Serene Master Bedroom Suite', 2099, 'images/queen_bed.jpg')">Rent Entire Set</button>
+            <button class="btn btn-outline btn-sm" onclick="filterByCuratedCat('beds')">Explore Items</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Look 4 -->
+      <div class="curated-card">
+        <div class="curated-img-wrap">
+          <img src="images/dining_table.jpg" alt="Contemporary Dining Set" loading="lazy">
+          <div class="curated-badge-pill">Dining Area</div>
+          <div class="curated-savings-pill">Save 15%</div>
+        </div>
+        <div class="curated-content">
+          <div class="curated-tags">
+            <span class="curated-tag">5 Pieces</span>
+            <span class="curated-tag">Solid Walnut</span>
+            <span class="curated-tag">Family Set</span>
+          </div>
+          <h3 class="curated-title">Urban Dining & Hosting Set</h3>
+          <p class="curated-desc">Gather around solid dark walnut with modern matte finish and 4 comfortable cushioned chairs.</p>
+          <div class="curated-items-list">
+            <div class="curated-item-row">Walnut 4-Seater Dining Table</div>
+            <div class="curated-item-row">4 Ergonomic Padded Chairs</div>
+            <div class="curated-item-row">Scratch-Resistant Finish</div>
+          </div>
+          <div class="curated-pricing">
+            <span class="curated-current-price">₹1,199</span>
+            <span class="curated-old-price">₹1,448</span>
+            <span class="curated-unit">/ month</span>
+          </div>
+          <div class="curated-actions">
+            <button class="btn btn-primary btn-sm" onclick="rentRoomSet('bundle-urban-dining', 'Urban Dining & Hosting Set', 1199, 'images/dining_table.jpg')">Rent Entire Set</button>
+            <button class="btn btn-outline btn-sm" onclick="filterByCuratedCat('dining')">Explore Items</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEW SECTION 2: The FurnRent Advantage & Quality Guarantee
+     ============================================================ -->
+<section class="section" style="padding:80px 0">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Peace of Mind</span>
+      <h2>The FurnRent Rental Advantage</h2>
+      <p>Enjoy designer furniture with zero maintenance headaches, prompt delivery, and complete flexibility.</p>
+    </div>
+
+    <div class="adv-features-grid">
+      <!-- Feature 1 -->
+      <div class="adv-card">
+        <div class="adv-card-header">
+          <div class="adv-num-badge">01</div>
+          <span class="adv-category-pill">Logistics</span>
+        </div>
+        <h4 class="adv-title">48-Hour Free Delivery &amp; Setup</h4>
+        <p class="adv-desc">White-glove doorstep delivery and certified technician installation at zero extra cost. Scheduled around your convenience.</p>
+        <div class="adv-footer">
+          <span class="adv-tag-pill">Express Service</span>
+          <a href="#catalog" class="adv-action-indicator" aria-label="Explore 48-Hour Free Delivery &amp; Setup"><i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="adv-card">
+        <div class="adv-card-header">
+          <div class="adv-num-badge">02</div>
+          <span class="adv-category-pill">Hygiene</span>
+        </div>
+        <h4 class="adv-title">7-Step Hygiene Sanitization</h4>
+        <p class="adv-desc">Every piece undergoes deep steam extraction, anti-microbial disinfection, and is delivered in tamper-proof sterile packaging.</p>
+        <div class="adv-footer">
+          <span class="adv-tag-pill">100% Certified Safe</span>
+          <a href="#catalog" class="adv-action-indicator" aria-label="Learn about 7-Step Hygiene Sanitization"><i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="adv-card">
+        <div class="adv-card-header">
+          <div class="adv-num-badge">03</div>
+          <span class="adv-category-pill">Flexibility</span>
+        </div>
+        <h4 class="adv-title">Free Annual Style Swaps</h4>
+        <p class="adv-desc">Keep your home trendy. After 12 months, upgrade or swap any furniture piece for a new design completely free of charge.</p>
+        <div class="adv-footer">
+          <span class="adv-tag-pill">Zero Penalty Upgrade</span>
+          <a href="#catalog" class="adv-action-indicator" aria-label="Explore Free Annual Style Swaps"><i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="adv-card">
+        <div class="adv-card-header">
+          <div class="adv-num-badge">04</div>
+          <span class="adv-category-pill">Protection</span>
+        </div>
+        <h4 class="adv-title">₹10,000 Damage Waiver</h4>
+        <p class="adv-desc">Accidental spills or scuffs? Our complimentary protection policy covers up to ₹10,000 in normal wear and tear with 0 deductible.</p>
+        <div class="adv-footer">
+          <span class="adv-tag-pill">Free Coverage</span>
+          <a href="#catalog" class="adv-action-indicator" aria-label="Learn about ₹10,000 Damage Waiver"><i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust Stats Ribbon -->
+    <div class="stats-ribbon">
+      <div class="stat-item">
+        <div class="stat-number">48<span style="font-size:1.4rem">h</span></div>
+        <div class="stat-label">Guaranteed Delivery & Setup</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">4.9<span style="font-size:1.4rem">★</span></div>
+        <div class="stat-label">Rating Across 15,000+ Renters</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100<span style="font-size:1.4rem">%</span></div>
+        <div class="stat-label">Refundable Security Deposit</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">12<span style="font-size:1.4rem">+</span></div>
+        <div class="stat-label">Major Indian Metros Covered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEW SECTION 3: Frequently Asked Questions & Expert Help
+     ============================================================ -->
+<section class="section" style="background:var(--off-white);border-top:1px solid var(--gray-100);padding:80px 0">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Help & FAQs</span>
+      <h2>Rental Questions Answered</h2>
+      <p>Have questions about renting individual pieces, tenure, deposits, or maintenance? We've got you covered.</p>
+    </div>
+
+    <div class="faq-grid-layout">
+      <!-- FAQ Accordions -->
+      <div class="faq-list">
+        <div class="faq-item active">
+          <div class="faq-question">
+            <span>What is the minimum rental tenure for collection items?</span>
+            <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+          </div>
+          <div class="faq-answer">
+            You can rent any furniture piece starting from just 1 month. We offer flexible options of 1, 3, 6, or 12+ months. Choosing longer durations unlocks deeper monthly discounts up to 35% off.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How does the security deposit work?</span>
+            <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+          </div>
+          <div class="faq-answer">
+            We charge a small refundable security deposit equal to just 1 month's rental. The entire deposit is credited directly back to your original bank account within 24-48 hours of item pickup.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What if an item gets accidental stains or scratches?</span>
+            <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+          </div>
+          <div class="faq-answer">
+            We know life happens! Every order comes with our complimentary FurnCare Damage Waiver covering up to ₹10,000 in normal wear, surface scratches, or accidental stains without penalties.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I swap or return an item if it doesn't fit my room?</span>
+            <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+          </div>
+          <div class="faq-answer">
+            Yes! We offer a 7-day hassle-free exchange guarantee upon delivery. If the piece doesn't complement your interior or room dimensions, our team will pick it up and swap it for another product.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I buy the rented furniture later (Rent-to-Own)?</span>
+            <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
+          </div>
+          <div class="faq-answer">
+            Absolutely! At any point during your rental tenure, you can choose to purchase the furniture. Up to 70% of the rent you have already paid will be adjusted against the buyout price.
+          </div>
+        </div>
+      </div>
+
+      <!-- Support & Personal Styling Box -->
+      <div class="support-help-card">
+        <div class="support-avatar-group">
+          <img src="images/about_office.jpg" alt="Interior Stylist" class="support-avatar">
+          <img src="images/hero_interior.jpg" alt="Stylist 2" class="support-avatar">
+          <div class="support-avatar-badge">Online Stylists Available</div>
+        </div>
+        <h3>Need Space Planning Help?</h3>
+        <p>Share your room dimensions or floor plan. Our in-house interior consultants will curate a customized furniture layout tailored for your taste.</p>
+        
+        <div class="support-perks">
+          <div class="support-perk">Free 1-on-1 3D Room Layout Advice</div>
+          <div class="support-perk">Custom Combo Discounts Available</div>
+          <div class="support-perk">Response within 15 minutes</div>
+        </div>
+
+        <a href="contact.html" class="btn btn-primary" style="width:100%;margin-bottom:10px">Book Free Consultation</a>
+        <a href="https://wa.me/919876543210" target="_blank" class="btn btn-outline" style="width:100%"><i class="fab fa-whatsapp" style="color:var(--success)"></i> Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="container" style="position:relative;z-index:2">
+    <h2>Can't Find What You're Looking For?</h2>
+    <p>Contact our furniture experts. We'll help you find or source exactly what you need.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn btn-teal btn-lg">Talk to Expert</a>
+      <a href="packages.html" class="btn btn-outline-white btn-lg">View Packages</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand footer-col"><a href="index.html" class="logo"><div class="logo-icon"><img src="images/logo-icon.svg" alt="FurnRent Logo"></div><span class="logo-text">Furn<span>Rent</span></span></a><p>Premium furniture rental across India.</p><div class="footer-socials"><a href="#" class="footer-social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="#" class="footer-social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="#" class="footer-social-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a></div></div>
+      <div class="footer-col"><h5>Quick Links</h5><div class="footer-links"><a href="index.html" class="footer-link">Home</a><a href="about.html" class="footer-link">About</a><a href="packages.html" class="footer-link">Packages</a><a href="collection.html" class="footer-link">Collection</a><a href="blog.html" class="footer-link">Blog</a></div></div>
+      <div class="footer-col"><h5>Categories</h5><div class="footer-links"><a href="collection.html" class="footer-link">Sofas</a><a href="collection.html" class="footer-link">Beds</a><a href="collection.html" class="footer-link">Chairs</a><a href="collection.html" class="footer-link">Dining</a></div></div>
+      <div class="footer-col"><h5>Support</h5><div class="footer-links"><a href="dashboard.html" class="footer-link">My Account</a><a href="contact.html" class="footer-link">FAQ</a><a href="contact.html" class="footer-link">Help</a></div></div>
+      <div class="footer-col footer-newsletter"><h5>Newsletter</h5><form class="newsletter-form"><input type="email" class="newsletter-input" placeholder="Your email"><button type="submit" class="newsletter-btn">Subscribe</button></form></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 FurnRent. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<div class="cart-overlay"></div>
+<div class="cart-drawer">
+  <div class="cart-header"><div class="cart-title">Your Cart (<span class="cart-count">0</span>)</div><button class="modal-close cart-drawer-close" aria-label="Close cart"><i class="fas fa-times"></i></button></div>
+  <div class="cart-body"></div>
+  <div class="cart-footer"><div class="cart-total"><span>Total:</span><span class="cart-total-amount">₹0</span></div><a href="packages.html" class="btn btn-primary" style="width:100%;justify-content:center">Checkout</a></div>
+</div>
+<button class="scroll-top-btn" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+<div class="toast-container"></div>
+
+<script src="js/main.js"></script>
+<script>
+const PRODUCTS = [
+  {id:'sofa-001',name:'Luxe Navy 3-Seater Sofa',cat:'sofas',price:1299,rating:5,img:'images/sofa_navy.jpg',desc:'Premium velvet upholstery with solid oak legs. Perfect centerpiece for any living room.',badge:'Popular',badgeType:'badge-navy'},
+  {id:'sofa-002',name:'L-Shaped Corner Sofa',cat:'sofas',price:1899,rating:5,img:'images/hero_interior.jpg',desc:'Spacious L-shaped sofa ideal for large living rooms. 6-seater capacity with chaise.',badge:'New',badgeType:'badge-teal'},
+  {id:'bed-001',name:'Queen Comfort Bed',cat:'beds',price:1599,rating:5,img:'images/queen_bed.jpg',desc:'Upholstered headboard, solid oak frame, premium linen.',badge:'Best Value',badgeType:'badge-gold'},
+  {id:'bed-002',name:'King Luxury Bed',cat:'beds',price:2199,rating:5,img:'images/queen_bed.jpg',desc:'King size bed with storage drawers and upholstered frame.',badge:'Premium',badgeType:'badge-navy'},
+  {id:'chair-001',name:'Ergonomic Pro Chair',cat:'chairs',price:699,rating:5,img:'images/office_chair.jpg',desc:'Mesh back with lumbar support. 8-hour comfort guaranteed.',badge:'WFH Ready',badgeType:'badge-teal'},
+  {id:'chair-002',name:'Accent Armchair',cat:'chairs',price:549,rating:4,img:'images/office_chair.jpg',desc:'Plush accent chair perfect for reading corners and bedrooms.'},
+  {id:'desk-001',name:'Oak Study Desk',cat:'study',price:549,rating:4,img:'images/study_table.jpg',desc:'Spacious oak desk with built-in drawer and cable management.',badge:'Student Pick',badgeType:'badge-blue'},
+  {id:'desk-002',name:'Standing Desk (Adjustable)',cat:'study',price:899,rating:5,img:'images/study_table.jpg',desc:'Electric height-adjustable desk. Sit or stand while working.',badge:'WFH',badgeType:'badge-teal'},
+  {id:'dining-001',name:'Walnut 4-Seater Dining',cat:'dining',price:1199,rating:5,img:'images/dining_table.jpg',desc:'Solid walnut top with black metal legs. 4 matching chairs included.'},
+  {id:'dining-002',name:'Round Dining Table Set',cat:'dining',price:999,rating:4,img:'images/dining_table.jpg',desc:'Space-saving round table with 4 chairs. Perfect for compact spaces.'},
+  {id:'ward-001',name:'Sliding Mirror Wardrobe',cat:'storage',price:799,rating:5,img:'images/wardrobe.jpg',desc:'3-door sliding wardrobe with mirrors and built-in drawers.'},
+  {id:'ward-002',name:'5-Door Wardrobe',cat:'storage',price:1099,rating:4,img:'images/wardrobe.jpg',desc:'Spacious 5-door wardrobe with dedicated compartments and shoe rack.'},
+  {id:'table-001',name:'Marble Coffee Table',cat:'tables',price:449,rating:4,img:'images/hero_interior.jpg',desc:'Elegant marble-top coffee table with brass legs.'},
+  {id:'table-002',name:'Nested Side Tables (Set of 2)',cat:'tables',price:349,rating:4,img:'images/study_table.jpg',desc:'Versatile nesting tables. Use together or separately as needed.'},
+  {id:'table-003',name:'Nordic Wooden Center Table',cat:'tables',price:399,rating:5,img:'images/dining_table.jpg',desc:'Minimalist solid wood center table with lower storage shelf.',badge:'Trending',badgeType:'badge-teal'},
+];
+
+let activeFilters = { cat: 'all', maxPrice: 5000, search: '', sort: 'default' };
+
+function renderProducts(items) {
+  const grid = document.getElementById('productsGrid');
+  const noResults = document.getElementById('noResults');
+  const count = document.getElementById('resultsCount');
+  if (!items.length) { grid.innerHTML=''; noResults.style.display='block'; count.textContent='0 items'; return; }
+  noResults.style.display='none';
+  count.textContent = items.length + ' items';
+  const wl = JSON.parse(localStorage.getItem('furnrent-wishlist') || '[]');
+  grid.innerHTML = items.map(p => `
+    <div class="product-card" data-id="${p.id}" data-price="${p.price}">
+      <div class="product-card-image">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        <div class="product-card-actions">
+          <button class="product-action-btn wishlist-btn ${wl.includes(p.id)?'active':''}" data-id="${p.id}" data-name="${p.name}" title="Wishlist"><i class="fas fa-heart"></i></button>
+        </div>
+        ${p.badge ? `<div class="product-badge-tag"><span class="badge ${p.badgeType||'badge-navy'}">${p.badge}</span></div>` : ''}
+      </div>
+      <div class="product-card-body">
+        <div class="product-meta">
+          <span class="product-cat">${p.cat}</span>
+          <div class="stars">${'★'.repeat(p.rating)}${'☆'.repeat(5-p.rating)}</div>
+        </div>
+        <h3>${p.name}</h3>
+        <p class="product-desc">${p.desc}</p>
+        <div class="product-footer">
+          <div>
+            <div class="product-price">₹${p.price.toLocaleString('en-IN')}</div>
+            <div class="product-price-label">per month</div>
+          </div>
+          <button class="product-rent-btn" onclick="addToCartFromGrid('${p.id}','${p.name}',${p.price},'${p.img}')">Rent Now</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  initWishlistBtns();
+}
+
+function addToCartFromGrid(id, name, price, img) {
+  addToCart({id, name, price, img, duration:'1 Month'});
+}
+
+function rentRoomSet(id, name, price, img) {
+  addToCart({id, name, price, img, duration:'3 Months Bundle'});
+  const drawer = document.querySelector('.cart-drawer');
+  const overlay = document.querySelector('.cart-overlay');
+  if(drawer && overlay){
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    renderCartDrawer();
+  }
+}
+
+function filterByCuratedCat(cat) {
+  activeFilters.cat = cat;
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === cat));
+  renderProducts(getFiltered());
+  const catalog = document.getElementById('catTabs');
+  if(catalog) {
+    catalog.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
+function getFiltered() {
+  let items = [...PRODUCTS];
+  if(activeFilters.cat !== 'all') items = items.filter(p => p.cat === activeFilters.cat);
+  items = items.filter(p => p.price <= activeFilters.maxPrice);
+  if(activeFilters.search) items = items.filter(p => p.name.toLowerCase().includes(activeFilters.search) || p.cat.toLowerCase().includes(activeFilters.search));
+  if(activeFilters.sort === 'price-low') items.sort((a,b) => a.price-b.price);
+  else if(activeFilters.sort === 'price-high') items.sort((a,b) => b.price-a.price);
+  else if(activeFilters.sort === 'rating') items.sort((a,b) => b.rating-a.rating);
+  return items;
+}
+
+function resetFilters() {
+  activeFilters = { cat:'all', maxPrice:5000, search:'', sort:'default' };
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.toggle('active', t.dataset.cat==='all'));
+  document.getElementById('priceRange').value = 5000;
+  document.getElementById('priceVal').textContent = '₹5,000';
+  document.getElementById('productSearch').value = '';
+  document.getElementById('sortSelect').value = 'default';
+  renderProducts(getFiltered());
+}
+
+// Category tabs
+document.querySelectorAll('.cat-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    activeFilters.cat = tab.dataset.cat;
+    renderProducts(getFiltered());
+  });
+});
+
+// Price range
+document.getElementById('priceRange').addEventListener('input', function() {
+  activeFilters.maxPrice = parseInt(this.value);
+  document.getElementById('priceVal').textContent = '₹'+parseInt(this.value).toLocaleString('en-IN');
+  renderProducts(getFiltered());
+});
+
+// Search
+document.getElementById('productSearch').addEventListener('input', function() {
+  activeFilters.search = this.value.toLowerCase();
+  renderProducts(getFiltered());
+});
+
+// Sort
+document.getElementById('sortSelect').addEventListener('change', function() {
+  activeFilters.sort = this.value;
+  renderProducts(getFiltered());
+});
+
+document.getElementById('clearFilters').addEventListener('click', resetFilters);
+
+// FAQ Accordion Toggle
+document.querySelectorAll('.faq-question').forEach(item => {
+  item.addEventListener('click', () => {
+    const parent = item.parentElement;
+    const isActive = parent.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('active'));
+    if(!isActive) {
+      parent.classList.add('active');
+    }
+  });
+});
+
+// Init
+renderProducts(getFiltered());
+</script>
+</body>
+</html>
